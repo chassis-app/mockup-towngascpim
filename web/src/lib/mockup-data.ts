@@ -667,6 +667,82 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/manage-delegate": {
+    title: "Act as a Delegate",
+    href: "/manage-delegate",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Act as a Delegate",
+        columns: ["Acting For", "Start Date"],
+        message: "You are not currently acting as anyone's delegate",
+      },
+    ],
+  },
+  "/manage-category": {
+    title: "Manage Categories",
+    href: "/manage-category",
+    blocks: [
+      {
+        type: "table",
+        toolbar: ["New Category", "Edit", "Delete"],
+        columns: ["Category Name", "Type", "Description"],
+        rows: [
+          ["Workspaces", "Project Server default", "My Direct Report category"],
+          ["Projects", "Project Server default", "My Projects category"],
+          ["Resources", "Project Server default", "My Resources category"],
+          ["Tasks", "Project Server default", "My Tasks category"],
+        ],
+      },
+    ],
+  },
+  "/time-report-period": {
+    title: "Time Reporting Periods",
+    href: "/time-report-period",
+    actions: ["Create Periods"],
+    blocks: [
+      {
+        type: "message",
+        heading: "Define Bulk Period Parameters",
+        body: "You can simultaneously create multiple periods by using the bulk period creation option. Before you use the option, specify the parameters in this section and the naming convention in Section 2.",
+      },
+      {
+        type: "prompt-fields",
+        heading: "Bulk Creation",
+        description: "Set the start date, number of periods, and the standard period length.",
+        fields: [
+          { label: "Number of periods to be created", value: "12" },
+          { label: "Date the first period starts", value: "11/03/2026", type: "date" },
+          { label: "Length of the standard period (days)", value: "7" },
+        ],
+      },
+      {
+        type: "message",
+        heading: "Define Batch Naming Convention",
+        body: "When you create multiple time reporting periods, it is recommended to use a unique name format composed of prefix, sequence number, and suffix.",
+      },
+      {
+        type: "prompt-fields",
+        heading: "Naming Convention",
+        description: "Configure the period label format before creating the batch.",
+        fields: [
+          { label: "Prefix", value: "TP-" },
+          { label: "Sequence Number", value: "001" },
+          { label: "Suffix", value: "" },
+          { label: "Sample", value: "TP-001" },
+        ],
+      },
+      {
+        type: "table",
+        columns: ["Period Label", "Start Date", "End Date", "Status"],
+        rows: [
+          ["TP-001", "11/03/2026", "17/03/2026", "Open"],
+          ["TP-002", "18/03/2026", "24/03/2026", "Open"],
+          ["TP-003", "25/03/2026", "31/03/2026", "Planned"],
+        ],
+      },
+    ],
+  },
   "/manage-template": {
     title: "Manage Templates",
     href: "/manage-template",
@@ -864,6 +940,47 @@ const screenOverrides: Record<string, MockupScreen> = {
           "Site Handover",
         ],
         selectedItems: ["Construction Approval", "Site Handover"],
+      },
+    ],
+  },
+  "/timesheet-manager": {
+    title: "Specify Timesheet Managers",
+    href: "/timesheet-manager",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "message",
+        body: "If fixed approval routing is not enabled, users can select from these timesheet managers when they submit their timesheets for approval. Only people who appear on this list and have the approve timesheet permission can give final approval.",
+      },
+      {
+        type: "table",
+        toolbar: ["Add Manager", "Remove"],
+        columns: ["Manager Name", "Email", "Department"],
+        rows: [
+          ["Victor Cheng", "victorcheng@ajpcorp.com", "Project Management"],
+          ["Susan Chan", "susan.chan@ajpcorp.com", "Finance"],
+          ["Andy Lam", "andy.lam@ajpcorp.com", "Operations"],
+        ],
+      },
+    ],
+  },
+  "/task-setting-and-display": {
+    title: "Task Settings and Display",
+    href: "/task-setting-and-display",
+    blocks: [
+      {
+        type: "table",
+        columns: ["Section", "Page", "Open", "Edit", "Delete"],
+        rows: [
+          ["Cost Estimate", "AG Cost Estimate List", "Yes", "Yes", "Yes"],
+          ["Cost Estimate", "UG Cost Estimate List", "Yes", "Yes", "Yes"],
+          ["Tender", "Tender Profile", "Yes", "Yes", "Yes"],
+          ["Tender", "Tender Detail", "Yes", "Yes", "Yes"],
+          ["Quotation", "Quotation Profile", "Yes", "Yes", "Yes"],
+          ["Quotation", "Quotation Detail", "Yes", "Yes", "Yes"],
+          ["CEA", "CEA Profile", "Yes", "Yes", "Yes"],
+          ["CEA", "CEA Detail", "Yes", "Yes", "Yes"],
+        ],
       },
     ],
   },
