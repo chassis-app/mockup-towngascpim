@@ -679,6 +679,48 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/manage-queue-jobs": {
+    title: "Manage Queue Jobs",
+    href: "/manage-queue-jobs",
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Filter Type",
+        columns: 3,
+        fields: [
+          {
+            label: "Queue Filter",
+            value: "By Status",
+            control: "select",
+            options: ["By Status", "My Jobs", "By Project", "By Failed Jobs"],
+          },
+          {
+            label: "State",
+            value: "Blocked",
+            control: "select",
+            options: ["All", "Processing", "Success", "Blocked"],
+          },
+          { label: "Job History", value: "Job Completion Time" },
+        ],
+      },
+      {
+        type: "table",
+        heading: "Jobs Grid",
+        description:
+          "This grid lists all the queue jobs that meet the criteria specified above. A subset of jobs can be selected and cancelled or retried.",
+        toolbar: ["Retry Job", "Cancel Job"],
+        columns: ["", "Date", "Type", "State", "Description", "% Complete", "User"],
+        rows: [
+          ["O", "05/01/2026 13:21:39", "Project Publish", "Blocked", "Due To A Failed Job", "0%", "victorcheng"],
+          ["O", "03/01/2026 11:08:10", "Workflow", "Blocked", "Due To A Failed Job", "0%", "victorcheng"],
+          ["O", "27/06/2025 14:33:07", "Project Check-in", "Blocked", "Due To A Failed Job", "0%", "victorcheng"],
+          ["O", "26/06/2025 16:41:20", "Status Workflow", "Blocked", "Due To A Failed Job", "0%", "victorcheng"],
+          ["O", "24/06/2025 13:45:50", "Project Publish", "Success", "Completed", "100%", "victorcheng"],
+        ],
+      },
+    ],
+  },
   "/manage-category": {
     title: "Manage Categories",
     href: "/manage-category",
@@ -692,6 +734,25 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["Projects", "Project Server default", "My Projects category"],
           ["Resources", "Project Server default", "My Resources category"],
           ["Tasks", "Project Server default", "My Tasks category"],
+        ],
+      },
+    ],
+  },
+  "/custom-field": {
+    title: "Enterprise Custom Fields and Lookup Tables",
+    href: "/custom-field",
+    blocks: [
+      {
+        type: "table",
+        heading: "Enterprise Custom Fields",
+        toolbar: ["New Field", "Edit", "Delete"],
+        columns: ["Name", "Entity", "Type", "Formula", "Required", "Workflow Controlled", "Lookup Table"],
+        rows: [
+          ["companycode", "Task", "Lookup", "companySharepointTasks", "No", "No", "companycodeList"],
+          ["contractor", "Project", "Lookup", "", "No", "No", "contractorMaster"],
+          ["commissioneddate", "Task", "Date", "", "No", "No", ""],
+          ["leave", "Resource", "Text", "", "No", "No", ""],
+          ["bookprogress", "Task", "Member", "", "No", "No", ""],
         ],
       },
     ],
@@ -743,6 +804,97 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/fiscal-periods": {
+    title: "Fiscal Periods",
+    href: "/fiscal-periods",
+    blocks: [
+      {
+        type: "message",
+        heading: "Manage Fiscal Period",
+        body:
+          "Adjust fiscal months. The fiscal year shown in the previous section has not been defined.",
+      },
+      {
+        type: "prompt-fields",
+        heading: "Calendar Setup",
+        description: "Define the fiscal year and month structure used across reporting.",
+        fields: [
+          { label: "Fiscal Year", value: "2026" },
+          { label: "Start Month", value: "January" },
+          { label: "Months in Year", value: "12" },
+          { label: "Status", value: "Not Defined" },
+        ],
+      },
+    ],
+  },
+  "/delete-enterprise-object": {
+    title: "Delete Enterprise Objects",
+    href: "/delete-enterprise-object",
+    actions: ["Delete Selected"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "What do you want to delete from Project Web App?",
+        columns: 2,
+        fields: [
+          {
+            label: "Delete From",
+            value: "Projects",
+            control: "select",
+            options: ["Projects", "Resources and Users", "Status Report Responses", "Timesheets", "User Delegates"],
+          },
+          {
+            label: "Delete Scope",
+            value: "Delete draft and published projects",
+            control: "select",
+            options: [
+              "Delete draft and published projects",
+              "Delete only published projects",
+              "Delete archived projects",
+            ],
+          },
+          {
+            label: "Connected SharePoint Sites",
+            value: "Delete the connected SharePoint sites",
+            control: "readonly",
+            wide: true,
+          },
+        ],
+      },
+      {
+        type: "table",
+        columns: ["", "Project Name", "Owner", "State", "Type", "Modified", "Site"],
+        rows: [
+          ["O", "11-15 Matheson St, Causeway Bay Proposed Commercial Bldg", "CMCreator", "Published", "Project", "20/02/2024 18:26:02", "No"],
+          ["O", "115 Boundary Street", "RPCreator", "Published", "Project", "20/02/2024 18:32:06", "Yes"],
+          ["O", "1-15 Ki Lung Street", "RPCreator", "Published", "Project", "20/02/2024 18:37:40", "No"],
+          ["O", "12 Moonbeam Road", "RPCreator", "Published", "Project", "20/02/2024 18:44:26", "No"],
+        ],
+      },
+    ],
+  },
+  "/grouping-format": {
+    title: "Grouping Formats",
+    href: "/grouping-format",
+    blocks: [
+      {
+        type: "table",
+        heading: "Grouping format",
+        description:
+          "You can select a grouping format for the Tasks section and up to 10 grouping formats for views.",
+        columns: ["Group", "Level", "Background", "Text", "Style"],
+        rows: [
+          ["Timesheet", "Level 1", "Light yellow", "Black", "Bold"],
+          ["Timesheet", "Level 2", "Sky blue", "Black", "Bold"],
+          ["Views", "Level 1", "Light yellow", "Black", "Bold"],
+          ["Views", "Level 2", "Sky blue", "Black", "Bold"],
+          ["Grouping 1", "Level 3", "Light green", "Black", "Bold"],
+          ["Grouping 1", "Level 4", "Lavender", "Black", "Bold"],
+        ],
+      },
+    ],
+  },
   "/connect-sharepoint-site": {
     title: "Connected SharePoint Sites",
     href: "/connect-sharepoint-site",
@@ -778,6 +930,23 @@ const screenOverrides: Record<string, MockupScreen> = {
             "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/121-boundary-street",
             "121 Boundary Street",
           ],
+        ],
+      },
+    ],
+  },
+  "/enterprise-project-type": {
+    title: "Enterprise Project Types",
+    href: "/enterprise-project-type",
+    blocks: [
+      {
+        type: "table",
+        toolbar: ["New Type", "Edit", "Delete"],
+        columns: ["Type", "Department", "Workflow", "Project Detail Pages", "Default", "Requires Site"],
+        rows: [
+          ["CAU Sales", "Sales", "No Workflow", "No Candidate Create", "Yes", "No"],
+          ["Capex Project", "Operations", "No Workflow", "No Project Submission", "No", "Yes"],
+          ["Residential", "Residential", "No Workflow", "No Project Submission", "No", "Yes"],
+          ["Residential Sales - Multi-t", "Residential", "No Workflow", "Residential Create", "No", "Yes"],
         ],
       },
     ],
@@ -999,6 +1168,119 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["Victor Cheng", "victorcheng@ajpcorp.com", "Project Management"],
           ["Susan Chan", "susan.chan@ajpcorp.com", "Finance"],
           ["Andy Lam", "andy.lam@ajpcorp.com", "Operations"],
+        ],
+      },
+    ],
+  },
+  "/timesheet-settings-and-defaults-1": {
+    title: "Timesheet Settings and Defaults",
+    href: "/timesheet-settings-and-defaults-1",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Project Web App Display",
+        columns: 2,
+        fields: [
+          {
+            label: "Timesheet will use",
+            value: "Standard Overtime and Non-Billable time tracking",
+            control: "readonly",
+            wide: true,
+          },
+          {
+            label: "Default Timesheet Creation Mode",
+            value: "Current task assignments",
+            control: "select",
+            options: ["Current task assignments", "Current projects", "No prepopulation"],
+          },
+          {
+            label: "Timesheet Grid Column Units",
+            value: "Weeks",
+            control: "select",
+            options: ["Weeks", "Days"],
+          },
+          {
+            label: "Default Reporting Units",
+            value: "Hours",
+            control: "select",
+            options: ["Hours", "Days"],
+          },
+          { label: "Hours in a standard timesheet day", value: "8" },
+          { label: "Hours in a standard timesheet work week", value: "40" },
+        ],
+      },
+    ],
+  },
+  "/timesheet-settings-and-defaults-2": {
+    title: "Timesheet Settings and Defaults",
+    href: "/timesheet-settings-and-defaults-2",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Hourly Reporting Limits",
+        columns: 2,
+        fields: [
+          { label: "Maximum Hours per Timesheet", value: "60" },
+          { label: "Minimum Hours per Timesheet", value: "0" },
+          { label: "Maximum Hours per Day", value: "24" },
+          {
+            label: "Allow future time reporting",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+          {
+            label: "Allow top-level time reporting",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+          {
+            label: "Manager Approval",
+            value: "Disabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+          {
+            label: "Require line approval before timesheet approval",
+            value: "Disabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+          {
+            label: "Fixed approval routing",
+            value: "Disabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+        ],
+      },
+    ],
+  },
+  "/user-sync": {
+    title: "Active Directory Enterprise Resource Pool Synchronization",
+    href: "/user-sync",
+    actions: ["Save", "Synchronize Now"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Synchronization",
+        columns: 2,
+        fields: [
+          { label: "Active Directory Group", value: "" },
+          { label: "Synchronization Status", value: "The synchronization failed because the Active Directory group was empty or not found.", control: "readonly", wide: true },
+          {
+            label: "Automatically reactivate inactive users found in Active Directory",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+            wide: true,
+          },
         ],
       },
     ],
