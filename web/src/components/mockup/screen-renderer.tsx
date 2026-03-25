@@ -23,13 +23,18 @@ import { Textarea } from "@/components/ui/textarea";
 import type {
   CategoryGridBlock,
   DashboardCardsBlock,
+  EmptyListBlock,
   FormBlock,
+  ButtonRowBlock,
+  MessageBlock,
   MockupBlock,
   MockupScreen,
   PermissionsBlock,
+  ProjectCenterBlock,
   PromptFieldsBlock,
   PromptTableBlock,
   PromptTextareaBlock,
+  QuickLaunchMatrixBlock,
   RoleAccessMatrixBlock,
   ScheduleBlock,
   TableBlock,
@@ -74,6 +79,16 @@ function renderBlock(block: MockupBlock, index: number) {
       return <ScheduleSection key={index} block={block} />;
     case "role-access-matrix":
       return <RoleAccessMatrix key={index} block={block} />;
+    case "quick-launch-matrix":
+      return <QuickLaunchMatrix key={index} block={block} />;
+    case "project-center":
+      return <ProjectCenterSection key={index} block={block} />;
+    case "empty-list":
+      return <EmptyListSection key={index} block={block} />;
+    case "message":
+      return <MessageSection key={index} block={block} />;
+    case "button-row":
+      return <ButtonRowSection key={index} block={block} />;
     default:
       return null;
   }
@@ -636,6 +651,187 @@ function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
           ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+function QuickLaunchMatrix({ block }: { block: QuickLaunchMatrixBlock }) {
+  return (
+    <section className="space-y-6">
+      <div className="text-[1.35rem] font-light text-[#50575f]">
+        Modify Quick Launch Items
+      </div>
+      <div className="overflow-hidden border border-[#cdd4db] bg-white">
+        <Table className="mockup-table">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Custom Name</TableHead>
+              <TableHead>Custom URL</TableHead>
+              <TableHead className="text-center">Display in Quick Launch</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {block.rows.map((row, index) => (
+              <TableRow key={`${row.name}-${index}`}>
+                <TableCell
+                  className={cn(
+                    "text-[#4f5962]",
+                    row.emphasis && "font-semibold text-[#3e4953]",
+                    row.indent === 1 && "pl-10",
+                    row.indent === 2 && "pl-16",
+                  )}
+                >
+                  {row.name}
+                </TableCell>
+                <TableCell>{row.customName ?? ""}</TableCell>
+                <TableCell className="text-[#61707c]">{row.customUrl ?? ""}</TableCell>
+                <TableCell className="text-center">
+                  <Checkbox checked={row.display} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCenterSection({ block }: { block: ProjectCenterBlock }) {
+  return (
+    <section className="space-y-4">
+      <div className="relative border border-[#a7adb4] bg-white">
+        <div className="absolute left-[18%] top-[-1px] z-10 bg-[#1f6eb0] px-3 py-1 text-sm text-white">
+          Today
+        </div>
+        <div className="grid grid-cols-6 border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
+          {block.months.map((month) => (
+            <div key={month} className="py-3">
+              {month}
+            </div>
+          ))}
+        </div>
+        <div className="py-2 text-center text-[0.95rem] text-[#7a7f85]">
+          {block.prompt}
+        </div>
+      </div>
+
+      <div className="overflow-hidden border border-[#bcc2c8] bg-white">
+        <Table className="mockup-table">
+          <TableHeader>
+            <TableRow>
+              {block.columns.map((column) => (
+                <TableHead key={column}>{column}</TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {block.rows.map((row, index) => (
+              <TableRow key={`${row[1]}-${index}`}>
+                {row.map((cell, cellIndex) => (
+                  <TableCell
+                    key={`${cell}-${cellIndex}`}
+                    className={cn(
+                      cellIndex === 1 && "text-[#2d6eaa]",
+                      cellIndex === 0 && "w-14 text-center",
+                    )}
+                  >
+                    {cell}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </section>
+  );
+}
+
+function EmptyListSection({ block }: { block: EmptyListBlock }) {
+  return (
+    <section className="space-y-5">
+      {block.toolbar && block.toolbar.length > 0 ? (
+        <div className="flex flex-wrap items-center gap-3">
+          {block.toolbar.map((item, index) => (
+            <Button
+              key={item}
+              variant={index === 0 ? "default" : "outline"}
+              className={cn(
+                "rounded-sm px-4",
+                index === 0 && "bg-[#1f5d96] text-white hover:bg-[#184f84]",
+              )}
+            >
+              {item}
+            </Button>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="flex flex-wrap items-center gap-3 text-[0.94rem] text-[#5a6470]">
+        <h2 className="mr-6 text-[1.8rem] font-light text-[#3e444a]">
+          {block.heading}
+        </h2>
+        {block.filters?.map((filter) => (
+          <span key={filter} className="border-b-2 border-[#1f5d96] pb-1">
+            {filter}
+          </span>
+        ))}
+      </div>
+
+      <div className="overflow-hidden rounded-md border bg-white">
+        <Table className="mockup-table">
+          <TableHeader>
+            <TableRow>
+              {block.columns.map((column) => (
+                <TableHead key={column}>{column}</TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+        </Table>
+        <div className="flex min-h-[360px] flex-col items-center justify-center gap-3 px-6 text-center">
+          <div className="h-20 w-20 rounded-3xl bg-[radial-gradient(circle_at_30%_30%,#d8e6f5,#ffffff_55%,#c8d5e2)]" />
+          <div className="text-[2rem] font-medium text-[#27303a]">{block.message}</div>
+          {block.note ? (
+            <div className="text-[1rem] text-[#6c7580]">{block.note}</div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MessageSection({ block }: { block: MessageBlock }) {
+  return (
+    <section className="space-y-3">
+      {block.heading ? (
+        <h2 className="text-[1.08rem] font-medium text-[#535a61]">
+          {block.heading}
+        </h2>
+      ) : null}
+      <p className="max-w-[980px] text-[1rem] leading-7 text-[#4f5862]">
+        {block.body}
+      </p>
+    </section>
+  );
+}
+
+function ButtonRowSection({ block }: { block: ButtonRowBlock }) {
+  return (
+    <section className="flex gap-3">
+      {block.buttons.map((button, index) => (
+        <Button
+          key={button}
+          variant={index === 0 ? "default" : "outline"}
+          className={cn(
+            "min-w-24 rounded-sm px-5",
+            index === 0 && "bg-[#1f5d96] text-white hover:bg-[#184f84]",
+          )}
+        >
+          {button}
+        </Button>
+      ))}
     </section>
   );
 }

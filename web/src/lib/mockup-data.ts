@@ -158,6 +158,47 @@ export type RoleAccessMatrixBlock = {
   }[];
 };
 
+export type QuickLaunchMatrixBlock = {
+  type: "quick-launch-matrix";
+  rows: {
+    name: string;
+    customName?: string;
+    customUrl?: string;
+    display: boolean;
+    indent?: 0 | 1 | 2;
+    emphasis?: boolean;
+  }[];
+};
+
+export type ProjectCenterBlock = {
+  type: "project-center";
+  months: string[];
+  prompt: string;
+  columns: string[];
+  rows: string[][];
+};
+
+export type EmptyListBlock = {
+  type: "empty-list";
+  heading: string;
+  toolbar?: string[];
+  filters?: string[];
+  columns: string[];
+  message: string;
+  note?: string;
+};
+
+export type MessageBlock = {
+  type: "message";
+  heading?: string;
+  body: string;
+};
+
+export type ButtonRowBlock = {
+  type: "button-row";
+  buttons: string[];
+};
+
 export type MockupBlock =
   | CategoryGridBlock
   | TableBlock
@@ -169,7 +210,12 @@ export type MockupBlock =
   | PromptTextareaBlock
   | TabsBlock
   | ScheduleBlock
-  | RoleAccessMatrixBlock;
+  | RoleAccessMatrixBlock
+  | QuickLaunchMatrixBlock
+  | ProjectCenterBlock
+  | EmptyListBlock
+  | MessageBlock
+  | ButtonRowBlock;
 
 export type MockupScreen = {
   title: string;
@@ -531,15 +577,180 @@ const managedListRows = [
 
 const screenOverrides: Record<string, MockupScreen> = {
   "/": settingsHome,
+  "/my-queued-jobs": {
+    title: "My Queued Jobs",
+    href: "/my-queued-jobs",
+    blocks: [
+      {
+        type: "table",
+        plain: true,
+        columns: [
+          "Entry Time",
+          "Completed Time",
+          "Project Name",
+          "Job Type",
+          "Job State",
+          "% Complete",
+          "Position",
+          "Error",
+        ],
+        rows: [],
+      },
+    ],
+  },
+  "/manage-delegates": {
+    title: "Manage Delegates",
+    href: "/manage-delegates",
+    blocks: [
+      {
+        type: "table",
+        plain: true,
+        columns: ["Delegate Name", "Acting For", "Start Date"],
+        rows: [],
+      },
+    ],
+  },
+  "/manage-timesheet": {
+    title: "Manage Timesheets",
+    href: "/manage-timesheet",
+    blocks: [
+      {
+        type: "message",
+        body: "We can't display the selected time period. It might be closed or your administrator hasn't created it yet. Please try a different date.",
+      },
+    ],
+  },
   "/manage-view": manageViews,
   "/add-edit-template": addEditTemplate,
+  "/project-center": {
+    title: "Project Center",
+    href: "/project-center",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "project-center",
+        months: ["2 March", "12 March", "22 March", "1 April", "11 April", "21 April"],
+        prompt: "Add tasks with dates to the timeline",
+        columns: [
+          "",
+          "Project Number",
+          "Project Name",
+          "Project Status",
+          "Primary Contractor",
+          "INS",
+          "No. of b",
+          "No. of flat",
+        ],
+        rows: [
+          ["+", "RP20260004", "victor 20260212 001", "Planning", "", "", "", ""],
+          ["+", "RP20260003", "Residential Development at Tung Chung Town Lot no 50(KC)) tes", "Planning", "", "", "", ""],
+          ["+", "RP20260002", "victor 20260109 002 invoice test", "Planning", "", "", "", ""],
+          ["+", "RP20260001", "victor 20260109 001 invoice test", "Completed", "", "", "0", ""],
+          ["+", "RP20250063", "victor 20251229 001", "Planning", "", "", "0", ""],
+          ["+", "RP20250062", "T_CEA_2025- Residential Sales", "Planning", "", "", "0", ""],
+          ["+", "RP20250061", "victor test internal generate invoice 003", "Planning", "", "", "0", ""],
+          ["+", "RP20250060", "victor test internal generate invoice 004", "Planning", "", "", "0", ""],
+          ["+", "RP20250059", "victor test internal generate invoice 002", "Planning", "", "", "0", ""],
+          ["+", "RP20250058", "victor test internal generate invoice 001", "Planning", "", "", "0", ""],
+        ],
+      },
+    ],
+  },
+  "/quick-launch": {
+    title: "Quick Launch",
+    href: "/quick-launch",
+    blocks: [
+      {
+        type: "quick-launch-matrix",
+        rows: [
+          { name: "Projects", customName: "Project Management", display: true },
+          { name: "Approvals", display: true },
+          { name: "Tasks", display: true },
+          { name: "Timesheet", display: false },
+          { name: "Issues and Risks", display: false },
+          { name: "Resources", display: true },
+          { name: "Status Reports", display: false },
+          {
+            name: "CPIM Report",
+            customName: "CPIM Report",
+            customUrl: "/sites/CPIMUAT/ReportData/Reports",
+            display: false,
+          },
+          { name: "Strategy", display: false, emphasis: true },
+          { name: "Driver Library", display: false, indent: 1 },
+          { name: "Driver Prioritization", display: false, indent: 1 },
+          { name: "Portfolio Analyses", display: false, indent: 1 },
+          { name: "Reports", display: false },
+          { name: "Server Settings", display: false },
+          {
+            name: "CPIM Template",
+            customName: "CPIM Template",
+            customUrl: "/sites/CPIMUAT/CPIM%20Template/Forms/AllItems.aspx",
+            display: true,
+          },
+          {
+            name: "CPIM Reports",
+            customName: "CPIM Reports",
+            customUrl: "https://cpimuatrs1az/Reports/",
+            display: true,
+          },
+          {
+            name: "Role Access",
+            customName: "Role Access",
+            customUrl: "/sites/CPIMUAT/SitePages/RoleAccess.aspx",
+            display: true,
+          },
+          {
+            name: "Contractor Master",
+            customName: "Contractor Master",
+            customUrl: "/sites/CPIMUAT/SitePages/ContractorMasterList.aspx",
+            display: true,
+          },
+          {
+            name: "Customer Master",
+            customName: "Customer Master",
+            customUrl: "/sites/CPIMUAT/SitePages/CustomerMasterList.aspx",
+            display: true,
+          },
+          {
+            name: "Inspection Master",
+            customName: "Inspection Master",
+            customUrl: "/sites/CPIMUAT/SitePages/InspectionMasterList.aspx",
+            display: true,
+          },
+        ],
+      },
+    ],
+  },
   "/projects/rp-20250059/information": projectInformation,
   "/project-task-reassign": taskReassignment,
   "/projects/rp-20250059/project-status": projectScreen(
     "/projects/rp-20250059/project-status",
     "Project Status",
     "Project Status",
-    [projectCards],
+    [
+      {
+        type: "form",
+        plain: true,
+        heading: "Project Status",
+        columns: 2,
+        fields: [
+          { label: "Project Number", value: "RP20260004", required: true, control: "readonly" },
+          { label: "Project Category", value: "RP", control: "readonly" },
+          {
+            label: "Project Status",
+            value: "Planning",
+            control: "select",
+            options: ["Planning", "In Progress", "Completed"],
+          },
+          { label: "Updated By", value: "victorcheng@ajpcorp.com", control: "readonly" },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Save"],
+      },
+    ],
     "Project Management",
   ),
   "/projects/rp-20250059/schedule": projectScreen(
@@ -907,6 +1118,190 @@ const screenOverrides: Record<string, MockupScreen> = {
     ],
     "Knowledge Management",
   ),
+  "/projects/rp-20250059/project-management/create-project": {
+    title: "Create a new project",
+    href: "/projects/rp-20250059/project-management/create-project",
+    quickLaunchActive: "Project Management",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "tabs",
+        tabs: [{ label: "1" }, { label: "2" }],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Basic Info",
+        columns: 2,
+        fields: [
+          { label: "Name", value: "", required: true },
+          { label: "Company Code", value: "", required: true },
+          { label: "Project Type RSP", value: "" },
+          { label: "Project District", value: "", required: true },
+          { label: "Project Address Line1", value: "", required: true },
+          { label: "Project Address Line2", value: "" },
+          { label: "Project Address Line3", value: "" },
+          { label: "Project Address Line4", value: "" },
+          { label: "Received Date", value: "25/03/2026" },
+          {
+            label: "Require Billing Job",
+            value: "Yes",
+            control: "select",
+            options: ["Yes", "No"],
+          },
+        ],
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/project-permissions": {
+    title: "Project Permissions: victor 20260212 001",
+    href: "/projects/rp-20250059/project-management/project-permissions",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Project Permissions: victor 20260212 001",
+        toolbar: ["New", "Edit", "Remove", "Close"],
+        columns: ["Name", "Permission"],
+        message: "No user or group permissions have been defined for this project.",
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/issues": {
+    title: "Issues Management",
+    href: "/projects/rp-20250059/project-management/issues",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Issues Management",
+        toolbar: ["Add new item", "Edit in grid view", "Undo", "Share", "Copy link", "Export"],
+        filters: ["All Active Issues", "All Closed Issues", "All Issues Assigned to Me", "All Items"],
+        columns: ["Attachments", "ID", "Title", "Assigned To", "Status", "Priority", "Category", "Due Date"],
+        message: "Welcome to your new list",
+        note: "Select the New button to get started.",
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/deliverables": {
+    title: "Deliverables",
+    href: "/projects/rp-20250059/project-management/deliverables",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Deliverables",
+        toolbar: ["Add new item", "Edit in grid view", "Undo", "Share", "Copy link", "Export"],
+        filters: ["All Deliverables", "Open Deliverables", "Closed Deliverables"],
+        columns: ["Attachments", "ID", "Title", "Assigned To", "Status", "Category", "Due Date"],
+        message: "Welcome to your new list",
+        note: "Select the New button to get started.",
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/risk": {
+    title: "Risks",
+    href: "/projects/rp-20250059/project-management/risk",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Risks",
+        toolbar: ["Add new item", "Edit in grid view", "Undo", "Share", "Copy link", "Export"],
+        filters: ["All Active Risks", "All Closed Risks", "All Items"],
+        columns: ["Attachments", "ID", "Title", "Assigned To", "Status", "Probability", "Impact", "Due Date"],
+        message: "Welcome to your new list",
+        note: "Select the New button to get started.",
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/project-status": {
+    title: "Project Status",
+    href: "/projects/rp-20250059/project-management/project-status",
+    quickLaunchActive: "Project Management",
+    projectContext: {
+      title: "victor 20260212 001",
+      subtitle: "",
+      activeItem: "Project Status",
+    },
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Project Status",
+        columns: 2,
+        fields: [
+          { label: "Project Number", value: "RP20260004", required: true, control: "readonly" },
+          { label: "Project Category", value: "RP", control: "readonly" },
+          {
+            label: "Project Status",
+            value: "Planning",
+            control: "select",
+            options: ["Planning", "In Progress", "Completed"],
+          },
+          { label: "Updated By", value: "victorcheng@ajpcorp.com", control: "readonly" },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Save"],
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/task-bar": {
+    title: "Task Bar",
+    href: "/projects/rp-20250059/project-management/task-bar",
+    quickLaunchActive: "Project Management",
+    projectContext: {
+      title: "victor 20260212 001",
+      subtitle: "",
+      activeItem: "Schedule",
+    },
+    blocks: [
+      {
+        type: "schedule",
+        months: ["March 2026", "April 2026", "May 2026"],
+        prompt: "Add tasks with dates to the timeline",
+        columns: ["", "Task Name", "ID"],
+        rows: [
+          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
+          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
+          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
+          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
+          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
+          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
+          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
+        ],
+      },
+    ],
+  },
+  "/projects/rp-20250059/task-bar": {
+    title: "Task Bar",
+    href: "/projects/rp-20250059/task-bar",
+    quickLaunchActive: "Project Management",
+    projectContext: {
+      title: "victor 20260212 001",
+      subtitle: "",
+      activeItem: "Schedule",
+    },
+    blocks: [
+      {
+        type: "schedule",
+        months: ["March 2026", "April 2026", "May 2026"],
+        prompt: "Add tasks with dates to the timeline",
+        columns: ["", "Task Name", "ID"],
+        rows: [
+          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
+          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
+          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
+          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
+          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
+          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
+          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
+        ],
+      },
+    ],
+  },
 };
 
 const capturedTitles = [
