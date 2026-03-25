@@ -31,6 +31,7 @@ export type TableBlock = {
   columns: string[];
   rows: string[][];
   highlightFirstRow?: boolean;
+  plain?: boolean;
 };
 
 type FormField = {
@@ -48,6 +49,7 @@ export type FormBlock = {
   description?: string;
   columns?: 1 | 2 | 3;
   fields: FormField[];
+  plain?: boolean;
 };
 
 type PermissionRow = {
@@ -64,6 +66,7 @@ export type PermissionsBlock = {
     title: string;
     rows: PermissionRow[];
   }[];
+  plain?: boolean;
 };
 
 export type DashboardCardsBlock = {
@@ -124,6 +127,37 @@ export type TabsBlock = {
   }[];
 };
 
+export type ScheduleBlock = {
+  type: "schedule";
+  months: string[];
+  prompt: string;
+  columns: string[];
+  rows: {
+    progress?: string;
+    taskName: string;
+    id: string;
+    emphasis?: boolean;
+    indent?: 0 | 1 | 2 | 3;
+  }[];
+};
+
+export type RoleAccessMatrixBlock = {
+  type: "role-access-matrix";
+  selectedRole: string;
+  roles: string[];
+  groups: {
+    moduleName: string;
+    rows: {
+      functionName: string;
+      access: boolean;
+      readOnly: boolean;
+      readOnlyLevel: string;
+      readWrite: boolean;
+      readWriteLevel: string;
+    }[];
+  }[];
+};
+
 export type MockupBlock =
   | CategoryGridBlock
   | TableBlock
@@ -133,7 +167,9 @@ export type MockupBlock =
   | PromptTableBlock
   | PromptFieldsBlock
   | PromptTextareaBlock
-  | TabsBlock;
+  | TabsBlock
+  | ScheduleBlock
+  | RoleAccessMatrixBlock;
 
 export type MockupScreen = {
   title: string;
@@ -283,6 +319,7 @@ const manageViews: MockupScreen = {
   blocks: [
     {
       type: "table",
+      plain: true,
       toolbar: ["New View", "Copy View", "Delete View"],
       columns: ["Name", "Description"],
       rows: [
@@ -314,6 +351,7 @@ const addEditTemplate: MockupScreen = {
   blocks: [
     {
       type: "form",
+      plain: true,
       heading: "Name",
       description: "Enter a name and description for this Template.",
       columns: 1,
@@ -338,6 +376,7 @@ const addEditTemplate: MockupScreen = {
     },
     {
       type: "permissions",
+      plain: true,
       heading: "Category Permissions",
       description: "Select the Category Permissions you want to allow or deny using this template.",
       columns: ["Allow", "Deny"],
@@ -374,6 +413,7 @@ const projectInformation: MockupScreen = {
   blocks: [
     {
       type: "form",
+      plain: true,
       heading: "Untitled",
       columns: 2,
       fields: [
@@ -394,6 +434,11 @@ const projectInformation: MockupScreen = {
         { label: "Project Address Line3", value: "", control: "readonly" },
         { label: "Project Address Line4", value: "", control: "readonly" },
         { label: "Final Address Line1", value: "", control: "readonly" },
+        { label: "Final Address Line2", value: "", control: "readonly" },
+        { label: "Final Address Line3", value: "", control: "readonly" },
+        { label: "Final Address Line4", value: "", control: "readonly" },
+        { label: "Project Chinese Address Line1", value: "", control: "readonly" },
+        { label: "Project Chinese Address Line2", value: "", control: "readonly" },
       ],
     },
   ],
@@ -503,22 +548,24 @@ const screenOverrides: Record<string, MockupScreen> = {
     "Schedule",
     [
       {
-        type: "tabs",
-        tabs: [
-          { label: "Task Bar", badges: ["Schedule", "Baseline", "Critical Path"] },
-          { label: "Task Sheet" },
-          { label: "Timeline" },
-        ],
-      },
-      {
-        type: "table",
-        columns: ["Task Name", "Start", "Finish", "Duration", "% Complete", "Predecessors"],
+        type: "schedule",
+        months: ["March 2026", "April 2026", "May 2026"],
+        prompt: "Add tasks with dates to the timeline",
+        columns: ["", "Task Name", "ID"],
         rows: [
-          ["CPIM Project Schedule View", "24 Mar 2026", "29 Apr 2026", "26 days", "52%", ""],
-          ["Site Preparation", "24 Mar 2026", "31 Mar 2026", "6 days", "100%", ""],
-          ["Gas Pipe Installation", "1 Apr 2026", "15 Apr 2026", "11 days", "68%", "1"],
-          ["Inspection", "16 Apr 2026", "19 Apr 2026", "2 days", "0%", "2"],
-          ["Final Handover", "22 Apr 2026", "29 Apr 2026", "6 days", "0%", "3"],
+          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
+          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
+          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
+          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
+          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
+          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
+          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
+          { taskName: "UGO Commissioning", id: "8", progress: "red", indent: 3 },
+          { taskName: "Riser Commissioning", id: "9", progress: "red", indent: 3 },
+          { taskName: "Project Completion", id: "10", progress: "red", indent: 3 },
+          { taskName: "Project Inspection", id: "11", emphasis: true, indent: 1 },
+          { taskName: "Project Type", id: "12", emphasis: true, indent: 2 },
+          { taskName: "RGI Inspection (RGI)", id: "13", emphasis: true, indent: 3 },
         ],
       },
     ],
@@ -531,13 +578,16 @@ const screenOverrides: Record<string, MockupScreen> = {
     [
       {
         type: "table",
+        plain: true,
         toolbar: ["New Task", "Reassign Task", "Delete Task"],
-        columns: ["Task", "Owner", "Status", "Start", "Finish", "% Complete"],
+        columns: ["Task Name", "Task Owner", "Task Status", "Start", "Finish", "% Complete"],
         rows: [
-          ["Work Commencement", "Victor Chan", "Open", "24 Mar 2026", "25 Mar 2026", "100%"],
-          ["Material Coordination", "Operations Team", "In Progress", "26 Mar 2026", "31 Mar 2026", "64%"],
-          ["Site Inspection", "QC Team", "Pending", "1 Apr 2026", "3 Apr 2026", "0%"],
-          ["Commissioning", "Field Team", "Pending", "6 Apr 2026", "7 Apr 2026", "0%"],
+          ["TG Work Commencement", "Victor Chan", "Completed", "12 Jun 2015", "12 Jun 2015", "100%"],
+          ["Scaffolding Dismantle", "Site Team", "Open", "15 Jun 2015", "17 Jun 2015", "0%"],
+          ["Water Work Inspect Application", "Engineering", "Open", "18 Jun 2015", "18 Jun 2015", "0%"],
+          ["Occupation Permit Application", "Engineering", "Open", "22 Jun 2015", "22 Jun 2015", "0%"],
+          ["UGO Commissioning", "Operations Team", "Open", "24 Jun 2015", "24 Jun 2015", "0%"],
+          ["Project Completion", "Victor Chan", "Open", "29 Jun 2015", "29 Jun 2015", "0%"],
         ],
       },
     ],
@@ -549,14 +599,52 @@ const screenOverrides: Record<string, MockupScreen> = {
     "Resources",
     [
       {
-        type: "table",
-        toolbar: ["Build Team", "New Resource", "Remove"],
-        columns: ["Resource Name", "Type", "Role", "Availability", "Assignment"],
-        rows: [
-          ["Li Man Kin", "Work", "Supervisor", "100%", "Site Preparation"],
-          ["Wong Chi Wai", "Work", "Engineer", "75%", "Gas Pipe Installation"],
-          ["Material Yard", "Material", "Inventory", "Shared", "General"],
-          ["Inspection Team A", "Work", "QC", "60%", "Inspection"],
+        type: "form",
+        plain: true,
+        heading: "Resource Custom Fields",
+        columns: 2,
+        fields: [
+          { label: "Product Status", value: "" },
+          { label: "Product Sub-Type", value: "" },
+          { label: "Product Type", value: "" },
+          { label: "Resource Title", value: "", required: true },
+          { label: "Section", value: "NA", required: true },
+          { label: "Service Point Type", value: "" },
+          { label: "Sources Type", value: "" },
+          { label: "Track As Asset", value: "" },
+          { label: "UserType", value: "" },
+          { label: "Vendor", value: "" },
+          { label: "Vendor Code", value: "" },
+          {
+            label: "Resource formula custom fields are only updated in Project Professional.",
+            value:
+              "Changes made in Project Web App or external systems will not cause formulas for resource custom fields to be recalculated.",
+            control: "readonly",
+            wide: true,
+          },
+        ],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Group Fields",
+        columns: 2,
+        fields: [
+          { label: "Group", value: "" },
+          { label: "Code", value: "" },
+          { label: "Cost Center", value: "" },
+          { label: "Cost Type", value: "" },
+          { label: "Team Assignment Pool", value: "", control: "readonly" },
+          { label: "Team Name", value: "" },
+          { label: "GUID", value: "989e3377-181d-f111-a8d1-00155da86801", control: "readonly" },
+          { label: "External ID", value: "" },
+          { label: "Date Created", value: "-", control: "readonly" },
+          {
+            label: "Checked out by",
+            value: "fimebershipli.mk@towngas.com",
+            control: "readonly",
+          },
+          { label: "Checkout date", value: "11/03/2026 15:04", control: "readonly" },
         ],
       },
     ],
@@ -627,18 +715,66 @@ const screenOverrides: Record<string, MockupScreen> = {
     "Role Access",
     [
       {
-        type: "permissions",
-        heading: "Project Permissions",
-        columns: ["Allow", "Deny"],
+        type: "role-access-matrix",
+        selectedRole: "Administrators",
+        roles: ["Administrators", "Project Managers", "Schedulers", "Contractors"],
         groups: [
           {
-            title: "Project",
+            moduleName: "Project Information",
             rows: [
-              { name: "Open Project", states: [true, false] },
-              { name: "Publish Project", states: [true, false] },
-              { name: "Manage Basic Project Security", states: [true, false] },
-              { name: "Create New Task or Assignment", states: [false, false] },
-              { name: "Delete Project", states: [false, false] },
+              {
+                functionName: "Project Information",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "AG/UGI",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "Customer Contact",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "Contractor Contact",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+            ],
+          },
+          {
+            moduleName: "Flat Schedule",
+            rows: [
+              {
+                functionName: "Flat Schedule",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "Labeling",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
             ],
           },
         ],

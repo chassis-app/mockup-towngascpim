@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 import {
   Table,
   TableBody,
@@ -29,6 +30,8 @@ import type {
   PromptFieldsBlock,
   PromptTableBlock,
   PromptTextareaBlock,
+  RoleAccessMatrixBlock,
+  ScheduleBlock,
   TableBlock,
   TabsBlock,
 } from "@/lib/mockup-data";
@@ -67,6 +70,10 @@ function renderBlock(block: MockupBlock, index: number) {
       return <PromptTextarea key={index} block={block} />;
     case "tabs":
       return <TabsSection key={index} block={block} />;
+    case "schedule":
+      return <ScheduleSection key={index} block={block} />;
+    case "role-access-matrix":
+      return <RoleAccessMatrix key={index} block={block} />;
     default:
       return null;
   }
@@ -96,6 +103,37 @@ function CategoryGrid({ block }: { block: CategoryGridBlock }) {
 }
 
 function DataTableBlock({ block }: { block: TableBlock }) {
+  const tableContent = (
+    <Table className="mockup-table">
+      <TableHeader>
+        <TableRow>
+          {block.columns.map((column) => (
+            <TableHead key={column}>{column}</TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {block.rows.map((row, rowIndex) => (
+          <TableRow key={`${row.join("-")}-${rowIndex}`}>
+            {row.map((cell, cellIndex) => (
+              <TableCell
+                key={`${cell}-${cellIndex}`}
+                className={cn(
+                  cellIndex === 0 && "text-[#2d6eaa]",
+                  rowIndex === 0 &&
+                    block.highlightFirstRow &&
+                    "bg-[#fff8cc] font-medium text-[#34414f]",
+                )}
+              >
+                {cell}
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+
   return (
     <section className="space-y-4">
       {block.heading ? (
@@ -139,63 +177,78 @@ function DataTableBlock({ block }: { block: TableBlock }) {
         </Card>
       ) : null}
 
-      <Card className="mockup-panel overflow-hidden">
-        <CardContent className="p-0">
-          {block.toolbar && block.toolbar.length > 0 ? (
-            <>
-              <div className="flex flex-wrap gap-2 border-b border-[#e7ebef] bg-[#fafafa] px-3 py-2.5">
-                {block.toolbar.map((action, index) => (
-                  <Button
-                    key={action}
-                    variant="ghost"
-                    className={cn(
-                      "h-8 rounded-sm border border-[#d7dde4] px-3 text-[0.82rem] font-normal text-[#5a626a]",
-                      index === 0 && "bg-[#f7fbff]",
-                    )}
-                  >
-                    {action}
-                  </Button>
-                ))}
-              </div>
-              <Separator />
-            </>
-          ) : null}
-
-          <Table className="mockup-table">
-            <TableHeader>
-              <TableRow>
-                {block.columns.map((column) => (
-                  <TableHead key={column}>{column}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {block.rows.map((row, rowIndex) => (
-                <TableRow key={`${row.join("-")}-${rowIndex}`}>
-                  {row.map((cell, cellIndex) => (
-                    <TableCell
-                      key={`${cell}-${cellIndex}`}
-                      className={cn(
-                        cellIndex === 0 && "text-[#2d6eaa]",
-                        rowIndex === 0 &&
-                          block.highlightFirstRow &&
-                          "bg-[#fff8cc] font-medium text-[#34414f]",
-                      )}
-                    >
-                      {cell}
-                    </TableCell>
-                  ))}
-                </TableRow>
+      <div className={cn(block.plain ? "overflow-hidden border" : "mockup-panel overflow-hidden")}>
+        {block.toolbar && block.toolbar.length > 0 ? (
+          <>
+            <div className="flex flex-wrap gap-2 border-b border-[#e7ebef] bg-[#fafafa] px-3 py-2.5">
+              {block.toolbar.map((action, index) => (
+                <Button
+                  key={action}
+                  variant="ghost"
+                  className={cn(
+                    "h-8 rounded-sm border border-[#d7dde4] px-3 text-[0.82rem] font-normal text-[#5a626a]",
+                    index === 0 && "bg-[#f7fbff]",
+                  )}
+                >
+                  {action}
+                </Button>
               ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+            </div>
+            <Separator />
+          </>
+        ) : null}
+
+        {block.plain ? tableContent : <CardContent className="p-0">{tableContent}</CardContent>}
+      </div>
     </section>
   );
 }
 
 function FormSection({ block }: { block: FormBlock }) {
+  const fields = (
+    <div
+      className={cn(
+        "grid gap-x-8 gap-y-5",
+        block.columns === 1 ? "grid-cols-1" : "md:grid-cols-2 xl:grid-cols-3",
+      )}
+    >
+      {block.fields.map((field) => (
+        <div
+          key={field.label}
+          className={cn(field.wide && "md:col-span-2 xl:col-span-3")}
+        >
+          <Label className="mockup-field-label">
+            {field.label}
+            {field.required ? " *" : ""}
+          </Label>
+          {field.control === "readonly" ? (
+            <div className="pt-2 text-[0.96rem] text-[#454d55]">{field.value}</div>
+          ) : field.control === "textarea" ? (
+            <Textarea
+              defaultValue={field.value}
+              className="mt-2 min-h-28 rounded-sm"
+            />
+          ) : field.control === "select" ? (
+            <Select defaultValue={field.value}>
+              <SelectTrigger className="mt-2 h-10 rounded-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {(field.options ?? [field.value]).map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Input defaultValue={field.value} className="mt-2 h-10 rounded-sm" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
       <div className="space-y-2">
@@ -209,63 +262,57 @@ function FormSection({ block }: { block: FormBlock }) {
         ) : null}
       </div>
 
-      <Card className="mockup-panel">
-        <CardContent className="p-5">
-          <div
-            className={cn(
-              "grid gap-x-8 gap-y-5",
-              block.columns === 1
-                ? "grid-cols-1"
-                : "md:grid-cols-2 xl:grid-cols-3",
-            )}
-          >
-            {block.fields.map((field) => (
-              <div
-                key={field.label}
-                className={cn(field.wide && "md:col-span-2 xl:col-span-3")}
-              >
-                <Label className="mockup-field-label">
-                  {field.label}
-                  {field.required ? " *" : ""}
-                </Label>
-                {field.control === "readonly" ? (
-                  <div className="pt-2 text-[0.96rem] text-[#454d55]">
-                    {field.value}
-                  </div>
-                ) : field.control === "textarea" ? (
-                  <Textarea
-                    defaultValue={field.value}
-                    className="mt-2 min-h-28 rounded-sm"
-                  />
-                ) : field.control === "select" ? (
-                  <Select defaultValue={field.value}>
-                    <SelectTrigger className="mt-2 h-10 rounded-sm">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {(field.options ?? [field.value]).map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Input
-                    defaultValue={field.value}
-                    className="mt-2 h-10 rounded-sm"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      {block.plain ? (
+        <div className="pt-1">{fields}</div>
+      ) : (
+        <Card className="mockup-panel">
+          <CardContent className="p-5">{fields}</CardContent>
+        </Card>
+      )}
     </section>
   );
 }
 
 function PermissionsSection({ block }: { block: PermissionsBlock }) {
+  const table = (
+    <Table className="mockup-table">
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          {block.columns.map((column) => (
+            <TableHead key={column} className="w-20 text-center">
+              {column}
+            </TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {block.groups.map((group) => (
+          <>
+            <TableRow key={group.title}>
+              <TableCell
+                colSpan={block.columns.length + 1}
+                className="bg-[#fafbfd] font-medium text-[#59626b]"
+              >
+                {group.title}
+              </TableCell>
+            </TableRow>
+            {group.rows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell className="text-[#2d6eaa]">{row.name}</TableCell>
+                {row.states.map((checked, index) => (
+                  <TableCell key={index} className="text-center">
+                    <Checkbox checked={checked} />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </>
+        ))}
+      </TableBody>
+    </Table>
+  );
+
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
       <div className="space-y-2">
@@ -279,48 +326,13 @@ function PermissionsSection({ block }: { block: PermissionsBlock }) {
         ) : null}
       </div>
 
-      <Card className="mockup-panel overflow-hidden">
-        <CardContent className="p-0">
-          <Table className="mockup-table">
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                {block.columns.map((column) => (
-                  <TableHead key={column} className="w-20 text-center">
-                    {column}
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {block.groups.map((group) => (
-                <>
-                  <TableRow key={group.title}>
-                    <TableCell
-                      colSpan={block.columns.length + 1}
-                      className="bg-[#fafbfd] font-medium text-[#59626b]"
-                    >
-                      {group.title}
-                    </TableCell>
-                  </TableRow>
-                  {group.rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell className="text-[#2d6eaa]">
-                        {row.name}
-                      </TableCell>
-                      {row.states.map((checked, index) => (
-                        <TableCell key={index} className="text-center">
-                          <Checkbox checked={checked} />
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+      {block.plain ? (
+        <div className="overflow-hidden border">{table}</div>
+      ) : (
+        <Card className="mockup-panel overflow-hidden">
+          <CardContent className="p-0">{table}</CardContent>
+        </Card>
+      )}
     </section>
   );
 }
@@ -463,6 +475,167 @@ function TabsSection({ block }: { block: TabsBlock }) {
           ))}
         </div>
       ) : null}
+    </section>
+  );
+}
+
+function ScheduleSection({ block }: { block: ScheduleBlock }) {
+  return (
+    <section className="space-y-3">
+      <div className="relative border border-[#a7adb4] bg-white">
+        <div className="absolute left-[32%] top-[-1px] z-10 bg-[#1f6eb0] px-3 py-1 text-sm text-white">
+          Today
+        </div>
+        <div className="grid grid-cols-[30%_70%] border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
+          <div className="border-r border-[#b8bec6] py-3">{block.months[0]}</div>
+          <div className="py-3">{block.months.slice(1).join("          ")}</div>
+        </div>
+        <div className="py-2 text-center text-[0.95rem] text-[#7a7f85]">
+          {block.prompt}
+        </div>
+      </div>
+
+      <div className="grid min-h-[560px] overflow-hidden border border-[#bcc2c8] bg-white xl:grid-cols-[61%_39%]">
+        <div className="border-r border-[#bcc2c8]">
+          <Table className="mockup-table">
+            <TableHeader>
+              <TableRow>
+                {block.columns.map((column) => (
+                  <TableHead key={column}>{column}</TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {block.rows.map((row) => (
+                <TableRow key={`${row.taskName}-${row.id}`}>
+                  <TableCell className="w-12 text-center">
+                    {row.progress ? (
+                      <span className="inline-block h-5 w-5 rounded-full bg-[#ff7c7c] shadow-inner" />
+                    ) : null}
+                  </TableCell>
+                  <TableCell
+                    className={cn(
+                      "text-[#39444f]",
+                      row.emphasis && "font-semibold",
+                      row.indent === 1 && "pl-5",
+                      row.indent === 2 && "pl-9",
+                      row.indent === 3 && "pl-[3.25rem]",
+                    )}
+                  >
+                    {row.taskName}
+                  </TableCell>
+                  <TableCell>{row.id}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+        <div className="relative bg-[linear-gradient(to_right,#e7ebef_1px,transparent_1px)] bg-[length:82px_100%]">
+          <div className="grid grid-cols-6 border-b border-[#d7dde4] text-center text-[0.82rem] text-[#6a737c]">
+            {["T", "W", "T", "F", "S", "S"].map((day, index) => (
+              <div key={`${day}-${index}`} className="border-r border-[#edf1f4] py-2 last:border-r-0">
+                {day}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
+  return (
+    <section className="space-y-8">
+      <div className="space-y-4">
+        <h2 className="text-[2rem] font-light tracking-tight text-[#383d43]">
+          Role Access
+        </h2>
+        <div className="flex max-w-[980px] items-center gap-5">
+          <div className="min-w-24 text-[0.98rem] text-[#4d555e]">Select Role</div>
+          <Select defaultValue={block.selectedRole}>
+            <SelectTrigger className="h-11 flex-1 rounded-sm bg-white">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {block.roles.map((role) => (
+                <SelectItem key={role} value={role}>
+                  {role}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button className="rounded-sm bg-white px-8 text-[#3f4b56] border border-[#cfd6dd] hover:bg-[#f5f7f9]">
+            Save
+          </Button>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <div className="min-w-[1180px] space-y-6">
+          <div className="grid grid-cols-[220px_220px_160px_190px_220px_170px_220px] gap-4 text-[0.92rem] font-medium text-[#515961]">
+            <div>Module Name</div>
+            <div>Function Name</div>
+            <div>Access</div>
+            <div>Read Only</div>
+            <div>Read Only Levels</div>
+            <div>Read Write</div>
+            <div>Read Write Levels</div>
+          </div>
+
+          {block.groups.map((group) => (
+            <div key={group.moduleName} className="space-y-4">
+              <div className="text-[0.95rem] text-[#4a525b]">{group.moduleName}</div>
+              {group.rows.map((row) => (
+                <div
+                  key={`${group.moduleName}-${row.functionName}`}
+                  className="grid grid-cols-[220px_220px_160px_190px_220px_170px_220px] items-center gap-4"
+                >
+                  <div />
+                  <div className="text-[0.95rem] text-[#4a525b]">{row.functionName}</div>
+                  <div>
+                    <Switch checked={row.access} />
+                  </div>
+                  <div>
+                    <Switch checked={row.readOnly} />
+                  </div>
+                  <div>
+                    <Select defaultValue={row.readOnlyLevel}>
+                      <SelectTrigger className="h-10 w-[76px] rounded-sm bg-white">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["", "L1", "L2", "L3", "L4"].map((level) => (
+                          <SelectItem key={level || "empty"} value={level}>
+                            {level || "-"}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Switch checked={row.readWrite} />
+                  </div>
+                  <div>
+                    <Select defaultValue={row.readWriteLevel}>
+                      <SelectTrigger className="h-10 w-[76px] rounded-sm bg-white">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["L1", "L2", "L3", "L4"].map((level) => (
+                          <SelectItem key={level} value={level}>
+                            {level}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
