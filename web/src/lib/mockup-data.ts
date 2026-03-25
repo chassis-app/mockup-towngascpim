@@ -743,6 +743,45 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/connect-sharepoint-site": {
+    title: "Connected SharePoint Sites",
+    href: "/connect-sharepoint-site",
+    blocks: [
+      {
+        type: "table",
+        toolbar: [
+          "Create Site",
+          "Edit Site Address",
+          "Synchronize",
+          "Delete Site",
+          "Go to Project Site Settings",
+        ],
+        columns: ["", "Site Address", "Project / Site Name"],
+        rows: [
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/1-and-3-south-bay-close",
+            "1 and 3 South Bay Close Hong Kong",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/10-10a-wang-fung-terrace",
+            "10, 10A Wang Fung Terrace",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/11-15-matheson-st",
+            "11-15 Matheson St, Causeway Bay",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/121-boundary-street",
+            "121 Boundary Street",
+          ],
+        ],
+      },
+    ],
+  },
   "/manage-template": {
     title: "Manage Templates",
     href: "/manage-template",
@@ -1381,10 +1420,58 @@ const screenOverrides: Record<string, MockupScreen> = {
     [
       {
         type: "table",
-        columns: ["Customer", "District", "Address", "Contact"],
+        toolbar: ["New Item", "Edit", "Delete"],
+        columns: [
+          "Customer Code",
+          "Debtor ID",
+          "Name (English)",
+          "Name (Chinese)",
+          "Address",
+          "Abbreviation",
+          "Type",
+          "Parent Company",
+        ],
         rows: [
-          ["TownGas Residential", "New Territories", "test 2", "victor test internal"],
-          ["Village Housing Group", "Kowloon", "18 Nathan Road", "Project Team"],
+          [
+            "0000800618",
+            "DES",
+            "A&T DESIGN LTD",
+            "A&T DESIGN",
+            "15/F Yien Yieh Building 32-36 Des Voeux Road West",
+            "A&T DESIGN",
+            "Architect",
+            "",
+          ],
+          [
+            "0000801599",
+            "A LEAD ARC",
+            "A LEAD ARCHITECTS",
+            "A LEAD ARCH",
+            "19/F, Wanchai Lockhart Road, Wan Chai, Hong Kong",
+            "A LEAD",
+            "Architect",
+            "",
+          ],
+          [
+            "0000800265",
+            "AARONSBURG",
+            "AARONSBURG ANGELFIELD",
+            "AARONSBURG",
+            "6/F World Wide House 19 Des Voeux Road Central",
+            "AARONSBURG",
+            "Private developer",
+            "Henderson Real Estate Agency Ltd",
+          ],
+          [
+            "0000801114",
+            "ABB HONG",
+            "ABB TIPO INDUSTRIAL",
+            "ABB",
+            "Kom Estate No.3 Dai Hei Street, Tai Po, NT",
+            "ABB",
+            "Construction",
+            "",
+          ],
         ],
       },
     ],
@@ -1421,12 +1508,17 @@ const screenOverrides: Record<string, MockupScreen> = {
     [
       {
         type: "table",
+        filters: [
+          { label: "BOM Parent", value: "" },
+          { label: "Material", value: "", placeholder: "Material description" },
+        ],
         toolbar: ["Add Item", "Import", "Remove"],
-        columns: ["Item Code", "Description", "Unit", "Required", "Reserved"],
+        columns: ["Material Code", "Material Description", "Unit", "Required Qty", "Reserved Qty"],
         rows: [
           ["PIPE-100", "Steel Gas Pipe", "m", "180", "120"],
-          ["VALVE-32", "Isolation Valve", "ea", "12", "10"],
-          ["FITTING-04", "Coupling Set", "ea", "36", "18"],
+          ["VALVE-032", "Isolation Valve", "ea", "12", "10"],
+          ["FITTING-004", "Coupling Set", "ea", "36", "18"],
+          ["METER-025", "Gas Meter Assembly", "ea", "8", "6"],
         ],
       },
     ],
@@ -1439,10 +1531,13 @@ const screenOverrides: Record<string, MockupScreen> = {
     [
       {
         type: "table",
-        columns: ["Group", "Tenderers", "Closing Date", "Status"],
+        columns: ["Tenderer Group Code", "Tenderer Group Description", "Action"],
         rows: [
-          ["Pipeline Works", "4", "28 Mar 2026", "Open"],
-          ["Inspection Support", "3", "30 Mar 2026", "Open"],
+          ["CM01", "Tenderer list - Ind project", "Edit"],
+          ["CM02", "Tenderer list - Com project", "Edit"],
+          ["CM03", "Tenderer list - Steam & Chimney", "Edit"],
+          ["CM04", "Tenderer list - Compact Unit", "Edit"],
+          ["CM05", "Tenderer list - CCMS", "Edit"],
         ],
       },
     ],
