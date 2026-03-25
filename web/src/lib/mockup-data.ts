@@ -895,6 +895,29 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/gantt-chart-format": {
+    title: "Gantt Chart Formats",
+    href: "/gantt-chart-format",
+    blocks: [
+      {
+        type: "table",
+        heading: "Personal Gantt (Tasks)",
+        description:
+          "Project Web App can display a Personal Gantt Chart on the Tasks page and can display multiple Gantt Chart views in the Views section.",
+        columns: ["Element", "Bar Shape", "Color", "Middle", "Start", "Finish"],
+        rows: [
+          ["Task", "Bar", "Orange", "", "Black", "Black"],
+          ["Milestone", "Diamond", "Black", "", "Black", "Black"],
+          ["Task Progress", "Bar", "Dark Blue", "", "Black", "Black"],
+          ["Summary", "Bracket", "Black", "", "", ""],
+          ["Group By Summary", "Bracket", "Black", "", "Black", ""],
+          ["Manual Task", "Bar", "Aqua", "", "Aqua", ""],
+          ["Manual Milestone", "Diamond", "Aqua", "", "Aqua", ""],
+          ["Manual Progress", "Bar", "Aqua", "", "", ""],
+        ],
+      },
+    ],
+  },
   "/connect-sharepoint-site": {
     title: "Connected SharePoint Sites",
     href: "/connect-sharepoint-site",
@@ -2043,6 +2066,137 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/projects/rp-20250059/tasks/new": projectScreen(
+    "/projects/rp-20250059/tasks/new",
+    "New Task",
+    "Tasks",
+    [
+      {
+        type: "form",
+        plain: true,
+        heading: "Task Location",
+        columns: 1,
+        fields: [
+          {
+            label: "Task Location",
+            value:
+              "Select the location where you would like this task to appear on the project plan.",
+            control: "readonly",
+            wide: true,
+          },
+          { label: "Parent Task", value: "Project Plan" },
+        ],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Task Details",
+        columns: 2,
+        fields: [
+          { label: "Task Name", value: "", required: true },
+          { label: "Start", value: "11/03/2026" },
+          { label: "Finish", value: "" },
+          { label: "Duration", value: "0d" },
+          { label: "Predecessors", value: "" },
+          { label: "Comments", value: "", control: "textarea", wide: true },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Save", "Cancel"],
+      },
+    ],
+    "Tasks",
+  ),
+  "/projects/rp-20250059/resources/new-4": projectScreen(
+    "/projects/rp-20250059/resources/new-4",
+    "New Resource",
+    "Resources",
+    [
+      {
+        type: "tabs",
+        tabs: [{ label: "Work" }, { label: "Budget" }, { label: "Generic" }],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Identification Information",
+        columns: 2,
+        fields: [
+          { label: "Name", value: "", required: true },
+          { label: "Email Address", value: "" },
+          { label: "Initials", value: "" },
+          { label: "NT Name", value: "" },
+          {
+            label: "Resource Type",
+            value: "Work",
+            control: "select",
+            options: ["Work", "Budget", "Generic"],
+          },
+          { label: "Group", value: "" },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Save", "Cancel"],
+      },
+    ],
+    "Resources",
+  ),
+  "/projects/rp-20250059/resources/new-5": projectScreen(
+    "/projects/rp-20250059/resources/new-5",
+    "New Resource",
+    "Resources",
+    [
+      {
+        type: "form",
+        plain: true,
+        heading: "Assignment Attributes",
+        columns: 2,
+        fields: [
+          {
+            label: "Resource requires approval for all project assignments",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+            wide: true,
+          },
+          {
+            label: "Resource can be leveled",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+          },
+          {
+            label: "Base Calendar",
+            value: "Standard",
+            control: "select",
+            options: ["Standard"],
+          },
+          {
+            label: "Default Booking Type",
+            value: "Committed",
+            control: "select",
+            options: ["Committed", "Proposed"],
+          },
+          { label: "Timesheet Manager", value: "" },
+          { label: "Default Assignment Owner", value: "" },
+          { label: "Earliest Available", value: "" },
+          { label: "Latest Available", value: "" },
+          { label: "Standard Rate", value: "" },
+          { label: "Overtime Rate", value: "" },
+          { label: "Current Max. Units (%)", value: "5" },
+          { label: "Cost/Use", value: "" },
+          { label: "Resource Departments", value: "", wide: true },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Save", "Cancel"],
+      },
+    ],
+    "Resources",
+  ),
 };
 
 const capturedTitles = [
