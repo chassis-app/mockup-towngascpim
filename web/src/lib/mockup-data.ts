@@ -199,6 +199,20 @@ export type ButtonRowBlock = {
   buttons: string[];
 };
 
+export type WorkflowTransferBlock = {
+  type: "workflow-transfer";
+  fields: {
+    label: string;
+    value: string;
+    type?: "text" | "select";
+    options?: string[];
+  }[];
+  availableTitle: string;
+  selectedTitle: string;
+  availableItems: string[];
+  selectedItems: string[];
+};
+
 export type MockupBlock =
   | CategoryGridBlock
   | TableBlock
@@ -215,7 +229,8 @@ export type MockupBlock =
   | ProjectCenterBlock
   | EmptyListBlock
   | MessageBlock
-  | ButtonRowBlock;
+  | ButtonRowBlock
+  | WorkflowTransferBlock;
 
 export type MockupScreen = {
   title: string;
@@ -604,9 +619,41 @@ const screenOverrides: Record<string, MockupScreen> = {
     blocks: [
       {
         type: "table",
-        plain: true,
-        columns: ["Delegate Name", "Acting For", "Start Date"],
-        rows: [],
+        filters: [
+          { label: "Acting For", value: "", placeholder: "User name" },
+          { label: "Delegate Name", value: "", placeholder: "Delegate name" },
+          {
+            label: "Status",
+            value: "Active",
+            type: "select",
+            options: ["Active", "Inactive", "All"],
+          },
+        ],
+        toolbar: ["New Delegate", "Delete"],
+        columns: ["Delegate Name", "Acting For", "Start Date", "Finish Date", "Status"],
+        rows: [
+          [
+            "andy.lam@ajpcorp.com",
+            "victorcheng@ajpcorp.com",
+            "24 Mar 2026",
+            "31 Mar 2026",
+            "Active",
+          ],
+          [
+            "project.support@ajpcorp.com",
+            "susan.chan@ajpcorp.com",
+            "18 Mar 2026",
+            "28 Mar 2026",
+            "Active",
+          ],
+          [
+            "inspection.team@ajpcorp.com",
+            "kenny.wong@ajpcorp.com",
+            "01 Mar 2026",
+            "15 Mar 2026",
+            "Inactive",
+          ],
+        ],
       },
     ],
   },
@@ -617,6 +664,206 @@ const screenOverrides: Record<string, MockupScreen> = {
       {
         type: "message",
         body: "We can't display the selected time period. It might be closed or your administrator hasn't created it yet. Please try a different date.",
+      },
+    ],
+  },
+  "/manage-template": {
+    title: "Manage Templates",
+    href: "/manage-template",
+    blocks: [
+      {
+        type: "table",
+        filters: [
+          { label: "Template Name", value: "", placeholder: "Template name" },
+          {
+            label: "Status",
+            value: "Active",
+            type: "select",
+            options: ["Active", "Inactive", "All"],
+          },
+          {
+            label: "Scope",
+            value: "All",
+            type: "select",
+            options: ["All", "Project", "Enterprise", "Security"],
+          },
+        ],
+        toolbar: ["New Template", "Edit", "Copy", "Delete"],
+        columns: ["Template Name", "Description", "Owner", "Modified", "Status"],
+        rows: [
+          [
+            "CPIM Group template of IT Security Administrator",
+            "Enterprise security template for CPIM administrators",
+            "System Administrator",
+            "24 Mar 2026",
+            "Active",
+          ],
+          [
+            "Project Controls Template",
+            "Default access model for project control roles",
+            "PMO Team",
+            "18 Mar 2026",
+            "Active",
+          ],
+          [
+            "Inspection Read Only",
+            "Read-only inspection access for field teams",
+            "Quality Team",
+            "10 Mar 2026",
+            "Active",
+          ],
+          [
+            "Contract Administration",
+            "Security template for contractor coordination",
+            "Operations Team",
+            "02 Mar 2026",
+            "Inactive",
+          ],
+        ],
+      },
+    ],
+  },
+  "/inspector-master-list": {
+    title: "Inspection Master",
+    href: "/inspector-master-list",
+    blocks: [
+      {
+        type: "table",
+        filters: [
+          { label: "Inspection Name", value: "", placeholder: "Inspection name" },
+          {
+            label: "Stage",
+            value: "All",
+            type: "select",
+            options: ["All", "Planning", "Execution", "Close-out"],
+          },
+          {
+            label: "Status",
+            value: "Active",
+            type: "select",
+            options: ["Active", "Inactive", "All"],
+          },
+        ],
+        toolbar: ["New Inspection", "Edit", "Delete"],
+        columns: ["Inspection Name", "Stage", "Template", "Owner", "Status"],
+        rows: [
+          [
+            "Gas Pipe Installation Check",
+            "Execution",
+            "Inspection Standard",
+            "QC Team",
+            "Active",
+          ],
+          [
+            "Pressure Test Witness",
+            "Execution",
+            "Site Verification",
+            "Inspection Team",
+            "Active",
+          ],
+          [
+            "Final Handover Checklist",
+            "Close-out",
+            "Close-out Review",
+            "Operations Team",
+            "Active",
+          ],
+          [
+            "Safety Barrier Confirmation",
+            "Planning",
+            "Pre-start Review",
+            "Site Team",
+            "Inactive",
+          ],
+        ],
+      },
+    ],
+  },
+  "/workflow-phase": {
+    title: "Workflow Phases",
+    href: "/workflow-phase",
+    blocks: [
+      {
+        type: "table",
+        toolbar: ["New Phase", "Edit", "Delete"],
+        columns: ["Phase Name", "Sequence", "Description", "Status"],
+        rows: [
+          ["Initiation", "10", "Project request and validation", "Active"],
+          ["Planning", "20", "Planning and approval activities", "Active"],
+          ["Execution", "30", "Delivery and inspection coordination", "Active"],
+          ["Close-out", "40", "Close project and archive records", "Active"],
+        ],
+      },
+    ],
+  },
+  "/workflow-stage": {
+    title: "Workflow Stages",
+    href: "/workflow-stage",
+    blocks: [
+      {
+        type: "table",
+        filters: [
+          {
+            label: "Phase",
+            value: "All",
+            type: "select",
+            options: ["All", "Initiation", "Planning", "Execution", "Close-out"],
+          },
+        ],
+        toolbar: ["New Stage", "Edit", "Delete"],
+        columns: ["Stage Name", "Phase", "Sequence", "Owner", "Status"],
+        rows: [
+          ["Initial Review", "Initiation", "10", "PMO Team", "Active"],
+          ["Budget Approval", "Planning", "20", "Finance Team", "Active"],
+          ["Construction Approval", "Execution", "30", "Project Manager", "Active"],
+          ["Final Acceptance", "Close-out", "40", "Operations Team", "Active"],
+        ],
+      },
+    ],
+  },
+  "/change-restart-skip-workflow": {
+    title: "Change or Restart Workflows",
+    href: "/change-restart-skip-workflow",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "workflow-transfer",
+        fields: [
+          {
+            label: "Enterprise Project Type",
+            value: "Gas Main Installation",
+            type: "select",
+            options: ["Gas Main Installation", "Residential Service", "Inspection Program"],
+          },
+          {
+            label: "Current Workflow",
+            value: "Project Delivery Workflow",
+            type: "select",
+            options: ["Project Delivery Workflow", "Inspection Workflow", "Maintenance Workflow"],
+          },
+          {
+            label: "Action",
+            value: "Restart Workflow",
+            type: "select",
+            options: ["Restart Workflow", "Change Workflow", "Skip To Workflow"],
+          },
+          {
+            label: "Target Workflow",
+            value: "Construction Approval",
+            type: "select",
+            options: ["Construction Approval", "Final Acceptance", "Close-out Review"],
+          },
+        ],
+        availableTitle: "Available Workflow Stages",
+        selectedTitle: "Selected Workflow Stages",
+        availableItems: [
+          "Initial Review",
+          "Budget Approval",
+          "Resource Commitment",
+          "Construction Approval",
+          "Site Handover",
+        ],
+        selectedItems: ["Construction Approval", "Site Handover"],
       },
     ],
   },

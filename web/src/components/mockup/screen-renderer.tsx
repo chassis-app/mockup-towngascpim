@@ -39,6 +39,7 @@ import type {
   ScheduleBlock,
   TableBlock,
   TabsBlock,
+  WorkflowTransferBlock,
 } from "@/lib/mockup-data";
 import { cn } from "@/lib/utils";
 
@@ -89,6 +90,8 @@ function renderBlock(block: MockupBlock, index: number) {
       return <MessageSection key={index} block={block} />;
     case "button-row":
       return <ButtonRowSection key={index} block={block} />;
+    case "workflow-transfer":
+      return <WorkflowTransferSection key={index} block={block} />;
     default:
       return null;
   }
@@ -833,5 +836,88 @@ function ButtonRowSection({ block }: { block: ButtonRowBlock }) {
         </Button>
       ))}
     </section>
+  );
+}
+
+function WorkflowTransferSection({ block }: { block: WorkflowTransferBlock }) {
+  return (
+    <section className="space-y-6">
+      <Card className="mockup-panel">
+        <CardContent className="grid gap-5 p-5 md:grid-cols-2 xl:grid-cols-4">
+          {block.fields.map((field) => (
+            <div key={field.label}>
+              <Label className="mockup-field-label">{field.label}</Label>
+              {field.type === "select" ? (
+                <Select defaultValue={field.value}>
+                  <SelectTrigger className="mt-2 h-10 rounded-sm bg-white">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(field.options ?? [field.value]).map((option) => (
+                      <SelectItem key={option} value={option}>
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              ) : (
+                <Input defaultValue={field.value} className="mt-2 h-10 rounded-sm" />
+              )}
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_110px_minmax(0,1fr)]">
+        <TransferListCard title={block.availableTitle} items={block.availableItems} />
+
+        <div className="flex flex-col items-center justify-center gap-3">
+          {["Add >", "< Remove", "Move Up", "Move Down"].map((label) => (
+            <Button
+              key={label}
+              variant="outline"
+              className="w-full rounded-sm border-[#cfd6dd] bg-white px-3 text-[#53606d]"
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+
+        <TransferListCard title={block.selectedTitle} items={block.selectedItems} selected />
+      </div>
+    </section>
+  );
+}
+
+function TransferListCard({
+  title,
+  items,
+  selected = false,
+}: {
+  title: string;
+  items: string[];
+  selected?: boolean;
+}) {
+  return (
+    <Card className="mockup-panel overflow-hidden">
+      <div className="border-b border-[#e7ebef] bg-[#fafbfd] px-4 py-3 text-[0.92rem] font-medium text-[#59626b]">
+        {title}
+      </div>
+      <CardContent className="p-0">
+        <div className="divide-y divide-[#edf0f3]">
+          {items.map((item, index) => (
+            <div
+              key={`${title}-${item}`}
+              className={cn(
+                "px-4 py-3 text-[0.94rem] text-[#4a545f]",
+                selected && index === 0 && "bg-[#edf4fa] text-[#1f5d96]",
+              )}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 }
