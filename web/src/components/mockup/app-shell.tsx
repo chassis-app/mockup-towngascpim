@@ -1,20 +1,25 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { AppSidebar } from "@/components/mockup/app-sidebar";
 import { Button } from "@/components/ui/button";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { projectSidebarItems, quickLaunchItems } from "@/lib/mockup-data";
-
-const adminSidebarItems = [
-  { label: "PWA Settings", href: "/" },
-  { label: "Manage Views", href: "/manage-view" },
-  { label: "Quick Launch", href: "/quick-launch" },
-  { label: "Manage Templates", href: "/manage-template" },
-  { label: "Manage Delegates", href: "/manage-delegates" },
-  { label: "Time Reporting Periods", href: "/time-report-period" },
-  { label: "Reporting", href: "/report" },
-];
+import { projectSidebarItems } from "@/lib/mockup-data";
 
 type AppShellProps = {
   href: string;
@@ -40,135 +45,90 @@ export function AppShell({
   const isProjectPage = href.startsWith("/projects/");
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#fff4e8_0%,#f6f2ed_44%,#eceff2_100%)] text-foreground lg:grid lg:grid-cols-[288px_minmax(0,1fr)]">
-      <aside className="hidden border-r border-[#dbe3ea] bg-[#fcfbf8] lg:flex lg:min-h-screen lg:flex-col">
-        <div className="border-b border-[#e5ebf0] px-6 py-6">
-          <Link href="/" className="block">
-            <div className="rounded-2xl border border-[#d5b18c] bg-[linear-gradient(180deg,#5e6b78_0%,#414c59_60%,#2b343d_100%)] p-4 text-white shadow-[0_14px_30px_rgba(43,52,61,0.24)]">
-              <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e87a1a] text-2xl font-semibold text-white shadow-[0_10px_22px_rgba(232,122,26,0.28)]">
-                  P
-                </div>
-                <div className="text-xs font-semibold uppercase tracking-[0.28em]">
-                  PMO
-                </div>
-              </div>
-              <div className="text-2xl font-light tracking-tight">CPIMUAT</div>
-              <div className="mt-1 text-sm text-white/78">Client review prototype</div>
-            </div>
-          </Link>
-        </div>
+    <SidebarProvider defaultOpen className="min-h-svh bg-transparent">
+      <AppSidebar
+        href={href}
+        quickLaunchActive={quickLaunchActive}
+        projectContext={projectContext}
+      />
 
-        <ScrollArea className="flex-1">
-          <div className="space-y-8 px-4 py-5">
-            <section className="space-y-3">
-              <div className="px-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#83909b]">
-                Workspace
-              </div>
-              <div className="space-y-1">
-                {quickLaunchItems.map((item) => {
-                  const isActive = item.label === quickLaunchActive;
-                  return (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className={cn(
-                        "mockup-sidebar-link",
-                        isActive && "mockup-sidebar-link-active",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-
-            <section className="space-y-3">
-              <div className="px-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#83909b]">
-                Administration
-              </div>
-              <div className="space-y-1">
-                {adminSidebarItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "mockup-sidebar-link",
-                      href === item.href && "mockup-sidebar-link-active",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
+      <SidebarInset className="min-h-svh bg-transparent">
+        <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between border-b border-border/60 bg-background/72 px-4 backdrop-blur-2xl transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-14 md:px-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <SidebarTrigger className="-ml-1 rounded-xl text-foreground/70 hover:bg-background/80" />
+            <Separator
+              orientation="vertical"
+              className="hidden h-4 data-[orientation=vertical]:h-4 md:block"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink render={<Link href="/" />}>
+                    {isProjectPage ? "Project Workspace" : "Administration"}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
-        </ScrollArea>
-      </aside>
 
-      <div className="min-h-screen">
-        <header className="border-b border-[#dbe3ea] bg-white/88 px-4 py-4 shadow-[0_1px_0_rgba(15,23,42,0.03)] backdrop-blur lg:hidden">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e87a1a] text-xl font-semibold text-white">
-              P
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6f7b86]">PMO</div>
-              <div className="text-2xl font-light tracking-tight text-[#47515a]">CPIMUAT</div>
-            </div>
-          </Link>
-          <ScrollArea className="mt-4 w-full whitespace-nowrap">
-            <div className="flex min-w-max gap-2 pb-1">
-              {quickLaunchItems.map((item) => (
-                <Link
-                  key={`mobile-global-${item.label}`}
-                  href={item.href}
+          {actions && actions.length > 0 ? (
+            <div className="hidden flex-wrap gap-3 md:flex">
+              {actions.map((action, index) => (
+                <Button
+                  key={action}
+                  variant={index === 0 ? "default" : "outline"}
                   className={cn(
-                    "mockup-project-chip",
-                    item.label === quickLaunchActive && "mockup-project-chip-active",
+                    index === 0
+                      ? "mockup-action-primary"
+                      : "mockup-action-secondary",
                   )}
                 >
-                  {item.label}
-                </Link>
+                  {action}
+                </Button>
               ))}
             </div>
-          </ScrollArea>
+          ) : null}
         </header>
 
-        <main className="mx-auto max-w-[1720px] px-4 py-5 lg:px-8 lg:py-8">
-          <div className="mb-6 rounded-[1.25rem] border border-[#dbe3ea] bg-[linear-gradient(180deg,#ffffff_0%,#fff8f1_100%)] p-5 shadow-[0_1px_2px_rgba(15,23,42,0.03),0_14px_36px_rgba(15,23,42,0.05)] lg:p-6">
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+        <main className="mx-auto flex w-full max-w-[1760px] flex-1 flex-col gap-6 px-4 py-5 md:px-6 lg:px-8">
+          <section className="rounded-[2rem] border border-border/70 bg-card/82 p-5 shadow-[0_24px_64px_rgba(15,23,42,0.1)] backdrop-blur-2xl md:p-6">
+            <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
               <div className="space-y-3">
-                <div className="flex flex-wrap items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.14em] text-[#7e8a96]">
+                <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                   <span className="mockup-status-chip">
                     {isProjectPage ? "Project Workspace" : "Administration"}
                   </span>
-                  {quickLaunchActive ? <span>{quickLaunchActive}</span> : null}
+                  {quickLaunchActive && !isProjectPage ? (
+                    <span>{quickLaunchActive}</span>
+                  ) : null}
                 </div>
-                <div>
+                <div className="space-y-2">
                   <h1 className="mockup-page-title">{title}</h1>
                   {projectContext ? (
-                    <div className="mt-2 space-y-1 text-sm text-[#6e7883]">
+                    <div className="text-sm leading-6 text-muted-foreground">
                       <div>{projectContext.title}</div>
-                      {projectContext.subtitle ? <div>{projectContext.subtitle}</div> : null}
+                      {projectContext.subtitle ? (
+                        <div>{projectContext.subtitle}</div>
+                      ) : null}
                     </div>
-                  ) : (
-                    <div className="mt-2 text-sm text-[#6e7883]">
-                      Reimagined client-facing workflow mockup
-                    </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
 
               {actions && actions.length > 0 ? (
-                <div className="flex flex-wrap gap-3 lg:justify-end">
+                <div className="flex flex-wrap gap-3 md:hidden">
                   {actions.map((action, index) => (
                     <Button
-                      key={action}
+                      key={`mobile-${action}`}
                       variant={index === 0 ? "default" : "outline"}
                       className={cn(
-                        index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
+                        index === 0
+                          ? "mockup-action-primary"
+                          : "mockup-action-secondary",
                       )}
                     >
                       {action}
@@ -204,11 +164,11 @@ export function AppShell({
                 </div>
               </ScrollArea>
             ) : null}
-          </div>
+          </section>
 
           <div className="min-w-0">{children}</div>
         </main>
-      </div>
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
