@@ -40,13 +40,13 @@ export function AppShell({
   const isProjectPage = href.startsWith("/projects/");
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#f2fbff_0%,#edf5fa_48%,#eef2f4_100%)] text-foreground lg:grid lg:grid-cols-[288px_minmax(0,1fr)]">
-      <aside className="hidden border-r border-[#dbe3ea] bg-[#fbfcfd] lg:flex lg:min-h-screen lg:flex-col">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#fff4e8_0%,#f6f2ed_44%,#eceff2_100%)] text-foreground lg:grid lg:grid-cols-[288px_minmax(0,1fr)]">
+      <aside className="hidden border-r border-[#dbe3ea] bg-[#fcfbf8] lg:flex lg:min-h-screen lg:flex-col">
         <div className="border-b border-[#e5ebf0] px-6 py-6">
           <Link href="/" className="block">
-            <div className="rounded-2xl border border-[#cfe5f8] bg-[linear-gradient(180deg,#0f7ede_0%,#0d65b1_58%,#0a4f88_100%)] p-4 text-white shadow-[0_14px_30px_rgba(13,101,177,0.22)]">
+            <div className="rounded-2xl border border-[#d5b18c] bg-[linear-gradient(180deg,#5e6b78_0%,#414c59_60%,#2b343d_100%)] p-4 text-white shadow-[0_14px_30px_rgba(43,52,61,0.24)]">
               <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/14 text-2xl font-semibold">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e87a1a] text-2xl font-semibold text-white shadow-[0_10px_22px_rgba(232,122,26,0.28)]">
                   P
                 </div>
                 <div className="text-xs font-semibold uppercase tracking-[0.28em]">
@@ -110,7 +110,7 @@ export function AppShell({
       <div className="min-h-screen">
         <header className="border-b border-[#dbe3ea] bg-white/88 px-4 py-4 shadow-[0_1px_0_rgba(15,23,42,0.03)] backdrop-blur lg:hidden">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0f7ede] text-xl font-semibold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e87a1a] text-xl font-semibold text-white">
               P
             </div>
             <div>
@@ -137,7 +137,7 @@ export function AppShell({
         </header>
 
         <main className="mx-auto max-w-[1720px] px-4 py-5 lg:px-8 lg:py-8">
-          <div className="mb-6 rounded-[1.25rem] border border-[#dbe3ea] bg-[linear-gradient(180deg,#ffffff_0%,#f4fbff_100%)] p-5 shadow-[0_1px_2px_rgba(15,23,42,0.03),0_14px_36px_rgba(15,23,42,0.05)] lg:p-6">
+          <div className="mb-6 rounded-[1.25rem] border border-[#dbe3ea] bg-[linear-gradient(180deg,#ffffff_0%,#fff8f1_100%)] p-5 shadow-[0_1px_2px_rgba(15,23,42,0.03),0_14px_36px_rgba(15,23,42,0.05)] lg:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.14em] text-[#7e8a96]">

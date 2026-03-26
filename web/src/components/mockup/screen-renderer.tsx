@@ -115,7 +115,10 @@ function CategoryGrid({ block }: { block: CategoryGridBlock }) {
           <div className="space-y-1 text-[1.02rem]">
             {group.items.map((item) => (
               <div key={item.label}>
-                <Link href={item.href} className="mockup-link">
+                <Link
+                  href={item.href}
+                  className="text-[#cc6518] transition-colors duration-200 hover:text-[#a75414]"
+                >
                   {item.label}
                 </Link>
               </div>
@@ -144,10 +147,10 @@ function DataTableBlock({ block }: { block: TableBlock }) {
               <TableCell
                 key={`${cell}-${cellIndex}`}
                 className={cn(
-                  cellIndex === 0 && "text-[#2d6eaa]",
+                  cellIndex === 0 && "text-[#c25d11]",
                   rowIndex === 0 &&
                     block.highlightFirstRow &&
-                    "bg-[#fff8cc] font-medium text-[#34414f]",
+                    "bg-[#fff6da] font-medium text-[#34414f]",
                 )}
               >
                 {cell}
@@ -215,7 +218,7 @@ function DataTableBlock({ block }: { block: TableBlock }) {
                   variant="ghost"
                   className={cn(
                     "mockup-toolbar-button",
-                    index === 0 && "bg-[#f7fbff]",
+                    index === 0 && "bg-[#fff4e8]",
                   )}
                 >
                   {action}
@@ -323,7 +326,7 @@ function PermissionsSection({ block }: { block: PermissionsBlock }) {
             </TableRow>
             {group.rows.map((row) => (
               <TableRow key={row.name}>
-                <TableCell className="text-[#2d6eaa]">{row.name}</TableCell>
+                <TableCell className="text-[#c25d11]">{row.name}</TableCell>
                 {row.states.map((checked, index) => (
                   <TableCell key={index} className="text-center">
                     <Checkbox checked={checked} />
@@ -479,7 +482,7 @@ function TabsSection({ block }: { block: TabsBlock }) {
             <TabsTrigger
               key={tab.label}
               value={tab.label}
-              className="rounded-sm px-4 py-2 data-[state=active]:bg-[#edf4fa] data-[state=active]:text-[#1f5d96]"
+              className="rounded-sm px-4 py-2 data-[state=active]:bg-[#fff1e6] data-[state=active]:text-[#aa5314]"
             >
               {tab.label}
             </TabsTrigger>
@@ -492,7 +495,7 @@ function TabsSection({ block }: { block: TabsBlock }) {
             <Badge
               key={badge}
               variant="secondary"
-              className="rounded-sm bg-[#edf4fa] px-2.5 py-1 text-[#1f5d96]"
+              className="rounded-sm bg-[#fff1e6] px-2.5 py-1 text-[#aa5314]"
             >
               {badge}
             </Badge>
@@ -507,7 +510,7 @@ function ScheduleSection({ block }: { block: ScheduleBlock }) {
   return (
     <section className="space-y-3">
       <div className="relative border border-[#a7adb4] bg-white">
-        <div className="absolute left-[32%] top-[-1px] z-10 bg-[#1f6eb0] px-3 py-1 text-sm text-white">
+        <div className="absolute left-[32%] top-[-1px] z-10 bg-[#d56d17] px-3 py-1 text-sm text-white">
           Today
         </div>
         <div className="grid grid-cols-[30%_70%] border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
@@ -711,7 +714,7 @@ function ProjectCenterSection({ block }: { block: ProjectCenterBlock }) {
   return (
     <section className="space-y-4">
       <div className="relative border border-[#a7adb4] bg-white">
-        <div className="absolute left-[18%] top-[-1px] z-10 bg-[#1f6eb0] px-3 py-1 text-sm text-white">
+        <div className="absolute left-[18%] top-[-1px] z-10 bg-[#d56d17] px-3 py-1 text-sm text-white">
           Today
         </div>
         <div className="grid grid-cols-6 border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
@@ -742,7 +745,7 @@ function ProjectCenterSection({ block }: { block: ProjectCenterBlock }) {
                   <TableCell
                     key={`${cell}-${cellIndex}`}
                     className={cn(
-                      cellIndex === 1 && "text-[#2d6eaa]",
+                      cellIndex === 1 && "text-[#c25d11]",
                       cellIndex === 0 && "w-14 text-center",
                     )}
                   >
@@ -782,7 +785,7 @@ function EmptyListSection({ block }: { block: EmptyListBlock }) {
           {block.heading}
         </h2>
         {block.filters?.map((filter) => (
-          <span key={filter} className="border-b-2 border-[#1f5d96] pb-1">
+          <span key={filter} className="border-b-2 border-[#aa5314] pb-1">
             {filter}
           </span>
         ))}
@@ -914,7 +917,7 @@ function TransferListCard({
               key={`${title}-${item}`}
               className={cn(
                 "px-4 py-3 text-[0.94rem] text-[#4a545f]",
-                selected && index === 0 && "bg-[#edf4fa] text-[#1f5d96]",
+                selected && index === 0 && "bg-[#fff1e6] text-[#aa5314]",
               )}
             >
               {item}
