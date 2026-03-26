@@ -679,6 +679,16 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/my-queued-job": {
+    title: "Manage Timesheets",
+    href: "/my-queued-job",
+    blocks: [
+      {
+        type: "message",
+        body: "We can't display the selected time period. It might be closed or your administrator hasn't created it yet. Please try a different date.",
+      },
+    ],
+  },
   "/manage-queue-jobs": {
     title: "Manage Queue Jobs",
     href: "/manage-queue-jobs",
@@ -721,6 +731,23 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/manage-groups": {
+    title: "Manage Categories",
+    href: "/manage-groups",
+    blocks: [
+      {
+        type: "table",
+        toolbar: ["New Category", "Edit", "Delete"],
+        columns: ["Category Name", "Type", "Description"],
+        rows: [
+          ["Workspaces", "Project Server default", "My Direct Report category"],
+          ["Projects", "Project Server default", "My Projects category"],
+          ["Resources", "Project Server default", "My Resources category"],
+          ["Tasks", "Project Server default", "My Tasks category"],
+        ],
+      },
+    ],
+  },
   "/manage-category": {
     title: "Manage Categories",
     href: "/manage-category",
@@ -734,6 +761,42 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["Projects", "Project Server default", "My Projects category"],
           ["Resources", "Project Server default", "My Resources category"],
           ["Tasks", "Project Server default", "My Tasks category"],
+        ],
+      },
+    ],
+  },
+  "/additional-server-settings": {
+    title: "Act as a Delegate",
+    href: "/additional-server-settings",
+    blocks: [
+      {
+        type: "empty-list",
+        heading: "Act as a Delegate",
+        columns: ["Acting For", "Start Date"],
+        message: "You are not currently acting as anyone's delegate",
+      },
+    ],
+  },
+  "/administrative-time": {
+    title: "Active Directory Enterprise Resource Pool Synchronization",
+    href: "/administrative-time",
+    actions: ["Save", "Synchronize Now"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Synchronization",
+        columns: 2,
+        fields: [
+          { label: "Active Directory Group", value: "" },
+          { label: "Synchronization Status", value: "The synchronization failed because the Active Directory group was empty or not found.", control: "readonly", wide: true },
+          {
+            label: "Automatically reactivate inactive users found in Active Directory",
+            value: "Enabled",
+            control: "select",
+            options: ["Enabled", "Disabled"],
+            wide: true,
+          },
         ],
       },
     ],
@@ -753,6 +816,45 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["commissioneddate", "Task", "Date", "", "No", "No", ""],
           ["leave", "Resource", "Text", "", "No", "No", ""],
           ["bookprogress", "Task", "Member", "", "No", "No", ""],
+        ],
+      },
+    ],
+  },
+  "/custom-master-list": {
+    title: "Connected SharePoint Sites",
+    href: "/custom-master-list",
+    blocks: [
+      {
+        type: "table",
+        toolbar: [
+          "Create Site",
+          "Edit Site Address",
+          "Synchronize",
+          "Delete Site",
+          "Go to Project Site Settings",
+        ],
+        columns: ["", "Site Address", "Project / Site Name"],
+        rows: [
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/1-and-3-south-bay-close",
+            "1 and 3 South Bay Close Hong Kong",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/10-10a-wang-fung-terrace",
+            "10, 10A Wang Fung Terrace",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/11-15-matheson-st",
+            "11-15 Matheson St, Causeway Bay",
+          ],
+          [
+            "Edit",
+            "https://towngas.sharepoint.com/sites/CPIMUAT2-sc-mig/121-boundary-street",
+            "121 Boundary Street",
+          ],
         ],
       },
     ],
@@ -804,6 +906,27 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/line-classifications": {
+    title: "Grouping Formats",
+    href: "/line-classifications",
+    blocks: [
+      {
+        type: "table",
+        heading: "Grouping format",
+        description:
+          "You can select a grouping format for the Tasks section and up to 10 grouping formats for views.",
+        columns: ["Group", "Level", "Background", "Text", "Style"],
+        rows: [
+          ["Timesheet", "Level 1", "Light yellow", "Black", "Bold"],
+          ["Timesheet", "Level 2", "Sky blue", "Black", "Bold"],
+          ["Views", "Level 1", "Light yellow", "Black", "Bold"],
+          ["Views", "Level 2", "Sky blue", "Black", "Bold"],
+          ["Grouping 1", "Level 3", "Light green", "Black", "Bold"],
+          ["Grouping 1", "Level 4", "Lavender", "Black", "Bold"],
+        ],
+      },
+    ],
+  },
   "/fiscal-periods": {
     title: "Fiscal Periods",
     href: "/fiscal-periods",
@@ -823,6 +946,27 @@ const screenOverrides: Record<string, MockupScreen> = {
           { label: "Start Month", value: "January" },
           { label: "Months in Year", value: "12" },
           { label: "Status", value: "Not Defined" },
+        ],
+      },
+    ],
+  },
+  "/contractor-master-list": {
+    title: "BOM Maintenance",
+    href: "/contractor-master-list",
+    blocks: [
+      {
+        type: "table",
+        filters: [
+          { label: "BOM Parent", value: "" },
+          { label: "Material", value: "", placeholder: "Material description" },
+        ],
+        toolbar: ["Add Item", "Import", "Remove"],
+        columns: ["Material Code", "Material Description", "Unit", "Required Qty", "Reserved Qty"],
+        rows: [
+          ["PIPE-100", "Steel Gas Pipe", "m", "180", "120"],
+          ["VALVE-032", "Isolation Valve", "ea", "12", "10"],
+          ["FITTING-004", "Coupling Set", "ea", "36", "18"],
+          ["METER-025", "Gas Meter Assembly", "ea", "8", "6"],
         ],
       },
     ],
@@ -1038,6 +1182,62 @@ const screenOverrides: Record<string, MockupScreen> = {
   "/manage-template": {
     title: "Manage Templates",
     href: "/manage-template",
+    blocks: [
+      {
+        type: "table",
+        filters: [
+          { label: "Template Name", value: "", placeholder: "Template name" },
+          {
+            label: "Status",
+            value: "Active",
+            type: "select",
+            options: ["Active", "Inactive", "All"],
+          },
+          {
+            label: "Scope",
+            value: "All",
+            type: "select",
+            options: ["All", "Project", "Enterprise", "Security"],
+          },
+        ],
+        toolbar: ["New Template", "Edit", "Copy", "Delete"],
+        columns: ["Template Name", "Description", "Owner", "Modified", "Status"],
+        rows: [
+          [
+            "CPIM Group template of IT Security Administrator",
+            "Enterprise security template for CPIM administrators",
+            "System Administrator",
+            "24 Mar 2026",
+            "Active",
+          ],
+          [
+            "Project Controls Template",
+            "Default access model for project control roles",
+            "PMO Team",
+            "18 Mar 2026",
+            "Active",
+          ],
+          [
+            "Inspection Read Only",
+            "Read-only inspection access for field teams",
+            "Quality Team",
+            "10 Mar 2026",
+            "Active",
+          ],
+          [
+            "Contract Administration",
+            "Security template for contractor coordination",
+            "Operations Team",
+            "02 Mar 2026",
+            "Inactive",
+          ],
+        ],
+      },
+    ],
+  },
+  "/manager-user": {
+    title: "Manage Templates",
+    href: "/manager-user",
     blocks: [
       {
         type: "table",
@@ -2089,6 +2289,54 @@ const screenOverrides: Record<string, MockupScreen> = {
             control: "select",
             options: ["Yes", "No"],
           },
+        ],
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/create-project-template": {
+    title: "Create project template",
+    href: "/projects/rp-20250059/project-management/create-project-template",
+    quickLaunchActive: "Project Management",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "tabs",
+        tabs: [{ label: "1" }, { label: "2" }],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Template Info",
+        columns: 2,
+        fields: [
+          { label: "Template Name", value: "", required: true },
+          { label: "Company Code", value: "", required: true },
+          { label: "Project Type", value: "" },
+          { label: "Project District", value: "" },
+          { label: "Project Address Line1", value: "" },
+          { label: "Project Address Line2", value: "" },
+          { label: "Project Address Line3", value: "" },
+          { label: "Project Address Line4", value: "" },
+          { label: "Require Billing Job", value: "Yes", control: "select", options: ["Yes", "No"] },
+          { label: "Description", value: "", control: "textarea", wide: true },
+        ],
+      },
+    ],
+  },
+  "/projects/rp-20250059/project-management/build-team": {
+    title: "Build Team",
+    href: "/projects/rp-20250059/project-management/build-team",
+    quickLaunchActive: "Project Management",
+    blocks: [
+      {
+        type: "table",
+        heading: "Team Members",
+        toolbar: ["Add Resources", "Remove", "Replace"],
+        columns: ["Resource Name", "Role", "Booking Type", "Start", "Finish"],
+        rows: [
+          ["Li Man Kin", "Engineer", "Committed", "11/03/2026", "30/04/2026"],
+          ["Chau Bobby CS.", "Supervisor", "Committed", "11/03/2026", "30/04/2026"],
+          ["QC Team", "Inspection", "Proposed", "15/03/2026", "18/04/2026"],
         ],
       },
     ],
