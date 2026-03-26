@@ -40,11 +40,11 @@ export function AppShell({
   const isProjectPage = href.startsWith("/projects/");
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#f9fbfd_0%,#eef3f6_52%,#eef2f4_100%)] text-foreground lg:grid lg:grid-cols-[288px_minmax(0,1fr)]">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#f2fbff_0%,#edf5fa_48%,#eef2f4_100%)] text-foreground lg:grid lg:grid-cols-[288px_minmax(0,1fr)]">
       <aside className="hidden border-r border-[#dbe3ea] bg-[#fbfcfd] lg:flex lg:min-h-screen lg:flex-col">
         <div className="border-b border-[#e5ebf0] px-6 py-6">
           <Link href="/" className="block">
-            <div className="rounded-2xl border border-[#dce5ed] bg-[linear-gradient(180deg,#1a5f9a_0%,#144f82_100%)] p-4 text-white shadow-[0_12px_28px_rgba(20,79,130,0.18)]">
+            <div className="rounded-2xl border border-[#cfe5f8] bg-[linear-gradient(180deg,#0f7ede_0%,#0d65b1_58%,#0a4f88_100%)] p-4 text-white shadow-[0_14px_30px_rgba(13,101,177,0.22)]">
               <div className="mb-3 flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/14 text-2xl font-semibold">
                   P
@@ -110,7 +110,7 @@ export function AppShell({
       <div className="min-h-screen">
         <header className="border-b border-[#dbe3ea] bg-white/88 px-4 py-4 shadow-[0_1px_0_rgba(15,23,42,0.03)] backdrop-blur lg:hidden">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1a5f9a] text-xl font-semibold text-white">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0f7ede] text-xl font-semibold text-white">
               P
             </div>
             <div>
@@ -137,7 +137,7 @@ export function AppShell({
         </header>
 
         <main className="mx-auto max-w-[1720px] px-4 py-5 lg:px-8 lg:py-8">
-          <div className="mb-6 rounded-[1.25rem] border border-[#dbe3ea] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-5 shadow-[0_1px_2px_rgba(15,23,42,0.03),0_14px_36px_rgba(15,23,42,0.05)] lg:p-6">
+          <div className="mb-6 rounded-[1.25rem] border border-[#dbe3ea] bg-[linear-gradient(180deg,#ffffff_0%,#f4fbff_100%)] p-5 shadow-[0_1px_2px_rgba(15,23,42,0.03),0_14px_36px_rgba(15,23,42,0.05)] lg:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.14em] text-[#7e8a96]">
