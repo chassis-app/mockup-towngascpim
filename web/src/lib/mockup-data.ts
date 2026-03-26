@@ -475,7 +475,7 @@ const projectInformation: MockupScreen = {
     {
       type: "form",
       plain: true,
-      heading: "Untitled",
+      heading: "Project Summary",
       columns: 2,
       fields: [
         { label: "Project Category", value: "RP", control: "readonly" },
@@ -488,16 +488,41 @@ const projectInformation: MockupScreen = {
           value: "victor test internal generate invoice 002",
           required: true,
           control: "readonly",
+          wide: true,
         },
         { label: "CEA No.", value: "CA25021A", control: "readonly" },
         { label: "Project Address Line1", value: "test 2", control: "readonly" },
+      ],
+    },
+    {
+      type: "form",
+      plain: true,
+      heading: "Project Address",
+      columns: 2,
+      fields: [
         { label: "Project Address Line2", value: "", control: "readonly" },
         { label: "Project Address Line3", value: "", control: "readonly" },
         { label: "Project Address Line4", value: "", control: "readonly" },
+      ],
+    },
+    {
+      type: "form",
+      plain: true,
+      heading: "Final Address",
+      columns: 2,
+      fields: [
         { label: "Final Address Line1", value: "", control: "readonly" },
         { label: "Final Address Line2", value: "", control: "readonly" },
         { label: "Final Address Line3", value: "", control: "readonly" },
         { label: "Final Address Line4", value: "", control: "readonly" },
+      ],
+    },
+    {
+      type: "form",
+      plain: true,
+      heading: "Project Chinese Address",
+      columns: 2,
+      fields: [
         { label: "Project Chinese Address Line1", value: "", control: "readonly" },
         { label: "Project Chinese Address Line2", value: "", control: "readonly" },
       ],
@@ -1184,7 +1209,17 @@ const screenOverrides: Record<string, MockupScreen> = {
     href: "/manage-template",
     blocks: [
       {
+        type: "tabs",
+        tabs: [
+          { label: "All Templates" },
+          { label: "Project" },
+          { label: "Enterprise" },
+          { label: "Security" },
+        ],
+      },
+      {
         type: "table",
+        heading: "Template Library",
         filters: [
           { label: "Template Name", value: "", placeholder: "Template name" },
           {
@@ -2266,28 +2301,50 @@ const screenOverrides: Record<string, MockupScreen> = {
     blocks: [
       {
         type: "tabs",
-        tabs: [{ label: "1" }, { label: "2" }],
+        tabs: [{ label: "Step 1" }, { label: "Step 2" }],
       },
       {
         type: "form",
         plain: true,
-        heading: "Basic Info",
+        heading: "Project Basics",
         columns: 2,
         fields: [
           { label: "Name", value: "", required: true },
           { label: "Company Code", value: "", required: true },
           { label: "Project Type RSP", value: "" },
           { label: "Project District", value: "", required: true },
+        ],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Project Address",
+        columns: 2,
+        fields: [
           { label: "Project Address Line1", value: "", required: true },
           { label: "Project Address Line2", value: "" },
           { label: "Project Address Line3", value: "" },
           { label: "Project Address Line4", value: "" },
+        ],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "Commercial Setup",
+        columns: 2,
+        fields: [
           { label: "Received Date", value: "25/03/2026" },
           {
             label: "Require Billing Job",
             value: "Yes",
             control: "select",
             options: ["Yes", "No"],
+          },
+          {
+            label: "Project Notes",
+            value: "",
+            control: "textarea",
+            wide: true,
           },
         ],
       },

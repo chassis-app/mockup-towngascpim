@@ -3,7 +3,13 @@ import Link from "next/link";
 import { AppShell } from "@/components/mockup/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -154,51 +160,54 @@ function DataTableBlock({ block }: { block: TableBlock }) {
 
   return (
     <section className="space-y-4">
-      {block.heading ? (
-        <div className="space-y-1">
-          <h2 className="mockup-section-title">{block.heading}</h2>
-          {block.description ? (
-            <p className="text-sm text-[#6a737c]">{block.description}</p>
-          ) : null}
-        </div>
-      ) : null}
+      <div className={cn(block.plain ? "overflow-hidden border rounded-lg bg-white" : "mockup-section-shell overflow-hidden")}>
+        {block.heading ? (
+          <CardHeader className="gap-2 border-b border-[#edf1f4] bg-[#fcfdfd] px-5 py-4">
+            <div className="mockup-section-kicker">Data View</div>
+            <CardTitle className="mockup-section-heading">{block.heading}</CardTitle>
+            {block.description ? (
+              <CardDescription className="mockup-section-copy">
+                {block.description}
+              </CardDescription>
+            ) : null}
+          </CardHeader>
+        ) : null}
 
-      {block.filters && block.filters.length > 0 ? (
-        <Card className="mockup-panel">
-          <CardContent className="grid gap-4 p-4 md:grid-cols-3 xl:grid-cols-5">
-            {block.filters.map((filter) => (
-              <div key={filter.label} className="space-y-2">
-                <Label className="mockup-field-label">{filter.label}</Label>
-                {filter.type === "select" ? (
-                  <Select defaultValue={filter.value}>
-                    <SelectTrigger className="h-9 rounded-sm">
-                      <SelectValue placeholder={filter.placeholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {(filter.options ?? [filter.value]).map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Input
-                    className="h-9 rounded-sm"
-                    defaultValue={filter.value}
-                    placeholder={filter.placeholder}
-                  />
-                )}
-              </div>
-            ))}
+        {block.filters && block.filters.length > 0 ? (
+          <CardContent className="border-b border-[#edf1f4] px-5 py-4">
+            <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-5">
+              {block.filters.map((filter) => (
+                <div key={filter.label} className="space-y-2">
+                  <Label className="mockup-field-label">{filter.label}</Label>
+                  {filter.type === "select" ? (
+                    <Select defaultValue={filter.value}>
+                      <SelectTrigger className="mockup-input h-9">
+                        <SelectValue placeholder={filter.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {(filter.options ?? [filter.value]).map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Input
+                      className="mockup-input h-9"
+                      defaultValue={filter.value}
+                      placeholder={filter.placeholder}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </CardContent>
-        </Card>
-      ) : null}
+        ) : null}
 
-      <div className={cn(block.plain ? "overflow-hidden border" : "mockup-panel overflow-hidden")}>
         {block.toolbar && block.toolbar.length > 0 ? (
           <>
-            <div className="flex flex-wrap gap-2 border-b border-[#e7ebef] bg-[#fafafa] px-3 py-2.5">
+            <div className="flex flex-wrap gap-2 border-b border-[#e7ebef] bg-[#fafafa] px-5 py-3">
               {block.toolbar.map((action, index) => (
                 <Button
                   key={action}
@@ -240,15 +249,17 @@ function FormSection({ block }: { block: FormBlock }) {
             {field.required ? " *" : ""}
           </Label>
           {field.control === "readonly" ? (
-            <div className="pt-2 text-[0.96rem] text-[#454d55]">{field.value}</div>
+            <div className="pt-2 text-[0.96rem] text-[#454d55]">
+              {field.value || <span className="text-[#a0a8b0]">-</span>}
+            </div>
           ) : field.control === "textarea" ? (
             <Textarea
               defaultValue={field.value}
-              className="mt-2 min-h-28 rounded-sm"
+              className="mockup-input mt-2 min-h-28 rounded-md"
             />
           ) : field.control === "select" ? (
             <Select defaultValue={field.value}>
-              <SelectTrigger className="mt-2 h-10 rounded-sm">
+              <SelectTrigger className="mockup-input mt-2 h-10 rounded-md">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -260,7 +271,7 @@ function FormSection({ block }: { block: FormBlock }) {
               </SelectContent>
             </Select>
           ) : (
-            <Input defaultValue={field.value} className="mt-2 h-10 rounded-sm" />
+            <Input defaultValue={field.value} className="mockup-input mt-2 h-10 rounded-md" />
           )}
         </div>
       ))}
@@ -268,25 +279,19 @@ function FormSection({ block }: { block: FormBlock }) {
   );
 
   return (
-    <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div className="space-y-2">
-        <h2 className="text-[1.02rem] font-medium text-[#595f66]">
-          {block.heading}
-        </h2>
-        {block.description ? (
-          <p className="max-w-[230px] text-sm leading-6 text-[#747d86]">
-            {block.description}
-          </p>
-        ) : null}
-      </div>
-
-      {block.plain ? (
-        <div className="pt-1">{fields}</div>
-      ) : (
-        <Card className="mockup-panel">
-          <CardContent className="p-5">{fields}</CardContent>
-        </Card>
-      )}
+    <section>
+      <Card className={cn(block.plain ? "mockup-section-shell" : "mockup-panel")}>
+        <CardHeader className="gap-2 border-b border-[#edf1f4] bg-[#fcfdfd] px-5 py-4">
+          <div className="mockup-section-kicker">Form Section</div>
+          <CardTitle className="mockup-section-heading">{block.heading}</CardTitle>
+          {block.description ? (
+            <CardDescription className="mockup-section-copy">
+              {block.description}
+            </CardDescription>
+          ) : null}
+        </CardHeader>
+        <CardContent className="p-5">{fields}</CardContent>
+      </Card>
     </section>
   );
 }
@@ -572,7 +577,7 @@ function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
         <div className="flex max-w-[980px] items-center gap-5">
           <div className="min-w-24 text-[0.98rem] text-[#4d555e]">Select Role</div>
           <Select defaultValue={block.selectedRole}>
-            <SelectTrigger className="h-11 flex-1 rounded-sm bg-white">
+            <SelectTrigger className="mockup-input h-11 flex-1 rounded-md bg-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -762,8 +767,7 @@ function EmptyListSection({ block }: { block: EmptyListBlock }) {
               key={item}
               variant={index === 0 ? "default" : "outline"}
               className={cn(
-                "rounded-sm px-4",
-                index === 0 && "bg-[#1f5d96] text-white hover:bg-[#184f84]",
+                index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
               )}
             >
               {item}

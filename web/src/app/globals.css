@@ -147,6 +147,10 @@
     @apply rounded-lg border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)];
   }
 
+  .mockup-section-shell {
+    @apply rounded-xl border border-[#dfe5eb] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03),0_12px_32px_rgba(15,23,42,0.04)];
+  }
+
   .mockup-page-title {
     @apply text-[2.15rem] leading-none font-light tracking-tight text-[#43494f] md:text-[2.35rem];
   }
@@ -197,5 +201,25 @@
 
   .mockup-project-chip-active {
     @apply border-[#bcd0e2] bg-[#edf4fa] text-[#1f5d96];
+  }
+
+  .mockup-input {
+    @apply rounded-md border-[#d7dde4] bg-white shadow-none;
+  }
+
+  .mockup-section-kicker {
+    @apply text-[0.72rem] font-semibold tracking-[0.12em] uppercase text-[#7b8793];
+  }
+
+  .mockup-section-heading {
+    @apply text-[1.1rem] font-medium text-[#46505a];
+  }
+
+  .mockup-section-copy {
+    @apply text-sm leading-6 text-[#72808d];
+  }
+
+  .mockup-status-chip {
+    @apply inline-flex items-center rounded-full border border-[#d6e4f1] bg-[#f1f7fc] px-2.5 py-1 text-[0.72rem] font-medium text-[#31689d];
   }
 }
