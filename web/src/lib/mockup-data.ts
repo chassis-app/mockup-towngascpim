@@ -2197,6 +2197,139 @@ const screenOverrides: Record<string, MockupScreen> = {
     ],
     "Resources",
   ),
+  "/projects/rp-20250059/resources/new-1": projectScreen(
+    "/projects/rp-20250059/resources/new-1",
+    "New Resource",
+    "Resources",
+    [
+      {
+        type: "tabs",
+        tabs: [{ label: "Work" }, { label: "Budget" }, { label: "Generic" }],
+      },
+      {
+        type: "form",
+        plain: true,
+        heading: "General Information",
+        columns: 2,
+        fields: [
+          { label: "Name", value: "", required: true },
+          { label: "Email Address", value: "" },
+          { label: "Initials", value: "" },
+          { label: "NT Name", value: "" },
+          { label: "Employee ID", value: "" },
+          { label: "Resource Group", value: "" },
+          { label: "Title", value: "" },
+          { label: "Department", value: "" },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Next", "Cancel"],
+      },
+    ],
+    "Resources",
+  ),
+  "/projects/rp-20250059/resources/new-2": projectScreen(
+    "/projects/rp-20250059/resources/new-2",
+    "New Resource",
+    "Resources",
+    [
+      {
+        type: "form",
+        plain: true,
+        heading: "Availability and Cost",
+        columns: 2,
+        fields: [
+          {
+            label: "Base Calendar",
+            value: "Standard",
+            control: "select",
+            options: ["Standard"],
+          },
+          {
+            label: "Default Booking Type",
+            value: "Committed",
+            control: "select",
+            options: ["Committed", "Proposed"],
+          },
+          { label: "Earliest Available", value: "" },
+          { label: "Latest Available", value: "" },
+          { label: "Standard Rate", value: "" },
+          { label: "Overtime Rate", value: "" },
+          { label: "Current Max. Units (%)", value: "100" },
+          { label: "Cost/Use", value: "" },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Next", "Back", "Cancel"],
+      },
+    ],
+    "Resources",
+  ),
+  "/projects/rp-20250059/resources/new-3": projectScreen(
+    "/projects/rp-20250059/resources/new-3",
+    "New Resource",
+    "Resources",
+    [
+      {
+        type: "form",
+        plain: true,
+        heading: "Resource Custom Fields",
+        columns: 2,
+        fields: [
+          { label: "Average Cost", value: "" },
+          { label: "Brand", value: "" },
+          { label: "Chinese Mailing Address", value: "" },
+          { label: "Chinese Name", value: "" },
+          { label: "Chinese Section Description", value: "" },
+          { label: "Default Service Point", value: "" },
+          { label: "Deletion Flag", value: "" },
+          { label: "Description", value: "" },
+          { label: "Email-Address", value: "" },
+          { label: "Fax Number 1", value: "" },
+          { label: "Fax Number 2", value: "" },
+          { label: "Hose Connection Size", value: "" },
+          { label: "Initial", value: "" },
+          { label: "Item", value: "" },
+          { label: "Mailing Address", value: "", wide: true },
+        ],
+      },
+      {
+        type: "button-row",
+        buttons: ["Next", "Back", "Cancel"],
+      },
+    ],
+    "Resources",
+  ),
+  "/projects/rp-20250059/schedule-1": projectScreen(
+    "/projects/rp-20250059/schedule-1",
+    "Schedule",
+    "Schedule",
+    [
+      {
+        type: "message",
+        body:
+          "Session Recovery. We loaded the unsaved changes from your last visit. Continue editing or throw away unsaved changes.",
+      },
+      {
+        type: "schedule",
+        months: ["March 2026", "April 2026", "May 2026"],
+        prompt: "Add tasks with dates to the timeline",
+        columns: ["", "Task Name", "ID"],
+        rows: [
+          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
+          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
+          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
+          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
+          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
+          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
+          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
+        ],
+      },
+    ],
+    "Project Management",
+  ),
 };
 
 const capturedTitles = [
