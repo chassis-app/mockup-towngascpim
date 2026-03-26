@@ -144,19 +144,19 @@
 
 @layer components {
   .mockup-panel {
-    @apply rounded-md border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.06)];
+    @apply rounded-lg border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)];
   }
 
   .mockup-page-title {
-    @apply text-[2.35rem] leading-none font-light tracking-tight text-[#4a4f55];
+    @apply text-[2.15rem] leading-none font-light tracking-tight text-[#43494f] md:text-[2.35rem];
   }
 
   .mockup-section-title {
-    @apply text-sm font-medium tracking-wide text-[#595f66];
+    @apply text-[0.78rem] font-semibold tracking-[0.12em] uppercase text-[#68717a];
   }
 
   .mockup-field-label {
-    @apply text-[0.78rem] font-medium text-[#69737d];
+    @apply text-[0.72rem] font-semibold tracking-[0.08em] uppercase text-[#75808b];
   }
 
   .mockup-link {
@@ -168,10 +168,34 @@
   }
 
   .mockup-table th {
-    @apply h-9 bg-[#f4f6f8] text-left font-medium text-[#5b646d];
+    @apply h-10 border-b border-[#dfe5eb] bg-[#f6f8fa] px-3 text-left font-semibold text-[#5b646d];
   }
 
   .mockup-table td {
-    @apply h-9 text-[#48515a];
+    @apply h-10 border-b border-[#edf1f4] px-3 align-middle text-[#48515a];
+  }
+
+  .mockup-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .mockup-toolbar-button {
+    @apply h-8 rounded-sm border border-[#d7dde4] bg-white px-3 text-[0.82rem] font-normal text-[#5a626a] hover:bg-[#f7fafc];
+  }
+
+  .mockup-action-primary {
+    @apply min-w-24 rounded-sm border border-[#1f5d96] bg-[#1f5d96] px-5 text-white hover:bg-[#184f84];
+  }
+
+  .mockup-action-secondary {
+    @apply min-w-24 rounded-sm border border-[#cfd6dd] bg-white px-5 text-[#4d5761] hover:bg-[#f5f7f9];
+  }
+
+  .mockup-project-chip {
+    @apply rounded-sm border border-[#d7dde4] bg-white px-3 py-2 text-[0.82rem] text-[#59626b] whitespace-nowrap hover:bg-[#f7fafc];
+  }
+
+  .mockup-project-chip-active {
+    @apply border-[#bcd0e2] bg-[#edf4fa] text-[#1f5d96];
   }
 }

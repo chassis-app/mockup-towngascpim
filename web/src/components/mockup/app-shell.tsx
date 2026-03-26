@@ -26,12 +26,12 @@ export function AppShell({
   children,
 }: AppShellProps) {
   return (
-    <div className="min-h-screen bg-[#f4f5f3] text-foreground">
-      <header className="border-b border-[#d7dde4] bg-white">
-        <div className="mx-auto flex max-w-[1820px] flex-col gap-6 px-4 py-6 lg:px-8">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#f7f7f4_0%,#f1f4f6_100%)] text-foreground">
+      <header className="border-b border-[#d7dde4] bg-white/95 shadow-[0_1px_0_rgba(15,23,42,0.03)] backdrop-blur">
+        <div className="mx-auto flex max-w-[1820px] flex-col gap-5 px-4 py-5 lg:px-8">
           <div className="flex flex-col gap-5 xl:flex-row xl:items-center">
             <Link href="/" className="flex min-w-fit items-center gap-5">
-              <div className="flex h-16 w-44 items-center gap-3 bg-[#155b9a] px-4 text-white shadow-sm">
+              <div className="flex h-16 w-44 items-center gap-3 rounded-md bg-[#155b9a] px-4 text-white shadow-sm">
                 <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-white/12 text-3xl font-semibold">
                   P
                 </div>
@@ -39,13 +39,13 @@ export function AppShell({
                   PMO
                 </div>
               </div>
-              <div className="text-[2.75rem] font-light leading-none tracking-tight text-[#4c4f54]">
+              <div className="text-[2.55rem] font-light leading-none tracking-tight text-[#4c4f54]">
                 CPIMUAT
               </div>
             </Link>
 
             <ScrollArea className="w-full whitespace-nowrap xl:flex-1">
-              <div className="flex min-w-max items-center gap-6 pb-1 text-[0.96rem] text-[#5b636c]">
+              <div className="flex min-w-max items-center gap-6 pb-1 pt-1 text-[0.95rem] text-[#5b636c]">
                 {quickLaunchItems.map((item) => {
                   const isActive = item.label === quickLaunchActive;
 
@@ -54,7 +54,7 @@ export function AppShell({
                       key={item.label}
                       href={item.href}
                       className={cn(
-                        "border-b border-transparent pb-1 hover:text-[#1f5d96]",
+                        "border-b border-transparent pb-1.5 hover:text-[#1f5d96]",
                         isActive && "border-[#1f5d96] text-[#1f5d96]",
                       )}
                     >
@@ -81,9 +81,7 @@ export function AppShell({
                   key={action}
                   variant={index === 0 ? "default" : "outline"}
                   className={cn(
-                    "min-w-24 rounded-sm px-5",
-                    index === 0 &&
-                      "bg-[#1f5d96] text-white hover:bg-[#184f84]",
+                    index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
                   )}
                 >
                   {action}
@@ -95,11 +93,42 @@ export function AppShell({
 
         {projectContext ? (
           <div className="grid gap-8 xl:grid-cols-[240px_minmax(0,1fr)]">
+            <div className="xl:hidden">
+              <div className="mb-4 rounded-lg border border-[#d7dde4] bg-white px-4 py-3 text-[0.88rem] leading-6 text-[#606970] shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+                <div>{projectContext.title}</div>
+                {projectContext.subtitle ? <div>{projectContext.subtitle}</div> : null}
+              </div>
+              <ScrollArea className="w-full whitespace-nowrap">
+                <div className="flex min-w-max gap-2 pb-1">
+                  {projectSidebarItems.map((item) => {
+                    if (item.type === "divider") {
+                      return null;
+                    }
+
+                    const isActive = item.label === projectContext.activeItem;
+
+                    return (
+                      <Link
+                        key={`mobile-${item.label}`}
+                        href={item.href}
+                        className={cn(
+                          "mockup-project-chip",
+                          isActive && "mockup-project-chip-active",
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </ScrollArea>
+            </div>
+
             <aside className="hidden xl:block">
               <div className="sticky top-6 space-y-4">
-                <div className="px-2 text-[0.92rem] leading-6 text-[#606970]">
+                <div className="rounded-lg border border-[#d7dde4] bg-white px-4 py-3 text-[0.92rem] leading-6 text-[#606970] shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
                   <div>{projectContext.title}</div>
-                  <div>{projectContext.subtitle}</div>
+                  {projectContext.subtitle ? <div>{projectContext.subtitle}</div> : null}
                 </div>
 
                 <nav className="mockup-panel overflow-hidden">

@@ -204,7 +204,7 @@ function DataTableBlock({ block }: { block: TableBlock }) {
                   key={action}
                   variant="ghost"
                   className={cn(
-                    "h-8 rounded-sm border border-[#d7dde4] px-3 text-[0.82rem] font-normal text-[#5a626a]",
+                    "mockup-toolbar-button",
                     index === 0 && "bg-[#f7fbff]",
                   )}
                 >
@@ -828,8 +828,7 @@ function ButtonRowSection({ block }: { block: ButtonRowBlock }) {
           key={button}
           variant={index === 0 ? "default" : "outline"}
           className={cn(
-            "min-w-24 rounded-sm px-5",
-            index === 0 && "bg-[#1f5d96] text-white hover:bg-[#184f84]",
+            index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
           )}
         >
           {button}
@@ -876,7 +875,7 @@ function WorkflowTransferSection({ block }: { block: WorkflowTransferBlock }) {
             <Button
               key={label}
               variant="outline"
-              className="w-full rounded-sm border-[#cfd6dd] bg-white px-3 text-[#53606d]"
+              className="w-full rounded-sm border-[#cfd6dd] bg-white px-3 text-[#53606d] hover:bg-[#f7fafc]"
             >
               {label}
             </Button>
