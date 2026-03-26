@@ -918,6 +918,23 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/enterprise-calendar": {
+    title: "Enterprise Calendars",
+    href: "/enterprise-calendar",
+    blocks: [
+      {
+        type: "table",
+        toolbar: ["New Calendar", "Edit", "Delete"],
+        columns: ["Name", "Checked Out"],
+        rows: [
+          ["Standard", ""],
+          ["Construction Team Calendar", "victorcheng"],
+          ["Inspection Team Calendar", ""],
+          ["Night Works Calendar", "susan.chan"],
+        ],
+      },
+    ],
+  },
   "/connect-sharepoint-site": {
     title: "Connected SharePoint Sites",
     href: "/connect-sharepoint-site",
@@ -957,6 +974,22 @@ const screenOverrides: Record<string, MockupScreen> = {
       },
     ],
   },
+  "/force-check-in-enterprise-object": {
+    title: "Force Check-in Enterprise Objects",
+    href: "/force-check-in-enterprise-object",
+    actions: ["Force Check-in Selected"],
+    blocks: [
+      {
+        type: "table",
+        columns: ["", "Name", "Checked Out By", "Type"],
+        rows: [
+          ["O", "Construction Team Calendar", "victorcheng", "Calendar"],
+          ["O", "Inspection Workflow", "susan.chan", "Workflow"],
+          ["O", "Project Template RP-2026", "andy.lam", "Template"],
+        ],
+      },
+    ],
+  },
   "/enterprise-project-type": {
     title: "Enterprise Project Types",
     href: "/enterprise-project-type",
@@ -970,6 +1003,34 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["Capex Project", "Operations", "No Workflow", "No Project Submission", "No", "Yes"],
           ["Residential", "Residential", "No Workflow", "No Project Submission", "No", "Yes"],
           ["Residential Sales - Multi-t", "Residential", "No Workflow", "Residential Create", "No", "Yes"],
+        ],
+      },
+    ],
+  },
+  "/report": {
+    title: "Reporting",
+    href: "/report",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Timephased Data",
+        columns: 1,
+        fields: [
+          {
+            label: "Granularity",
+            value: "Weekly",
+            control: "select",
+            options: ["Never", "Daily", "Weekly", "Monthly", "By fiscal period"],
+          },
+          {
+            label: "Notes",
+            value:
+              "Weekly timephased data will use the regional site settings definitions of first day of the week and first week of the year. If you change an existing fiscal period, republish all projects.",
+            control: "textarea",
+            wide: true,
+          },
         ],
       },
     ],
@@ -1191,6 +1252,121 @@ const screenOverrides: Record<string, MockupScreen> = {
           ["Victor Cheng", "victorcheng@ajpcorp.com", "Project Management"],
           ["Susan Chan", "susan.chan@ajpcorp.com", "Finance"],
           ["Andy Lam", "andy.lam@ajpcorp.com", "Operations"],
+        ],
+      },
+    ],
+  },
+  "/role-access/1": {
+    title: "Quick Launch",
+    href: "/role-access/1",
+    blocks: [
+      {
+        type: "quick-launch-matrix",
+        rows: [
+          { name: "Projects", customName: "Project Management", display: true },
+          { name: "Approvals", display: true },
+          { name: "Tasks", display: true },
+          { name: "Resources", display: true },
+          { name: "CPIM Template", display: true },
+          { name: "CPIM Reports", display: true },
+          { name: "Role Access", display: true },
+          { name: "Contractor Master", display: true },
+          { name: "Customer Master", display: true },
+          { name: "Inspection Master", display: true },
+        ],
+      },
+    ],
+  },
+  "/role-access/2": {
+    title: "Reporting",
+    href: "/role-access/2",
+    actions: ["Save", "Cancel"],
+    blocks: [
+      {
+        type: "form",
+        plain: true,
+        heading: "Timephased Data",
+        columns: 1,
+        fields: [
+          {
+            label: "Granularity",
+            value: "Weekly",
+            control: "select",
+            options: ["Never", "Daily", "Weekly", "Monthly", "By fiscal period"],
+          },
+          {
+            label: "Reporting Notes",
+            value:
+              "Timesheets reporting endpoints are not affected. By fiscal period timephased data will use the fiscal periods defined in the Fiscal Periods section.",
+            control: "textarea",
+            wide: true,
+          },
+        ],
+      },
+    ],
+  },
+  "/role-access/3": {
+    title: "Role Access",
+    href: "/role-access/3",
+    blocks: [
+      {
+        type: "role-access-matrix",
+        selectedRole: "Project Information",
+        roles: ["Project Information", "Operations", "Inspection"],
+        groups: [
+          {
+            moduleName: "Project Information",
+            rows: [
+              {
+                functionName: "Project Information",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "AG/UGI",
+                access: true,
+                readOnly: true,
+                readOnlyLevel: "L2",
+                readWrite: false,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "Customer Contact",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L3",
+              },
+              {
+                functionName: "Contractor Contact",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L3",
+              },
+              {
+                functionName: "Flat Schedule",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+              {
+                functionName: "Labeling",
+                access: true,
+                readOnly: false,
+                readOnlyLevel: "",
+                readWrite: true,
+                readWriteLevel: "L4",
+              },
+            ],
+          },
         ],
       },
     ],
