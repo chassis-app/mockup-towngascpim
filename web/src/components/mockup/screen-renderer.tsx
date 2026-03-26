@@ -52,6 +52,7 @@ import { cn } from "@/lib/utils";
 export function ScreenRenderer({ screen }: { screen: MockupScreen }) {
   return (
     <AppShell
+      href={screen.href}
       title={screen.title}
       actions={screen.actions}
       quickLaunchActive={screen.quickLaunchActive}

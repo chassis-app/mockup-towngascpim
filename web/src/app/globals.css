@@ -222,4 +222,20 @@
   .mockup-status-chip {
     @apply inline-flex items-center rounded-full border border-[#d6e4f1] bg-[#f1f7fc] px-2.5 py-1 text-[0.72rem] font-medium text-[#31689d];
   }
+
+  .mockup-sidebar-link {
+    @apply flex items-center rounded-lg px-3 py-2.5 text-[0.9rem] text-[#5c6772] hover:bg-[#f1f6fa] hover:text-[#1f5d96];
+  }
+
+  .mockup-sidebar-link-active {
+    @apply bg-[#eaf3fb] text-[#1f5d96] shadow-[inset_0_0_0_1px_rgba(31,93,150,0.12)];
+  }
+
+  .mockup-subnav-link {
+    @apply rounded-md border border-[#d9e1e8] bg-white px-3 py-2 text-[0.84rem] text-[#5d6872] whitespace-nowrap hover:bg-[#f7fafc];
+  }
+
+  .mockup-subnav-link-active {
+    @apply border-[#b8cfe4] bg-[#edf4fa] text-[#1f5d96];
+  }
 }
