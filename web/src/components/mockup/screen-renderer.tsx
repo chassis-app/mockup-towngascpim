@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 
 import { AppShell } from "@/components/mockup/app-shell";
 import { Badge } from "@/components/ui/badge";
@@ -106,25 +107,27 @@ function renderBlock(block: MockupBlock, index: number) {
 
 function CategoryGrid({ block }: { block: CategoryGridBlock }) {
   return (
-    <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {block.groups.map((group) => (
-        <section key={group.title} className="space-y-3">
-          <h2 className="text-[1.02rem] font-medium text-[#595f66]">
-            {group.title}
-          </h2>
-          <div className="space-y-1 text-[1.02rem]">
+        <Card
+          key={group.title}
+          className="mockup-panel overflow-hidden border-border/80 bg-card/88"
+        >
+          <CardHeader className="border-b border-border/70 bg-muted/35 px-5 py-4">
+            <CardTitle className="text-base font-medium tracking-[-0.03em] text-foreground/88">
+              {group.title}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-1 px-5 py-4 text-[0.96rem]">
             {group.items.map((item) => (
               <div key={item.label}>
-                <Link
-                  href={item.href}
-                  className="text-primary transition-colors duration-200 hover:text-primary/80"
-                >
+                <Link href={item.href} className="mockup-link">
                   {item.label}
                 </Link>
               </div>
             ))}
-          </div>
-        </section>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );
@@ -315,11 +318,11 @@ function PermissionsSection({ block }: { block: PermissionsBlock }) {
       </TableHeader>
       <TableBody>
         {block.groups.map((group) => (
-          <>
+          <Fragment key={group.title}>
             <TableRow key={group.title}>
               <TableCell
                 colSpan={block.columns.length + 1}
-                className="bg-[#fafbfd] font-medium text-[#59626b]"
+                className="bg-muted/45 font-medium text-foreground/72"
               >
                 {group.title}
               </TableCell>
@@ -334,7 +337,7 @@ function PermissionsSection({ block }: { block: PermissionsBlock }) {
                 ))}
               </TableRow>
             ))}
-          </>
+          </Fragment>
         ))}
       </TableBody>
     </Table>
@@ -342,21 +345,24 @@ function PermissionsSection({ block }: { block: PermissionsBlock }) {
 
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div className="space-y-2">
-        <h2 className="text-[1.02rem] font-medium text-[#595f66]">
+      <div className="space-y-3 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+        <div className="mockup-section-kicker">Permissions</div>
+        <h2 className="text-[1.06rem] font-medium text-foreground/88">
           {block.heading}
         </h2>
         {block.description ? (
-          <p className="max-w-[230px] text-sm leading-6 text-[#747d86]">
+          <p className="max-w-[230px] text-sm leading-6 text-muted-foreground">
             {block.description}
           </p>
         ) : null}
       </div>
 
       {block.plain ? (
-        <div className="overflow-hidden border">{table}</div>
+        <div className="overflow-hidden rounded-[1.75rem] border border-border bg-white">
+          {table}
+        </div>
       ) : (
-        <Card className="mockup-panel overflow-hidden">
+        <Card className="mockup-section-shell overflow-hidden">
           <CardContent className="p-0">{table}</CardContent>
         </Card>
       )}
@@ -404,11 +410,12 @@ function DashboardCards({ block }: { block: DashboardCardsBlock }) {
 function PromptTable({ block }: { block: PromptTableBlock }) {
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div className="space-y-3">
-        <h2 className="text-[1.02rem] font-medium text-[#595f66]">
+      <div className="space-y-3 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+        <div className="mockup-section-kicker">Selection</div>
+        <h2 className="text-[1.02rem] font-medium text-foreground/88">
           {block.heading}
         </h2>
-        <p className="max-w-[240px] text-sm leading-6 text-[#747d86]">
+        <p className="max-w-[240px] text-sm leading-6 text-muted-foreground">
           {block.description}
         </p>
       </div>
@@ -427,22 +434,26 @@ function PromptTable({ block }: { block: PromptTableBlock }) {
 function PromptFields({ block }: { block: PromptFieldsBlock }) {
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div className="space-y-3">
-        <h2 className="text-[1.02rem] font-medium text-[#595f66]">
+      <div className="space-y-3 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+        <div className="mockup-section-kicker">Setup</div>
+        <h2 className="text-[1.02rem] font-medium text-foreground/88">
           {block.heading}
         </h2>
-        <p className="max-w-[240px] text-sm leading-6 text-[#747d86]">
+        <p className="max-w-[240px] text-sm leading-6 text-muted-foreground">
           {block.description}
         </p>
       </div>
-      <Card className="mockup-panel">
+      <Card className="mockup-section-shell">
         <CardContent className="grid gap-5 p-5 md:grid-cols-2 xl:grid-cols-3">
           {block.fields.map((field) => (
             <div key={field.label}>
               <Label className="mockup-field-label">{field.label}</Label>
               <Input
                 defaultValue={field.value}
-                className={cn("mt-2 rounded-sm", field.type === "date" && "max-w-48")}
+                className={cn(
+                  "mockup-input mt-2",
+                  field.type === "date" && "max-w-48",
+                )}
               />
             </div>
           ))}
@@ -455,18 +466,22 @@ function PromptFields({ block }: { block: PromptFieldsBlock }) {
 function PromptTextarea({ block }: { block: PromptTextareaBlock }) {
   return (
     <section className="grid gap-8 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div className="space-y-3">
-        <h2 className="text-[1.02rem] font-medium text-[#595f66]">
+      <div className="space-y-3 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+        <div className="mockup-section-kicker">Comments</div>
+        <h2 className="text-[1.02rem] font-medium text-foreground/88">
           {block.heading}
         </h2>
-        <p className="max-w-[240px] text-sm leading-6 text-[#747d86]">
+        <p className="max-w-[240px] text-sm leading-6 text-muted-foreground">
           {block.description}
         </p>
       </div>
-      <Card className="mockup-panel">
+      <Card className="mockup-section-shell">
         <CardContent className="p-5">
           <Label className="mockup-field-label">{block.label}</Label>
-          <Textarea defaultValue={block.value} className="mt-2 min-h-36 rounded-sm" />
+          <Textarea
+            defaultValue={block.value}
+            className="mockup-input mt-2 min-h-36"
+          />
         </CardContent>
       </Card>
     </section>
@@ -477,12 +492,12 @@ function TabsSection({ block }: { block: TabsBlock }) {
   return (
     <section className="space-y-4">
       <Tabs defaultValue={block.tabs[0]?.label}>
-        <TabsList className="h-auto rounded-sm border border-[#d7dde4] bg-white p-1">
+        <TabsList className="h-auto rounded-[1.25rem] border border-border/80 bg-card/82 p-1.5 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
           {block.tabs.map((tab) => (
             <TabsTrigger
               key={tab.label}
               value={tab.label}
-              className="rounded-sm px-4 py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
+              className="rounded-[0.9rem] px-4 py-2.5 data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
             >
               {tab.label}
             </TabsTrigger>
@@ -508,22 +523,23 @@ function TabsSection({ block }: { block: TabsBlock }) {
 
 function ScheduleSection({ block }: { block: ScheduleBlock }) {
   return (
-    <section className="space-y-3">
-      <div className="relative border border-[#a7adb4] bg-white">
-        <div className="absolute left-[32%] top-[-1px] z-10 bg-primary px-3 py-1 text-sm text-primary-foreground">
+    <section className="space-y-4">
+      <div className="mockup-section-shell overflow-hidden">
+        <div className="relative border-b border-border/70 bg-muted/30">
+          <div className="absolute left-[32%] top-[-1px] z-10 rounded-b-xl bg-primary px-3 py-1 text-sm text-primary-foreground shadow-[0_10px_20px_rgba(13,148,136,0.22)]">
           Today
+          </div>
+          <div className="grid grid-cols-[30%_70%] border-b border-border/70 text-center text-[0.86rem] text-muted-foreground">
+            <div className="border-r border-border/70 py-3">{block.months[0]}</div>
+            <div className="py-3">{block.months.slice(1).join("          ")}</div>
+          </div>
+          <div className="py-2 text-center text-[0.95rem] text-muted-foreground">
+            {block.prompt}
+          </div>
         </div>
-        <div className="grid grid-cols-[30%_70%] border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
-          <div className="border-r border-[#b8bec6] py-3">{block.months[0]}</div>
-          <div className="py-3">{block.months.slice(1).join("          ")}</div>
-        </div>
-        <div className="py-2 text-center text-[0.95rem] text-[#7a7f85]">
-          {block.prompt}
-        </div>
-      </div>
 
-      <div className="grid min-h-[560px] overflow-hidden border border-[#bcc2c8] bg-white xl:grid-cols-[61%_39%]">
-        <div className="border-r border-[#bcc2c8]">
+        <div className="grid min-h-[560px] overflow-hidden bg-white xl:grid-cols-[61%_39%]">
+          <div className="border-r border-border/70">
           <Table className="mockup-table">
             <TableHeader>
               <TableRow>
@@ -556,14 +572,16 @@ function ScheduleSection({ block }: { block: ScheduleBlock }) {
               ))}
             </TableBody>
           </Table>
-        </div>
-        <div className="relative bg-[linear-gradient(to_right,#e7ebef_1px,transparent_1px)] bg-[length:82px_100%]">
-          <div className="grid grid-cols-6 border-b border-[#d7dde4] text-center text-[0.82rem] text-[#6a737c]">
-            {["T", "W", "T", "F", "S", "S"].map((day, index) => (
-              <div key={`${day}-${index}`} className="border-r border-[#edf1f4] py-2 last:border-r-0">
-                {day}
-              </div>
-            ))}
+          </div>
+          <div className="relative bg-[linear-gradient(to_right,rgba(226,232,240,0.9)_1px,transparent_1px)] bg-[length:82px_100%]">
+            <div className="grid grid-cols-6 border-b border-border/70 text-center text-[0.82rem] text-muted-foreground">
+              {["T", "W", "T", "F", "S", "S"].map((day, index) => (
+                <div key={`${day}-${index}`} className="border-r border-border/50 py-2 last:border-r-0">
+                  {day}
+                </div>
+              ))}
+            </div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(13,148,136,0.08),transparent_32%)]" />
           </div>
         </div>
       </div>
@@ -574,7 +592,8 @@ function ScheduleSection({ block }: { block: ScheduleBlock }) {
 function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
   return (
     <section className="space-y-8">
-      <div className="space-y-4">
+      <div className="space-y-4 rounded-[1.75rem] border border-border/70 bg-card/82 p-5 shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
+        <div className="mockup-section-kicker">Security</div>
         <h2 className="text-[2rem] font-light tracking-tight text-[#383d43]">
           Role Access
         </h2>
@@ -598,7 +617,7 @@ function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="mockup-section-shell overflow-x-auto p-5">
         <div className="min-w-[1180px] space-y-6">
           <div className="grid grid-cols-[220px_220px_160px_190px_220px_170px_220px] gap-4 text-[0.92rem] font-medium text-[#515961]">
             <div>Module Name</div>
@@ -670,10 +689,13 @@ function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
 function QuickLaunchMatrix({ block }: { block: QuickLaunchMatrixBlock }) {
   return (
     <section className="space-y-6">
-      <div className="text-[1.35rem] font-light text-[#50575f]">
-        Modify Quick Launch Items
+      <div className="rounded-[1.75rem] border border-border/70 bg-card/82 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
+        <div className="mockup-section-kicker">Navigation</div>
+        <div className="mt-2 text-[1.35rem] font-light text-[#50575f]">
+          Modify Quick Launch Items
+        </div>
       </div>
-      <div className="overflow-hidden border border-[#cdd4db] bg-white">
+      <div className="overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_18px_40px_rgba(15,23,42,0.06)]">
         <Table className="mockup-table">
           <TableHeader>
             <TableRow>
@@ -713,49 +735,51 @@ function QuickLaunchMatrix({ block }: { block: QuickLaunchMatrixBlock }) {
 function ProjectCenterSection({ block }: { block: ProjectCenterBlock }) {
   return (
     <section className="space-y-4">
-      <div className="relative border border-[#a7adb4] bg-white">
-        <div className="absolute left-[18%] top-[-1px] z-10 bg-primary px-3 py-1 text-sm text-primary-foreground">
+      <div className="mockup-section-shell overflow-hidden">
+        <div className="relative border-b border-border/70 bg-muted/30">
+          <div className="absolute left-[18%] top-[-1px] z-10 rounded-b-xl bg-primary px-3 py-1 text-sm text-primary-foreground shadow-[0_10px_20px_rgba(13,148,136,0.22)]">
           Today
+          </div>
+          <div className="grid grid-cols-6 border-b border-border/70 text-center text-[0.86rem] text-muted-foreground">
+            {block.months.map((month) => (
+              <div key={month} className="py-3">
+                {month}
+              </div>
+            ))}
+          </div>
+          <div className="py-2 text-center text-[0.95rem] text-muted-foreground">
+            {block.prompt}
+          </div>
         </div>
-        <div className="grid grid-cols-6 border-b border-[#b8bec6] text-center text-[0.86rem] text-[#656d76]">
-          {block.months.map((month) => (
-            <div key={month} className="py-3">
-              {month}
-            </div>
-          ))}
-        </div>
-        <div className="py-2 text-center text-[0.95rem] text-[#7a7f85]">
-          {block.prompt}
-        </div>
-      </div>
 
-      <div className="overflow-hidden border border-[#bcc2c8] bg-white">
-        <Table className="mockup-table">
-          <TableHeader>
-            <TableRow>
-              {block.columns.map((column) => (
-                <TableHead key={column}>{column}</TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {block.rows.map((row, index) => (
-              <TableRow key={`${row[1]}-${index}`}>
-                {row.map((cell, cellIndex) => (
-                  <TableCell
-                    key={`${cell}-${cellIndex}`}
-                    className={cn(
-                      cellIndex === 1 && "text-primary",
-                      cellIndex === 0 && "w-14 text-center",
-                    )}
-                  >
-                    {cell}
-                  </TableCell>
+        <div className="overflow-hidden bg-white">
+          <Table className="mockup-table">
+            <TableHeader>
+              <TableRow>
+                {block.columns.map((column) => (
+                  <TableHead key={column}>{column}</TableHead>
                 ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {block.rows.map((row, index) => (
+                <TableRow key={`${row[1]}-${index}`}>
+                  {row.map((cell, cellIndex) => (
+                    <TableCell
+                      key={`${cell}-${cellIndex}`}
+                      className={cn(
+                        cellIndex === 1 && "text-primary",
+                        cellIndex === 0 && "w-14 text-center",
+                      )}
+                    >
+                      {cell}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </section>
   );
@@ -764,34 +788,36 @@ function ProjectCenterSection({ block }: { block: ProjectCenterBlock }) {
 function EmptyListSection({ block }: { block: EmptyListBlock }) {
   return (
     <section className="space-y-5">
-      {block.toolbar && block.toolbar.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-3">
-          {block.toolbar.map((item, index) => (
-            <Button
-              key={item}
-              variant={index === 0 ? "default" : "outline"}
-              className={cn(
-                index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
-              )}
-            >
-              {item}
-            </Button>
-          ))}
+      <div className="mockup-section-shell overflow-hidden">
+        <div className="space-y-5 border-b border-border/70 bg-card/82 px-5 py-5">
+          {block.toolbar && block.toolbar.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-3">
+              {block.toolbar.map((item, index) => (
+                <Button
+                  key={item}
+                  variant={index === 0 ? "default" : "outline"}
+                  className={cn(
+                    index === 0 ? "mockup-action-primary" : "mockup-action-secondary",
+                  )}
+                >
+                  {item}
+                </Button>
+              ))}
+            </div>
+          ) : null}
+
+          <div className="flex flex-wrap items-center gap-3 text-[0.94rem] text-[#5a6470]">
+            <h2 className="mr-6 text-[1.8rem] font-light text-[#3e444a]">
+              {block.heading}
+            </h2>
+            {block.filters?.map((filter) => (
+              <span key={filter} className="rounded-full bg-primary/10 px-3 py-1 text-primary">
+                {filter}
+              </span>
+            ))}
+          </div>
         </div>
-      ) : null}
 
-      <div className="flex flex-wrap items-center gap-3 text-[0.94rem] text-[#5a6470]">
-        <h2 className="mr-6 text-[1.8rem] font-light text-[#3e444a]">
-          {block.heading}
-        </h2>
-        {block.filters?.map((filter) => (
-          <span key={filter} className="border-b-2 border-primary pb-1 text-primary">
-            {filter}
-          </span>
-        ))}
-      </div>
-
-      <div className="overflow-hidden rounded-md border bg-white">
         <Table className="mockup-table">
           <TableHeader>
             <TableRow>
@@ -802,10 +828,10 @@ function EmptyListSection({ block }: { block: EmptyListBlock }) {
           </TableHeader>
         </Table>
         <div className="flex min-h-[360px] flex-col items-center justify-center gap-3 px-6 text-center">
-          <div className="h-20 w-20 rounded-3xl bg-[radial-gradient(circle_at_30%_30%,#d8e6f5,#ffffff_55%,#c8d5e2)]" />
-          <div className="text-[2rem] font-medium text-[#27303a]">{block.message}</div>
+          <div className="h-20 w-20 rounded-[2rem] bg-[radial-gradient(circle_at_30%_30%,rgba(13,148,136,0.2),#ffffff_55%,rgba(217,234,235,0.9))]" />
+          <div className="text-[1.55rem] font-medium text-[#27303a]">{block.message}</div>
           {block.note ? (
-            <div className="text-[1rem] text-[#6c7580]">{block.note}</div>
+            <div className="max-w-[520px] text-[1rem] text-[#6c7580]">{block.note}</div>
           ) : null}
         </div>
       </div>
@@ -815,15 +841,19 @@ function EmptyListSection({ block }: { block: EmptyListBlock }) {
 
 function MessageSection({ block }: { block: MessageBlock }) {
   return (
-    <section className="space-y-3">
-      {block.heading ? (
-        <h2 className="text-[1.08rem] font-medium text-[#535a61]">
-          {block.heading}
-        </h2>
-      ) : null}
-      <p className="max-w-[980px] text-[1rem] leading-7 text-[#4f5862]">
-        {block.body}
-      </p>
+    <section>
+      <Card className="mockup-section-shell border-primary/12 bg-[linear-gradient(135deg,rgba(13,148,136,0.08),rgba(255,255,255,0.92))]">
+        <CardContent className="space-y-3 px-5 py-5">
+          {block.heading ? (
+            <h2 className="text-[1.08rem] font-medium text-[#535a61]">
+              {block.heading}
+            </h2>
+          ) : null}
+          <p className="max-w-[980px] text-[1rem] leading-7 text-[#4f5862]">
+            {block.body}
+          </p>
+        </CardContent>
+      </Card>
     </section>
   );
 }
@@ -849,14 +879,14 @@ function ButtonRowSection({ block }: { block: ButtonRowBlock }) {
 function WorkflowTransferSection({ block }: { block: WorkflowTransferBlock }) {
   return (
     <section className="space-y-6">
-      <Card className="mockup-panel">
+      <Card className="mockup-section-shell">
         <CardContent className="grid gap-5 p-5 md:grid-cols-2 xl:grid-cols-4">
           {block.fields.map((field) => (
             <div key={field.label}>
               <Label className="mockup-field-label">{field.label}</Label>
               {field.type === "select" ? (
                 <Select defaultValue={field.value}>
-                  <SelectTrigger className="mt-2 h-10 rounded-sm bg-white">
+                  <SelectTrigger className="mockup-input mt-2 h-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -868,7 +898,7 @@ function WorkflowTransferSection({ block }: { block: WorkflowTransferBlock }) {
                   </SelectContent>
                 </Select>
               ) : (
-                <Input defaultValue={field.value} className="mt-2 h-10 rounded-sm" />
+                <Input defaultValue={field.value} className="mockup-input mt-2 h-10" />
               )}
             </div>
           ))}
@@ -883,7 +913,7 @@ function WorkflowTransferSection({ block }: { block: WorkflowTransferBlock }) {
             <Button
               key={label}
               variant="outline"
-              className="w-full rounded-sm border-[#cfd6dd] bg-white px-3 text-[#53606d] hover:bg-[#f7fafc]"
+              className="w-full rounded-2xl border-border bg-white/92 px-3 text-[#53606d] hover:bg-accent/55"
             >
               {label}
             </Button>

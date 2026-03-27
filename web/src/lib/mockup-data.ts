@@ -305,7 +305,7 @@ const settingsHome: MockupScreen = {
           items: [
             { label: "Enterprise Custom Fields and Lookup Tables", href: "/custom-field" },
             { label: "Enterprise Calendars", href: "/enterprise-calendar" },
-            { label: "Resource Center", href: "/project-resource-center" },
+            { label: "Resource Center", href: "/projects/rp-20250059/resources" },
             { label: "Reporting", href: "/report" },
           ],
         },
@@ -1872,6 +1872,34 @@ const screenOverrides: Record<string, MockupScreen> = {
     ],
     "Project Management",
   ),
+  "/projects/rp-20250059/project-site": projectScreen(
+    "/projects/rp-20250059/project-site",
+    "Project Site",
+    "Project Site",
+    [
+      {
+        type: "tabs",
+        tabs: [
+          { label: "Documents" },
+          { label: "Shared Lists" },
+          { label: "Site Assets" },
+        ],
+      },
+      {
+        type: "table",
+        heading: "Project Site Library",
+        toolbar: ["Upload File", "Create Folder", "Open Site"],
+        columns: ["Name", "Type", "Owner", "Modified", "Status"],
+        rows: [
+          ["Project Charter", "Document", "Victor Chan", "24 Mar 2026", "Published"],
+          ["Site Inspection Photos", "Folder", "QC Team", "23 Mar 2026", "Updated"],
+          ["Tender Clarifications", "Spreadsheet", "Procurement", "22 Mar 2026", "Shared"],
+          ["As-built Drawings", "Drawing Pack", "Operations Team", "20 Mar 2026", "Draft"],
+        ],
+      },
+    ],
+    "Project Management",
+  ),
   "/projects/rp-20250059/schedule": projectScreen(
     "/projects/rp-20250059/schedule",
     "Schedule",
@@ -2814,6 +2842,7 @@ const screenOverrides: Record<string, MockupScreen> = {
 };
 
 const capturedTitles = [
+  "Add Edit Template",
   "Additional Server Settings",
   "Administrative Time",
   "Alert Dashboard",
@@ -2886,6 +2915,11 @@ const capturedTitles = [
 
 function titleToHref(title: string) {
   const overrideMap: Record<string, string> = {
+    "Add Edit Template": "/add-edit-template",
+    "Alert Dashboard": "/projects/rp-20250059/alert-dashboard",
+    "BOM Maintenance": "/projects/rp-20250059/bom-maintenance",
+    "ChangeRestartSkip Workflow": "/change-restart-skip-workflow",
+    "Knowledge Management": "/projects/rp-20250059/knowledge-management",
     "PWA Setting": "/",
     "Manage View": "/manage-view",
     "Project Information": "/projects/rp-20250059/information",
@@ -2917,6 +2951,7 @@ function titleToHref(title: string) {
     "Role Access3": "/role-access/3",
     "Quick Launch": "/quick-launch",
     "Report": "/report",
+    "Tenderer Group": "/projects/rp-20250059/tenderer-group",
     "Time Report Period": "/time-report-period",
     "Timesheet Manager": "/timesheet-manager",
     "Timesheet Settings and Defaults1": "/timesheet-settings-and-defaults-1",

@@ -6,6 +6,7 @@
 
 ## Administration And Settings
 
+- `/add-edit-template` -> Add Edit Template
 - `/manage-view` -> Manage View
 - `/grouping-format` -> Grouping Format
 - `/gantt-chart-format` -> Gantt Chart Format
@@ -38,13 +39,14 @@
 - `/force-check-in-enterprise-object` -> Force Check-in Enterprise Object
 - `/report` -> Report
 - `/administrative-time` -> Administrative Time
+- `/task-setting-and-display` -> Task Setting and Display
 - `/workflow-phase` -> Workflow Phase
 - `/workflow-stage` -> Workflow Stage
 - `/change-restart-skip-workflow` -> ChangeRestartSkip Workflow
-- `/add-edit-template` -> Add Edit Template
 
 ## Project Workspace
 
+- `/project-center` -> Project Center
 - `/projects/rp-20250059/information` -> Project Information
 - `/projects/rp-20250059/schedule` -> Project Schedule
 - `/projects/rp-20250059/schedule-1` -> Project Schedule1
