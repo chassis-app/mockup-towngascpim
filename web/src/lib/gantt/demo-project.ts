@@ -103,12 +103,13 @@ export function createDemoProject(): GanttProject {
     kind: dependency.kind,
     isDriving: Boolean(dependency.driving),
   }));
+  const normalizedTasks = normalizeDemoSchedule(tasks, dependencies);
 
   return {
     id: "rp-20250059-demo",
     name: block.heading,
     description: block.description,
-    tasks,
+    tasks: normalizedTasks,
     dependencies,
     selectedTaskId: block.rows.find((row) => row.selected)?.id ?? block.rows[0]?.id ?? null,
   };
@@ -143,7 +144,7 @@ function buildSegments(
     return buildRecurringSegments(startDate, finishDate, row.id);
   }
 
-  if (row.bar?.segments && row.bar.segments.length > 1 && row.kind !== "recurring") {
+  if (row.bar?.segments && row.bar.segments.length > 1) {
     const segments: GanttTaskSegment[] = [];
     let cursor = startDate;
     let previousStart = row.bar.segments[0]?.start ?? 0;
@@ -233,4 +234,100 @@ function compareIsoDates(left: string, right: string) {
 
 function toTimestamp(isoDate: string) {
   return new Date(`${isoDate}T00:00:00Z`).getTime() / MS_PER_DAY;
+}
+
+function normalizeDemoSchedule(tasks: GanttTask[], dependencies: GanttDependency[]) {
+  const normalizedTasks = tasks.map((task) => ({
+    ...task,
+    segments: task.segments.map((segment) => ({ ...segment })),
+  }));
+  const taskById = new Map(normalizedTasks.map((task) => [task.id, task]));
+
+  for (let pass = 0; pass < dependencies.length; pass += 1) {
+    let didShift = false;
+
+    dependencies.forEach((dependency) => {
+      if (dependency.kind !== "FS") {
+        return;
+      }
+
+      const fromTask = taskById.get(dependency.fromTaskId);
+      const toTask = taskById.get(dependency.toTaskId);
+
+      if (!fromTask || !toTask || toTask.kind === "summary") {
+        return;
+      }
+
+      const requiredStartDate = addCalendarDays(fromTask.finishDate, 2);
+      const shiftDays = compareIsoDates(requiredStartDate, toTask.startDate);
+
+      if (shiftDays <= 0) {
+        return;
+      }
+
+      shiftTaskDates(toTask, shiftDays);
+      didShift = true;
+    });
+
+    if (!didShift) {
+      break;
+    }
+  }
+
+  rollupSummaryTasks(normalizedTasks);
+  return normalizedTasks;
+}
+
+function shiftTaskDates(task: GanttTask, shiftDays: number) {
+  task.startDate = addCalendarDays(task.startDate, shiftDays);
+  task.finishDate = addCalendarDays(task.finishDate, shiftDays);
+  task.segments = task.segments.map((segment) => ({
+    ...segment,
+    startDate: addCalendarDays(segment.startDate, shiftDays),
+    finishDate: addCalendarDays(segment.finishDate, shiftDays),
+  }));
+}
+
+function rollupSummaryTasks(tasks: GanttTask[]) {
+  const childrenByParentId = new Map<string, GanttTask[]>();
+
+  tasks.forEach((task) => {
+    if (!task.parentId) {
+      return;
+    }
+
+    const siblings = childrenByParentId.get(task.parentId) ?? [];
+    siblings.push(task);
+    childrenByParentId.set(task.parentId, siblings);
+  });
+
+  [...tasks]
+    .reverse()
+    .filter((task) => task.kind === "summary")
+    .forEach((task) => {
+      const children = childrenByParentId.get(task.id) ?? [];
+
+      if (children.length === 0) {
+        return;
+      }
+
+      const startDate = children.reduce(
+        (earliest, child) => (compareIsoDates(child.startDate, earliest) < 0 ? child.startDate : earliest),
+        children[0].startDate,
+      );
+      const finishDate = children.reduce(
+        (latest, child) => (compareIsoDates(child.finishDate, latest) > 0 ? child.finishDate : latest),
+        children[0].finishDate,
+      );
+
+      task.startDate = startDate;
+      task.finishDate = finishDate;
+      task.segments = [
+        {
+          id: `${task.id}-segment-1`,
+          startDate,
+          finishDate,
+        },
+      ];
+    });
 }

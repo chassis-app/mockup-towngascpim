@@ -1,1 +1,2 @@
-output/playwright/.playwright-cli/
+.playwright-cli/
+web/.playwright-cli/

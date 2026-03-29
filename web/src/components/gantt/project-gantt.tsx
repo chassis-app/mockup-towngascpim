@@ -4,6 +4,7 @@ import { Fragment, useEffect, useEffectEvent, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import type {
+  GanttDependency,
   GanttDependencyKind,
   GanttProject,
   GanttTask,
@@ -22,6 +23,15 @@ const taskLabelOffsetY = -12;
 const defaultLeftPaneWidth = 960;
 const minLeftPaneWidth = 760;
 const maxLeftPaneWidth = 1480;
+const dependencyLaneInset = 6;
+const dependencyLaneSpacing = 14;
+const dependencyObstaclePadding = 4;
+const dependencyLabelHeight = 11;
+const dependencyChannelCount = 8;
+const dependencyChannelMargin = 12;
+const dependencyNearRowDistance = 3;
+const dependencyNearTimeGapDays = 28;
+const dependencyInnerGapThreshold = 18;
 
 type TaskColumnKey = "wbs" | "name" | "mode" | "start" | "finish" | "duration" | "pred" | "progress";
 
@@ -89,6 +99,117 @@ type ChartLinkDraft = {
   fromEdge: LinkEdge;
 };
 
+type RouteObstacle = {
+  taskId: string;
+  kind: "bar" | "label";
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+};
+
+type TaskGeometry = {
+  taskId: string;
+  rowIndex: number;
+  rowTop: number;
+  rowBottom: number;
+  centerY: number;
+  outerLeft: number;
+  outerRight: number;
+  obstacles: RouteObstacle[];
+};
+
+type OrthogonalSegment = {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+};
+
+type DependencyTimeDirection = "forward" | "backward";
+
+type DependencyRoutingCase =
+  | "same-row"
+  | "adjacent-row"
+  | "near-forward"
+  | "near-backward"
+  | "far-forward"
+  | "far-backward";
+
+type DependencyClassification = {
+  routeCase: DependencyRoutingCase;
+  rowDistance: number;
+  timeDirection: DependencyTimeDirection;
+  timeGapDays: number;
+  isSameRow: boolean;
+  isAdjacentRow: boolean;
+  involvesMilestone: boolean;
+  involvesSplitTask: boolean;
+  shouldUseSharedTrunk: boolean;
+};
+
+type ClassifiedDependency = {
+  dependency: GanttDependency;
+  fromTask: GanttTask;
+  toTask: GanttTask;
+  fromGeometry: TaskGeometry;
+  toGeometry: TaskGeometry;
+  fromSegment: GanttTaskSegment;
+  toSegment: GanttTaskSegment;
+  fromEdge: LinkEdge;
+  toEdge: LinkEdge;
+  fromX: number;
+  toX: number;
+  fromY: number;
+  toY: number;
+  fromStubX: number;
+  toStubX: number;
+  classification: DependencyClassification;
+};
+
+type DependencyRouteFamily = "local" | "shared-left" | "shared-right";
+
+type DependencyTrunkPools = {
+  left: number[];
+  right: number[];
+};
+
+type DependencyRouteSegments = {
+  start: OrthogonalSegment[];
+  middle: OrthogonalSegment[];
+  end: OrthogonalSegment[];
+};
+
+type DependencyRouteCandidate = {
+  family: DependencyRouteFamily;
+  channelX: number;
+  segments: DependencyRouteSegments;
+  ignoreLabelObstacles: boolean;
+};
+
+type DependencyAnchorPoint = {
+  x: number;
+  y: number;
+};
+
+type RoutedDependency = {
+  id: string;
+  underlayPath: string;
+  overlayPath: string;
+  arrowPath: string;
+  markerX: number;
+  markerY: number;
+  channelX: number;
+  isDriving: boolean;
+  isOnSelectedPath: boolean;
+  classification: DependencyClassification;
+};
+
+type DependencyRouteResult = {
+  routes: RoutedDependency[];
+  channelMemory: Map<string, number>;
+};
+
 export function ProjectGantt({ initialProject }: { initialProject: GanttProject }) {
   const seededProject = hydrateProject(initialProject);
   const storageKey = `${storageKeyPrefix}:${initialProject.id}`;
@@ -116,6 +237,7 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
   const dragStateRef = useRef<DragState | null>(null);
   const columnResizeRef = useRef<ColumnResizeState | null>(null);
   const paneResizeRef = useRef<PaneResizeState | null>(null);
+  const dependencyRouteMemoryRef = useRef<Map<string, number>>(new Map());
   const setStatusMessage = () => {};
 
   const selectedTaskId = project.selectedTaskId ?? project.tasks[0]?.id ?? "";
@@ -360,6 +482,18 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
     project.tasks.map((task) => [task.id, getDependencyLabel(project.tasks, project.dependencies, task.id, "post")]),
   );
   const selectedTaskPath = getTaskPath(project.dependencies, selectedTask.id);
+  const dependencyRouteResult = buildDependencyRoutes({
+    visibleTasks,
+    dependencies: project.dependencies,
+    rowIndexByTaskId,
+    chartStartDate: chartRange.startDate,
+    chartWidth: chartSurfaceWidth,
+    pixelsPerDay,
+    selectedTaskPath,
+    previousChannels: dependencyRouteMemoryRef.current,
+  });
+  dependencyRouteMemoryRef.current = dependencyRouteResult.channelMemory;
+  const dependencyRoutes = dependencyRouteResult.routes;
 
   useEffect(() => {
     if (
@@ -1030,6 +1164,31 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
                         ))
                       : null}
 
+                    <svg
+                      className="pointer-events-none absolute inset-0"
+                      width={chartSurfaceWidth}
+                      height={visibleTasks.length * rowHeight}
+                      viewBox={`0 0 ${chartSurfaceWidth} ${visibleTasks.length * rowHeight}`}
+                      fill="none"
+                    >
+                      {dependencyRoutes.map((route) => (
+                        <path
+                          key={`underlay-${route.id}`}
+                          d={route.underlayPath}
+                          className={cn(
+                            "fill-none stroke-[2.5] opacity-65",
+                            getDependencyRouteClass(
+                              route.isDriving,
+                              route.isOnSelectedPath,
+                              showCriticalPath,
+                            ),
+                          )}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      ))}
+                    </svg>
+
                     {visibleTasks.map(({ task }, index) => {
                       const top = index * rowHeight;
                       const segments = task.segments.length > 0 ? task.segments : getSingleSegment(task);
@@ -1330,80 +1489,58 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
                       viewBox={`0 0 ${chartSurfaceWidth} ${visibleTasks.length * rowHeight}`}
                       fill="none"
                     >
-                      {project.dependencies
-                        .filter(
-                          (dependency) =>
-                            rowIndexByTaskId.has(dependency.fromTaskId) &&
-                            rowIndexByTaskId.has(dependency.toTaskId),
-                        )
-                        .map((dependency) => {
-                          const fromTask = project.tasks.find((task) => task.id === dependency.fromTaskId);
-                          const toTask = project.tasks.find((task) => task.id === dependency.toTaskId);
-                          const fromIndex = rowIndexByTaskId.get(dependency.fromTaskId);
-                          const toIndex = rowIndexByTaskId.get(dependency.toTaskId);
-
-                          if (!fromTask || !toTask || fromIndex === undefined || toIndex === undefined) {
-                            return null;
-                          }
-
-                          const fromSegments =
-                            fromTask.segments.length > 0 ? fromTask.segments : getSingleSegment(fromTask);
-                          const toSegments =
-                            toTask.segments.length > 0 ? toTask.segments : getSingleSegment(toTask);
-                          const fromSegment = fromSegments[fromSegments.length - 1];
-                          const toSegment = toSegments[0];
-
-                          if (!fromSegment || !toSegment) {
-                            return null;
-                          }
-
-                          const fromX = getDependencyAnchorX(
-                            chartRange.startDate,
-                            fromSegment,
-                            dependency.kind,
-                            "from",
-                            pixelsPerDay,
-                          );
-                          const toX = getDependencyAnchorX(
-                            chartRange.startDate,
-                            toSegment,
-                            dependency.kind,
-                            "to",
-                            pixelsPerDay,
-                          );
-                          const fromY = fromIndex * rowHeight + rowHeight / 2;
-                          const toY = toIndex * rowHeight + rowHeight / 2;
-                          const routeOffset = fromX <= toX ? 18 : 24;
-                          const elbowX =
-                            fromX <= toX ? Math.max(fromX + routeOffset, toX - 18) : fromX + routeOffset;
-                          const isOnSelectedPath = selectedTaskPath.dependencyIds.has(dependency.id);
-
-                          return (
-                            <g key={dependency.id}>
-                              <path
-                                d={`M ${fromX} ${fromY} H ${elbowX} V ${toY} H ${toX}`}
-                                className={cn(
-                                  "fill-none stroke-[1.5]",
-                                  isOnSelectedPath && "stroke-primary",
-                                  dependency.isDriving && showCriticalPath
-                                    ? "stroke-rose-400"
-                                    : "stroke-slate-400",
-                                )}
-                              />
-                              <circle
-                                cx={toX}
-                                cy={toY}
-                                r="3"
-                                className={cn(
-                                  isOnSelectedPath && "fill-primary",
-                                  dependency.isDriving && showCriticalPath
-                                    ? "fill-rose-400"
-                                    : "fill-slate-400",
-                                )}
-                              />
-                            </g>
-                          );
-                        })}
+                      {dependencyRoutes.map((route) => (
+                        <g
+                          key={route.id}
+                          data-route-case={route.classification.routeCase}
+                          data-time-direction={route.classification.timeDirection}
+                        >
+                          <path
+                            d={route.overlayPath}
+                            className={cn(
+                              "fill-none stroke-[1.8]",
+                              getDependencyRouteClass(
+                                route.isDriving,
+                                route.isOnSelectedPath,
+                                showCriticalPath,
+                              ),
+                            )}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <circle
+                            cx={route.markerX}
+                            cy={route.markerY}
+                            r="4"
+                            className="fill-white/95"
+                          />
+                          <path
+                            d={route.arrowPath}
+                            className={cn(
+                              "stroke-[1.8] fill-none",
+                              getDependencyRouteClass(
+                                route.isDriving,
+                                route.isOnSelectedPath,
+                                showCriticalPath,
+                              ),
+                            )}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <circle
+                            cx={route.markerX}
+                            cy={route.markerY}
+                            r="2.5"
+                            className={cn(
+                              getDependencyRouteFillClass(
+                                route.isDriving,
+                                route.isOnSelectedPath,
+                                showCriticalPath,
+                              ),
+                            )}
+                          />
+                        </g>
+                      ))}
                     </svg>
                   </div>
                 </div>
@@ -2440,20 +2577,40 @@ function getSingleSegment(task: GanttTask) {
   ];
 }
 
-function getDependencyAnchorX(
-  chartStartDate: string,
-  segment: GanttTaskSegment,
-  kind: GanttDependencyKind,
-  side: "from" | "to",
-  pixelsPerDay: number,
-) {
-  const useFinishEdge =
-    (side === "from" && (kind === "FS" || kind === "FF")) ||
-    (side === "to" && (kind === "FF" || kind === "SF"));
-  const anchorDate = useFinishEdge ? segment.finishDate : segment.startDate;
-  const anchorX = getOffsetDays(chartStartDate, anchorDate) * pixelsPerDay;
+function getDependencyAnchorSegment(task: GanttTask, edge: LinkEdge) {
+  const segments = task.segments.length > 0 ? task.segments : getSingleSegment(task);
 
-  return useFinishEdge ? anchorX + pixelsPerDay : anchorX;
+  return edge === "finish" ? segments[segments.length - 1] : segments[0];
+}
+
+function getDependencyAnchorPoint({
+  task,
+  segment,
+  rowTop,
+  chartStartDate,
+  pixelsPerDay,
+  edge,
+}: {
+  task: GanttTask;
+  segment: GanttTaskSegment;
+  rowTop: number;
+  chartStartDate: string;
+  pixelsPerDay: number;
+  edge: LinkEdge;
+}) {
+  const rect = getTaskVisualRect(task, segment, rowTop, chartStartDate, pixelsPerDay);
+
+  if (task.kind === "milestone") {
+    return {
+      x: edge === "finish" ? rect.right : rect.left,
+      y: (rect.top + rect.bottom) / 2,
+    } satisfies DependencyAnchorPoint;
+  }
+
+  return {
+    x: edge === "finish" ? rect.right : rect.left,
+    y: (rect.top + rect.bottom) / 2,
+  } satisfies DependencyAnchorPoint;
 }
 
 function getDependencyKindFromEdges(fromEdge: LinkEdge, toEdge: LinkEdge): GanttDependencyKind {
@@ -2470,6 +2627,1293 @@ function getDependencyKindFromEdges(fromEdge: LinkEdge, toEdge: LinkEdge): Gantt
   }
 
   return "FS";
+}
+
+function classifyDependency({
+  dependency,
+  visibleTaskById,
+  taskGeometryById,
+  chartStartDate,
+  pixelsPerDay,
+}: {
+  dependency: GanttDependency;
+  visibleTaskById: Map<string, GanttTask>;
+  taskGeometryById: Map<string, TaskGeometry>;
+  chartStartDate: string;
+  pixelsPerDay: number;
+}) {
+  const fromTask = visibleTaskById.get(dependency.fromTaskId);
+  const toTask = visibleTaskById.get(dependency.toTaskId);
+  const fromGeometry = taskGeometryById.get(dependency.fromTaskId);
+  const toGeometry = taskGeometryById.get(dependency.toTaskId);
+
+  if (!fromTask || !toTask || !fromGeometry || !toGeometry) {
+    return null;
+  }
+
+  const fromEdge = getDependencyAnchorEdge(dependency.kind, "from");
+  const toEdge = getDependencyAnchorEdge(dependency.kind, "to");
+  const resolvedFromSegment = getDependencyAnchorSegment(fromTask, fromEdge);
+  const resolvedToSegment = getDependencyAnchorSegment(toTask, toEdge);
+
+  if (!resolvedFromSegment || !resolvedToSegment) {
+    return null;
+  }
+
+  const fromAnchor = getDependencyAnchorPoint({
+    task: fromTask,
+    segment: resolvedFromSegment,
+    rowTop: fromGeometry.rowTop,
+    chartStartDate,
+    pixelsPerDay,
+    edge: fromEdge,
+  });
+  const toAnchor = getDependencyAnchorPoint({
+    task: toTask,
+    segment: resolvedToSegment,
+    rowTop: toGeometry.rowTop,
+    chartStartDate,
+    pixelsPerDay,
+    edge: toEdge,
+  });
+  const classification = getDependencyClassification({
+    fromTask,
+    toTask,
+    fromGeometry,
+    toGeometry,
+    fromSegment: resolvedFromSegment,
+    toSegment: resolvedToSegment,
+    dependency,
+    chartStartDate,
+  });
+  const fromStubLength = getDependencyStubLength(fromTask, classification);
+  const toStubLength = getDependencyStubLength(toTask, classification);
+  const fromX = fromAnchor.x;
+  const toX = toAnchor.x;
+  const fromY = fromAnchor.y;
+  const toY = toAnchor.y;
+  const fromStubX = fromX + (fromEdge === "finish" ? fromStubLength : -fromStubLength);
+  const toStubX = toX + (toEdge === "finish" ? toStubLength : -toStubLength);
+
+  return {
+    dependency,
+    fromTask,
+    toTask,
+    fromGeometry,
+    toGeometry,
+    fromSegment: resolvedFromSegment,
+    toSegment: resolvedToSegment,
+    fromEdge,
+    toEdge,
+    fromX,
+    toX,
+    fromY,
+    toY,
+    fromStubX,
+    toStubX,
+    classification,
+  } satisfies ClassifiedDependency;
+}
+
+function getDependencyClassification({
+  fromTask,
+  toTask,
+  fromGeometry,
+  toGeometry,
+  fromSegment,
+  toSegment,
+  dependency,
+  chartStartDate,
+}: {
+  fromTask: GanttTask;
+  toTask: GanttTask;
+  fromGeometry: TaskGeometry;
+  toGeometry: TaskGeometry;
+  fromSegment: GanttTaskSegment;
+  toSegment: GanttTaskSegment;
+  dependency: GanttDependency;
+  chartStartDate: string;
+}) {
+  const rowDistance = Math.abs(toGeometry.rowIndex - fromGeometry.rowIndex);
+  const fromAnchorDay = getDependencyAnchorDay(chartStartDate, fromSegment, dependency.kind, "from");
+  const toAnchorDay = getDependencyAnchorDay(chartStartDate, toSegment, dependency.kind, "to");
+  const signedGapDays = toAnchorDay - fromAnchorDay;
+  const timeDirection: DependencyTimeDirection = signedGapDays < 0 ? "backward" : "forward";
+  const timeGapDays = Math.abs(signedGapDays);
+  const routeCase = getDependencyRoutingCase({
+    rowDistance,
+    timeDirection,
+    timeGapDays,
+  });
+
+  return {
+    routeCase,
+    rowDistance,
+    timeDirection,
+    timeGapDays,
+    isSameRow: rowDistance === 0,
+    isAdjacentRow: rowDistance === 1,
+    involvesMilestone: fromTask.kind === "milestone" || toTask.kind === "milestone",
+    involvesSplitTask: fromTask.segments.length > 1 || toTask.segments.length > 1,
+    shouldUseSharedTrunk: routeCase === "far-forward" || routeCase === "far-backward",
+  } satisfies DependencyClassification;
+}
+
+function getDependencyAnchorDay(
+  chartStartDate: string,
+  segment: GanttTaskSegment,
+  kind: GanttDependencyKind,
+  side: "from" | "to",
+) {
+  const edge = getDependencyAnchorEdge(kind, side);
+  const anchorDate = edge === "finish" ? segment.finishDate : segment.startDate;
+  const finishOffset = edge === "finish" ? 1 : 0;
+
+  return getOffsetDays(chartStartDate, anchorDate) + finishOffset;
+}
+
+function getDependencyRoutingCase({
+  rowDistance,
+  timeDirection,
+  timeGapDays,
+}: {
+  rowDistance: number;
+  timeDirection: DependencyTimeDirection;
+  timeGapDays: number;
+}): DependencyRoutingCase {
+  if (rowDistance === 0) {
+    return "same-row";
+  }
+
+  if (rowDistance === 1) {
+    return "adjacent-row";
+  }
+
+  if (rowDistance <= dependencyNearRowDistance && timeGapDays <= dependencyNearTimeGapDays) {
+    return timeDirection === "backward" ? "near-backward" : "near-forward";
+  }
+
+  return timeDirection === "backward" ? "far-backward" : "far-forward";
+}
+
+function getDependencyRoutingCasePriority(routeCase: DependencyRoutingCase) {
+  switch (routeCase) {
+    case "far-forward":
+    case "far-backward":
+      return 3;
+    case "near-forward":
+    case "near-backward":
+      return 2;
+    case "adjacent-row":
+      return 1;
+    case "same-row":
+      return 0;
+  }
+}
+
+function getDependencyStubLength(task: GanttTask, classification: DependencyClassification) {
+  let stubLength = classification.shouldUseSharedTrunk ? 14 : 10;
+
+  if (classification.routeCase === "same-row") {
+    stubLength = 8;
+  }
+
+  if (task.kind === "milestone") {
+    stubLength -= 2;
+  }
+
+  if (task.segments.length > 1) {
+    stubLength += 2;
+  }
+
+  return Math.max(6, stubLength);
+}
+
+function getDependencyRouteCandidates({
+  entry,
+  chartWidth,
+  trunkPools,
+  previousChannelX,
+}: {
+  entry: ClassifiedDependency;
+  chartWidth: number;
+  trunkPools: DependencyTrunkPools;
+  previousChannelX?: number;
+}) {
+  if (entry.classification.routeCase === "same-row") {
+    return getSameRowDependencyRouteCandidates(entry);
+  }
+
+  if (shouldForceDeterministicFinishStartRoute(entry)) {
+    return getForwardLocalDoglegCandidates(entry);
+  }
+
+  if (!entry.classification.shouldUseSharedTrunk) {
+    return getLocalDependencyRouteCandidates(entry, chartWidth);
+  }
+
+  return getSharedDependencyRouteCandidates(entry, chartWidth, trunkPools, previousChannelX);
+}
+
+function shouldForceDeterministicFinishStartRoute(entry: ClassifiedDependency) {
+  return entry.dependency.kind === "FS" && entry.toGeometry.rowIndex > entry.fromGeometry.rowIndex;
+}
+
+function getSameRowDependencyRouteCandidates(entry: ClassifiedDependency) {
+  const laneCandidates = getSameRowLaneCandidates(entry.fromGeometry.rowIndex);
+  const channelX = Math.round((entry.fromStubX + entry.toStubX) / 2);
+
+  return laneCandidates.map((laneY) => ({
+    family: "local",
+    channelX,
+    ignoreLabelObstacles: true,
+    segments: {
+      start: [
+        { x1: entry.fromX, y1: entry.fromY, x2: entry.fromStubX, y2: entry.fromY },
+        { x1: entry.fromStubX, y1: entry.fromY, x2: entry.fromStubX, y2: laneY },
+      ],
+      middle: [{ x1: entry.fromStubX, y1: laneY, x2: entry.toStubX, y2: laneY }],
+      end: [
+        { x1: entry.toStubX, y1: laneY, x2: entry.toStubX, y2: entry.toY },
+        { x1: entry.toStubX, y1: entry.toY, x2: entry.toX, y2: entry.toY },
+      ],
+    },
+  })) satisfies DependencyRouteCandidate[];
+}
+
+function getLocalDependencyRouteCandidates(entry: ClassifiedDependency, chartWidth: number) {
+  const preferredLanes = getPreferredRowLanes(entry.fromGeometry.rowIndex, entry.toGeometry.rowIndex);
+  const fixedDoglegCandidates = getForwardLocalDoglegCandidates(entry);
+
+  if (fixedDoglegCandidates.length > 0) {
+    return fixedDoglegCandidates;
+  }
+
+  const spineCandidates = getLocalDependencySpineCandidates(entry.classification, entry, chartWidth);
+
+  return spineCandidates.map((channelX) => ({
+    family: "local",
+    channelX,
+    ignoreLabelObstacles: true,
+    segments: getDependencyRouteSegments({
+      fromX: entry.fromX,
+      fromY: entry.fromY,
+      toX: entry.toX,
+      toY: entry.toY,
+      fromStubX: entry.fromStubX,
+      toStubX: entry.toStubX,
+      sourceLaneY: preferredLanes.sourceLaneY,
+      targetLaneY: preferredLanes.targetLaneY,
+      spineX: channelX,
+    }),
+  })) satisfies DependencyRouteCandidate[];
+}
+
+function getForwardLocalDoglegCandidates(entry: ClassifiedDependency) {
+  if (!shouldForceDeterministicFinishStartRoute(entry)) {
+    return [];
+  }
+
+  const gapWidth = entry.toStubX - entry.fromStubX;
+
+  if (gapWidth < 8) {
+    return [];
+  }
+
+  const channelX = clamp(
+    Math.round(entry.fromStubX + Math.min(10, Math.max(6, gapWidth * 0.18))),
+    Math.round(entry.fromStubX + 2),
+    Math.round(entry.toStubX - 4),
+  );
+
+  return [
+    {
+      family: "local",
+      channelX,
+      ignoreLabelObstacles: true,
+      segments: getDependencyDirectDoglegSegments({
+        fromX: entry.fromX,
+        fromY: entry.fromY,
+        toX: entry.toX,
+        toY: entry.toY,
+        fromStubX: entry.fromStubX,
+        toStubX: entry.toStubX,
+        spineX: channelX,
+      }),
+    },
+  ] satisfies DependencyRouteCandidate[];
+}
+
+function getDependencyDirectDoglegSegments({
+  fromX,
+  fromY,
+  toX,
+  toY,
+  fromStubX,
+  toStubX,
+  spineX,
+}: {
+  fromX: number;
+  fromY: number;
+  toX: number;
+  toY: number;
+  fromStubX: number;
+  toStubX: number;
+  spineX: number;
+}) {
+  return {
+    start: [{ x1: fromX, y1: fromY, x2: fromStubX, y2: fromY }],
+    middle: [
+      { x1: fromStubX, y1: fromY, x2: spineX, y2: fromY },
+      { x1: spineX, y1: fromY, x2: spineX, y2: toY },
+      { x1: spineX, y1: toY, x2: toStubX, y2: toY },
+    ],
+    end: [{ x1: toStubX, y1: toY, x2: toX, y2: toY }],
+  } satisfies DependencyRouteSegments;
+}
+
+function getLocalDependencySpineCandidates(
+  classification: DependencyClassification,
+  entry: ClassifiedDependency,
+  chartWidth: number,
+) {
+  const innerGapCandidates = getLocalDependencyInnerGapCandidates(classification, entry);
+  if (innerGapCandidates.length > 0) {
+    return innerGapCandidates;
+  }
+
+  const direction = classification.timeDirection === "forward" ? 1 : -1;
+  const outerEdge =
+    direction > 0
+      ? Math.max(entry.fromGeometry.outerRight, entry.toGeometry.outerRight)
+      : Math.min(entry.fromGeometry.outerLeft, entry.toGeometry.outerLeft);
+  const baseOffset = getLocalDependencySpineBaseOffset(classification);
+  const maxX = Math.max(dependencyChannelMargin, chartWidth - dependencyChannelMargin);
+  const outerCandidates = Array.from({ length: 3 }, (_, index) =>
+    clamp(
+      Math.round(outerEdge + direction * (baseOffset + index * dependencyLaneSpacing)),
+      dependencyChannelMargin,
+      maxX,
+    ),
+  );
+
+  return Array.from(new Set(outerCandidates));
+}
+
+function getLocalDependencySpineBaseOffset(classification: DependencyClassification) {
+  let offset = classification.isAdjacentRow ? 10 : 14 + Math.max(0, classification.rowDistance - 2) * 5;
+
+  if (classification.involvesMilestone) {
+    offset += 2;
+  }
+
+  if (classification.involvesSplitTask) {
+    offset += 3;
+  }
+
+  return offset;
+}
+
+function getLocalDependencyInnerGapCandidates(
+  classification: DependencyClassification,
+  entry: ClassifiedDependency,
+) {
+  const gapLeft = Math.min(entry.fromStubX, entry.toStubX);
+  const gapRight = Math.max(entry.fromStubX, entry.toStubX);
+  const gapWidth = gapRight - gapLeft;
+
+  if (gapWidth < dependencyInnerGapThreshold) {
+    return [];
+  }
+
+  if (classification.timeDirection === "forward") {
+    const candidates = [
+      entry.fromStubX + 12,
+      entry.fromStubX + 20,
+      Math.round(entry.fromStubX + gapWidth * 0.5),
+      entry.toStubX - 12,
+    ];
+
+    return candidates
+      .map((candidate) => Math.round(candidate))
+      .filter((candidate) => candidate > entry.fromStubX + 4 && candidate < entry.toStubX - 6);
+  }
+
+  const candidates = [
+    entry.fromStubX - 12,
+    entry.fromStubX - 20,
+    Math.round(entry.toStubX + gapWidth * 0.5),
+    entry.toStubX + 12,
+  ];
+
+  return candidates
+    .map((candidate) => Math.round(candidate))
+    .filter((candidate) => candidate < entry.fromStubX - 4 && candidate > entry.toStubX + 6);
+}
+
+function getSharedDependencyRouteCandidates(
+  entry: ClassifiedDependency,
+  chartWidth: number,
+  trunkPools: DependencyTrunkPools,
+  previousChannelX?: number,
+) {
+  const trunkFamily = getDependencySharedRouteFamily(entry.classification);
+  const channelCandidates = getDependencyTrunkCandidates(
+    trunkFamily,
+    trunkPools,
+    entry,
+    chartWidth,
+    previousChannelX,
+  );
+  const sourceLaneCandidates = getRowLaneCandidates(entry.fromGeometry.rowIndex);
+  const targetLaneCandidates = getRowLaneCandidates(entry.toGeometry.rowIndex);
+  const candidates: DependencyRouteCandidate[] = [];
+
+  sourceLaneCandidates.forEach((sourceLaneY) => {
+    targetLaneCandidates.forEach((targetLaneY) => {
+      channelCandidates.forEach((channelX) => {
+        candidates.push({
+          family: trunkFamily,
+          channelX,
+          ignoreLabelObstacles: false,
+          segments: getDependencyRouteSegments({
+            fromX: entry.fromX,
+            fromY: entry.fromY,
+            toX: entry.toX,
+            toY: entry.toY,
+            fromStubX: entry.fromStubX,
+            toStubX: entry.toStubX,
+            sourceLaneY,
+            targetLaneY,
+            spineX: channelX,
+          }),
+        });
+      });
+    });
+  });
+
+  if (candidates.length > 0) {
+    return candidates;
+  }
+
+  const preferredLanes = getPreferredRowLanes(entry.fromGeometry.rowIndex, entry.toGeometry.rowIndex);
+  const fallbackChannelX = clamp(
+    Math.round((entry.fromStubX + entry.toStubX) / 2),
+    dependencyChannelMargin,
+    Math.max(dependencyChannelMargin, chartWidth - dependencyChannelMargin),
+  );
+
+  return [
+    {
+      family: trunkFamily,
+      channelX: fallbackChannelX,
+      ignoreLabelObstacles: false,
+      segments: getDependencyRouteSegments({
+        fromX: entry.fromX,
+        fromY: entry.fromY,
+        toX: entry.toX,
+        toY: entry.toY,
+        fromStubX: entry.fromStubX,
+        toStubX: entry.toStubX,
+        sourceLaneY: preferredLanes.sourceLaneY,
+        targetLaneY: preferredLanes.targetLaneY,
+        spineX: fallbackChannelX,
+      }),
+    },
+  ] satisfies DependencyRouteCandidate[];
+}
+
+function buildDependencyTrunkPools(
+  taskGeometryById: Map<string, TaskGeometry>,
+  chartWidth: number,
+): DependencyTrunkPools {
+  const taskGeometry = Array.from(taskGeometryById.values());
+  const minOuterLeft = Math.min(...taskGeometry.map((geometry) => geometry.outerLeft), dependencyChannelMargin);
+  const maxOuterRight = Math.max(
+    ...taskGeometry.map((geometry) => geometry.outerRight),
+    chartWidth - dependencyChannelMargin,
+  );
+
+  return {
+    left: buildDependencyTrunkPool(
+      Math.max(dependencyChannelMargin, Math.round(minOuterLeft - 28)),
+      -1,
+      chartWidth,
+    ),
+    right: buildDependencyTrunkPool(
+      Math.min(chartWidth - dependencyChannelMargin, Math.round(maxOuterRight + 28)),
+      1,
+      chartWidth,
+    ),
+  };
+}
+
+function buildDependencyTrunkPool(anchorX: number, direction: -1 | 1, chartWidth: number) {
+  const maxX = Math.max(dependencyChannelMargin, chartWidth - dependencyChannelMargin);
+
+  return Array.from({ length: dependencyChannelCount }, (_, index) =>
+    clamp(
+      Math.round(anchorX + direction * index * dependencyLaneSpacing),
+      dependencyChannelMargin,
+      maxX,
+    ),
+  ).filter((channelX, index, values) => values.indexOf(channelX) === index);
+}
+
+function getDependencySharedRouteFamily(
+  classification: DependencyClassification,
+): Extract<DependencyRouteFamily, "shared-left" | "shared-right"> {
+  return classification.timeDirection === "backward" ? "shared-left" : "shared-right";
+}
+
+function getDependencyTrunkCandidates(
+  family: Extract<DependencyRouteFamily, "shared-left" | "shared-right">,
+  trunkPools: DependencyTrunkPools,
+  entry: ClassifiedDependency,
+  chartWidth: number,
+  previousChannelX?: number,
+) {
+  const pool = family === "shared-left" ? trunkPools.left : trunkPools.right;
+  const localPool = getLocalDependencyTrunkCandidates(family, entry, chartWidth);
+  const orderedPool = Array.from(new Set([...localPool, ...pool]));
+
+  if (
+    previousChannelX !== undefined &&
+    orderedPool.some((channelX) => Math.abs(channelX - previousChannelX) <= dependencyLaneSpacing * 0.75)
+  ) {
+    return [
+      previousChannelX,
+      ...orderedPool.filter((channelX) => Math.abs(channelX - previousChannelX) > 0.5),
+    ];
+  }
+
+  return orderedPool;
+}
+
+function getLocalDependencyTrunkCandidates(
+  family: Extract<DependencyRouteFamily, "shared-left" | "shared-right">,
+  entry: ClassifiedDependency,
+  chartWidth: number,
+) {
+  const direction = family === "shared-right" ? 1 : -1;
+  const pairEdge =
+    direction > 0
+      ? Math.max(entry.fromGeometry.outerRight, entry.toGeometry.outerRight)
+      : Math.min(entry.fromGeometry.outerLeft, entry.toGeometry.outerLeft);
+  const baseOffset = getSharedDependencyBaseOffset(entry.classification);
+
+  return Array.from({ length: 4 }, (_, index) =>
+    clamp(
+      Math.round(pairEdge + direction * (baseOffset + index * dependencyLaneSpacing)),
+      dependencyChannelMargin,
+      Math.max(dependencyChannelMargin, chartWidth - dependencyChannelMargin),
+    ),
+  ).filter((channelX, index, values) => values.indexOf(channelX) === index);
+}
+
+function getSharedDependencyBaseOffset(classification: DependencyClassification) {
+  let offset = 12 + Math.max(0, classification.rowDistance - dependencyNearRowDistance) * 3;
+
+  if (classification.involvesMilestone) {
+    offset -= 2;
+  }
+
+  if (classification.involvesSplitTask) {
+    offset += 4;
+  }
+
+  return Math.max(16, offset);
+}
+
+function getForcedForwardGanttRoute(entry: ClassifiedDependency) {
+  if (!shouldForceDeterministicFinishStartRoute(entry)) {
+    return null;
+  }
+
+  const segments = getFinishStartForwardGanttSegments(entry);
+
+  if (!segments) {
+    return null;
+  }
+
+  return {
+    family: "local" as const,
+    channelX: segments.bendX,
+    segments: segments.route,
+  };
+}
+
+function getFinishStartForwardGanttSegments(entry: ClassifiedDependency) {
+  if (!shouldForceDeterministicFinishStartRoute(entry)) {
+    return null;
+  }
+
+  const sourceExitX = Math.round(entry.fromX + getDirectForwardSourceStubLength(entry.fromTask));
+  const targetEntryX = Math.round(entry.toX - getDirectForwardTargetInset(entry.toTask));
+  const minSourceRun = getDirectForwardSourceRun(entry.fromTask);
+  const minTargetRun = getDirectForwardTargetRun(entry.toTask);
+  const innerGapWidth = targetEntryX - sourceExitX;
+  const hasTightInnerGap = innerGapWidth >= 0;
+  const hasRoomyInnerGap = innerGapWidth >= minSourceRun + minTargetRun + 2;
+  const bendX = hasRoomyInnerGap
+    ? clamp(
+        Math.round(targetEntryX - getDirectForwardPreferredTargetLead(entry.toTask)),
+        Math.round(sourceExitX + minSourceRun),
+        Math.round(targetEntryX - minTargetRun),
+      )
+    : hasTightInnerGap
+      ? sourceExitX
+      : Math.max(
+          Math.round(sourceExitX + minSourceRun),
+          Math.round(
+            getDependencyHardRightEdge(entry.fromGeometry, entry.toGeometry) +
+              getDirectForwardOverlapClearance(entry),
+          ),
+        );
+
+  return {
+    bendX,
+    route: {
+      start: [{ x1: entry.fromX, y1: entry.fromY, x2: sourceExitX, y2: entry.fromY }],
+      middle: [
+        { x1: sourceExitX, y1: entry.fromY, x2: bendX, y2: entry.fromY },
+        { x1: bendX, y1: entry.fromY, x2: bendX, y2: entry.toY },
+        { x1: bendX, y1: entry.toY, x2: targetEntryX, y2: entry.toY },
+      ],
+      end: [{ x1: targetEntryX, y1: entry.toY, x2: entry.toX, y2: entry.toY }],
+    } satisfies DependencyRouteSegments,
+  };
+}
+
+function getDirectForwardSourceStubLength(task: GanttTask) {
+  if (task.kind === "milestone") {
+    return 8;
+  }
+
+  if (task.segments.length > 1) {
+    return 12;
+  }
+
+  return 10;
+}
+
+function getDirectForwardSourceRun(task: GanttTask) {
+  if (task.kind === "milestone") {
+    return 6;
+  }
+
+  if (task.segments.length > 1) {
+    return 10;
+  }
+
+  return 8;
+}
+
+function getDirectForwardTargetInset(task: GanttTask) {
+  if (task.kind === "milestone") {
+    return 6;
+  }
+
+  if (task.segments.length > 1) {
+    return 8;
+  }
+
+  return 6;
+}
+
+function getDirectForwardTargetRun(task: GanttTask) {
+  if (task.kind === "milestone") {
+    return 4;
+  }
+
+  if (task.segments.length > 1) {
+    return 8;
+  }
+
+  return 6;
+}
+
+function getDirectForwardPreferredTargetLead(task: GanttTask) {
+  if (task.kind === "milestone") {
+    return 8;
+  }
+
+  if (task.segments.length > 1) {
+    return 12;
+  }
+
+  return 10;
+}
+
+function getDirectForwardOverlapClearance(entry: ClassifiedDependency) {
+  let clearance = 10;
+
+  if (entry.fromTask.kind === "milestone" || entry.toTask.kind === "milestone") {
+    clearance -= 2;
+  }
+
+  if (entry.fromTask.segments.length > 1 || entry.toTask.segments.length > 1) {
+    clearance += 3;
+  }
+
+  return Math.max(8, clearance);
+}
+
+function getDependencyHardRightEdge(...geometryItems: TaskGeometry[]) {
+  const hardRight = geometryItems.flatMap((geometry) =>
+    geometry.obstacles
+      .filter((obstacle) => obstacle.kind === "bar")
+      .map((obstacle) => obstacle.right),
+  );
+
+  if (hardRight.length === 0) {
+    return Math.max(...geometryItems.map((geometry) => geometry.outerRight));
+  }
+
+  return Math.max(...hardRight);
+}
+
+function buildDependencyRoutes({
+  visibleTasks,
+  dependencies,
+  rowIndexByTaskId,
+  chartStartDate,
+  chartWidth,
+  pixelsPerDay,
+  selectedTaskPath,
+  previousChannels,
+}: {
+  visibleTasks: Array<{ task: GanttTask; depth: number }>;
+  dependencies: GanttProject["dependencies"];
+  rowIndexByTaskId: Map<string, number>;
+  chartStartDate: string;
+  chartWidth: number;
+  pixelsPerDay: number;
+  selectedTaskPath: ReturnType<typeof getTaskPath>;
+  previousChannels: Map<string, number>;
+}) {
+  const visibleTaskById = new Map(visibleTasks.map(({ task }) => [task.id, task]));
+  const taskGeometryById = new Map(
+    visibleTasks.map(({ task }, rowIndex) => [
+      task.id,
+      getTaskGeometry(task, rowIndex, chartStartDate, pixelsPerDay),
+    ]),
+  );
+  const trunkPools = buildDependencyTrunkPools(taskGeometryById, chartWidth);
+  const obstacles = Array.from(taskGeometryById.values()).flatMap((geometry) => geometry.obstacles);
+  const usedSpines: Array<{ family: DependencyRouteFamily; spineX: number; minRow: number; maxRow: number }> = [];
+  const routesById = new Map<string, RoutedDependency>();
+  const channelMemory = new Map<string, number>();
+  const classifiedDependencies = dependencies
+    .filter(
+      (dependency) =>
+        rowIndexByTaskId.has(dependency.fromTaskId) &&
+        rowIndexByTaskId.has(dependency.toTaskId),
+    )
+    .map((dependency) =>
+      classifyDependency({
+        dependency,
+        visibleTaskById,
+        taskGeometryById,
+        chartStartDate,
+        pixelsPerDay,
+      }),
+    )
+    .filter((dependency): dependency is ClassifiedDependency => dependency !== null)
+    .sort((left, right) => {
+      return (
+        right.classification.rowDistance - left.classification.rowDistance ||
+        right.classification.timeGapDays - left.classification.timeGapDays ||
+        getDependencyRoutingCasePriority(right.classification.routeCase) -
+          getDependencyRoutingCasePriority(left.classification.routeCase)
+      );
+    });
+
+  classifiedDependencies.forEach((entry) => {
+    const {
+      dependency,
+      fromTask,
+      toTask,
+      fromGeometry,
+      toGeometry,
+      toEdge,
+      toX,
+      toY,
+      classification,
+    } = entry;
+    const minRow = Math.min(fromGeometry.rowIndex, toGeometry.rowIndex);
+    const maxRow = Math.max(fromGeometry.rowIndex, toGeometry.rowIndex);
+    const preferredLanes = getPreferredRowLanes(fromGeometry.rowIndex, toGeometry.rowIndex);
+    const previousChannelX = previousChannels.get(dependency.id);
+    const forcedForwardRoute = getForcedForwardGanttRoute(entry);
+
+    if (forcedForwardRoute) {
+      usedSpines.push({
+        family: forcedForwardRoute.family,
+        spineX: forcedForwardRoute.channelX,
+        minRow,
+        maxRow,
+      });
+      channelMemory.set(dependency.id, forcedForwardRoute.channelX);
+      routesById.set(dependency.id, {
+        id: dependency.id,
+        underlayPath: segmentsToPath(forcedForwardRoute.segments.middle),
+        overlayPath: segmentsToPath([
+          ...forcedForwardRoute.segments.start,
+          ...forcedForwardRoute.segments.end,
+        ]),
+        arrowPath: getDependencyArrowPath(toX, toY, toEdge),
+        markerX: toX,
+        markerY: toY,
+        channelX: forcedForwardRoute.channelX,
+        isDriving: dependency.isDriving,
+        isOnSelectedPath: selectedTaskPath.dependencyIds.has(dependency.id),
+        classification,
+      });
+      return;
+    }
+
+    const routeCandidates = getDependencyRouteCandidates({
+      entry,
+      chartWidth,
+      trunkPools,
+      previousChannelX,
+    });
+
+    let bestRoute:
+      | {
+          score: number;
+          family: DependencyRouteFamily;
+          channelX: number;
+          segments: DependencyRouteSegments;
+        }
+      | null = null;
+
+    routeCandidates.forEach((candidate) => {
+      const routeObstacles = candidate.ignoreLabelObstacles
+        ? obstacles.filter((obstacle) => obstacle.kind === "bar")
+        : obstacles;
+      const sourceLaneY =
+        candidate.segments.start[candidate.segments.start.length - 1]?.y2 ?? preferredLanes.sourceLaneY;
+      const targetLaneY =
+        candidate.segments.end[0]?.y1 ?? preferredLanes.targetLaneY;
+      const score = scoreDependencyRoute(
+        candidate.segments,
+        routeObstacles,
+        usedSpines,
+        {
+          sourceTaskId: fromTask.id,
+          targetTaskId: toTask.id,
+          minRow,
+          maxRow,
+          routeFamily: candidate.family,
+          spineX: candidate.channelX,
+          preferredSourceLaneY: preferredLanes.sourceLaneY,
+          preferredTargetLaneY: preferredLanes.targetLaneY,
+          sourceLaneY,
+          targetLaneY,
+          preferredDirection: getDependencyPreferredDirection(classification),
+          previousChannelX,
+          sameRow: classification.isSameRow,
+        },
+      );
+
+      if (!bestRoute || score < bestRoute.score) {
+        bestRoute = {
+          score,
+          family: candidate.family,
+          channelX: candidate.channelX,
+          segments: candidate.segments,
+        };
+      }
+    });
+
+    const chosenRoute = bestRoute ?? routeCandidates[0];
+
+    if (!chosenRoute) {
+      return;
+    }
+
+    usedSpines.push({
+      family: chosenRoute.family,
+      spineX: chosenRoute.channelX,
+      minRow,
+      maxRow,
+    });
+    channelMemory.set(dependency.id, chosenRoute.channelX);
+    routesById.set(dependency.id, {
+      id: dependency.id,
+      underlayPath: segmentsToPath(chosenRoute.segments.middle),
+      overlayPath: segmentsToPath([
+        ...chosenRoute.segments.start,
+        ...chosenRoute.segments.end,
+      ]),
+      arrowPath: getDependencyArrowPath(toX, toY, toEdge),
+      markerX: toX,
+      markerY: toY,
+      channelX: chosenRoute.channelX,
+      isDriving: dependency.isDriving,
+      isOnSelectedPath: selectedTaskPath.dependencyIds.has(dependency.id),
+      classification,
+    });
+  });
+
+  return {
+    routes: dependencies
+      .filter((dependency) => routesById.has(dependency.id))
+      .map((dependency) => routesById.get(dependency.id)!)
+      .filter((route) => route.underlayPath || route.overlayPath),
+    channelMemory,
+  } satisfies DependencyRouteResult;
+}
+
+function getTaskGeometry(
+  task: GanttTask,
+  rowIndex: number,
+  chartStartDate: string,
+  pixelsPerDay: number,
+) {
+  const rowTop = rowIndex * rowHeight;
+  const rowBottom = rowTop + rowHeight;
+  const segments = task.segments.length > 0 ? task.segments : getSingleSegment(task);
+  const obstacles: RouteObstacle[] = [];
+  let outerLeft = Number.POSITIVE_INFINITY;
+  let outerRight = Number.NEGATIVE_INFINITY;
+
+  segments.forEach((segment, segmentIndex) => {
+    const rect = getTaskVisualRect(task, segment, rowTop, chartStartDate, pixelsPerDay);
+    obstacles.push({
+      taskId: task.id,
+      kind: "bar",
+      ...rect,
+    });
+    outerLeft = Math.min(outerLeft, rect.left);
+    outerRight = Math.max(outerRight, rect.right);
+
+    if (segmentIndex === 0 && task.kind !== "milestone") {
+      const labelRect = getTaskLabelRect(rect.left, rect.right, rowTop);
+      obstacles.push({
+        taskId: task.id,
+        kind: "label",
+        ...labelRect,
+      });
+      outerLeft = Math.min(outerLeft, labelRect.left);
+      outerRight = Math.max(outerRight, labelRect.right);
+    }
+  });
+
+  if (!Number.isFinite(outerLeft) || !Number.isFinite(outerRight)) {
+    outerLeft = 0;
+    outerRight = 0;
+  }
+
+  return {
+    taskId: task.id,
+    rowIndex,
+    rowTop,
+    rowBottom,
+    centerY: rowTop + rowHeight / 2,
+    outerLeft,
+    outerRight,
+    obstacles,
+  } satisfies TaskGeometry;
+}
+
+function getTaskVisualRect(
+  task: GanttTask,
+  segment: GanttTaskSegment,
+  rowTop: number,
+  chartStartDate: string,
+  pixelsPerDay: number,
+) {
+  if (task.kind === "milestone") {
+    const left = getOffsetDays(chartStartDate, segment.startDate) * pixelsPerDay - 8;
+
+    return {
+      left,
+      right: left + 16,
+      top: rowTop + milestoneOffsetY,
+      bottom: rowTop + milestoneOffsetY + 16,
+    };
+  }
+
+  const width = Math.max(
+    getInclusiveDays(segment.startDate, segment.finishDate) * pixelsPerDay,
+    task.kind === "recurring" ? 12 : 14,
+  );
+  const top = rowTop + (task.kind === "recurring" ? recurringBarOffsetY : standardBarOffsetY);
+  const height = task.kind === "recurring" ? 12 : 16;
+  const left = getOffsetDays(chartStartDate, segment.startDate) * pixelsPerDay;
+
+  return {
+    left,
+    right: left + width,
+    top,
+    bottom: top + height,
+  };
+}
+
+function getTaskLabelRect(left: number, right: number, rowTop: number) {
+  return {
+    left,
+    right: left + Math.min(180, Math.max(right - left + 14, 92)),
+    top: rowTop + standardBarOffsetY + taskLabelOffsetY,
+    bottom: rowTop + standardBarOffsetY + taskLabelOffsetY + dependencyLabelHeight,
+  };
+}
+
+function getDependencyAnchorEdge(kind: GanttDependencyKind, side: "from" | "to") {
+  const useFinishEdge =
+    (side === "from" && (kind === "FS" || kind === "FF")) ||
+    (side === "to" && (kind === "FF" || kind === "SF"));
+
+  return useFinishEdge ? "finish" : "start";
+}
+
+function getRowLaneCandidates(rowIndex: number) {
+  const rowTop = rowIndex * rowHeight;
+
+  return [rowTop + dependencyLaneInset, rowTop + rowHeight - dependencyLaneInset];
+}
+
+function getSameRowLaneCandidates(rowIndex: number) {
+  const [topLaneY, bottomLaneY] = getRowLaneCandidates(rowIndex);
+
+  return [bottomLaneY, topLaneY].filter((laneY): laneY is number => laneY !== undefined);
+}
+
+function getPreferredRowLanes(sourceRowIndex: number, targetRowIndex: number) {
+  const sourceCandidates = getRowLaneCandidates(sourceRowIndex);
+  const targetCandidates = getRowLaneCandidates(targetRowIndex);
+
+  if (targetRowIndex > sourceRowIndex) {
+    return {
+      sourceLaneY: sourceCandidates[1] ?? sourceCandidates[0] ?? sourceRowIndex * rowHeight + rowHeight / 2,
+      targetLaneY: targetCandidates[0] ?? targetCandidates[1] ?? targetRowIndex * rowHeight + rowHeight / 2,
+    };
+  }
+
+  if (targetRowIndex < sourceRowIndex) {
+    return {
+      sourceLaneY: sourceCandidates[0] ?? sourceCandidates[1] ?? sourceRowIndex * rowHeight + rowHeight / 2,
+      targetLaneY: targetCandidates[1] ?? targetCandidates[0] ?? targetRowIndex * rowHeight + rowHeight / 2,
+    };
+  }
+
+  return {
+    sourceLaneY: sourceCandidates[1] ?? sourceRowIndex * rowHeight + rowHeight - dependencyLaneInset,
+    targetLaneY: targetCandidates[1] ?? targetRowIndex * rowHeight + rowHeight - dependencyLaneInset,
+  };
+}
+
+function getDependencyPreferredDirection(classification: DependencyClassification) {
+  return classification.timeDirection === "backward" ? -1 : 1;
+}
+
+function getDependencyRouteSegments({
+  fromX,
+  fromY,
+  toX,
+  toY,
+  fromStubX,
+  toStubX,
+  sourceLaneY,
+  targetLaneY,
+  spineX,
+}: {
+  fromX: number;
+  fromY: number;
+  toX: number;
+  toY: number;
+  fromStubX: number;
+  toStubX: number;
+  sourceLaneY: number;
+  targetLaneY: number;
+  spineX: number;
+}) {
+  return {
+    start: [
+      { x1: fromX, y1: fromY, x2: fromStubX, y2: fromY },
+      { x1: fromStubX, y1: fromY, x2: fromStubX, y2: sourceLaneY },
+    ],
+    middle: [
+      { x1: fromStubX, y1: sourceLaneY, x2: spineX, y2: sourceLaneY },
+      { x1: spineX, y1: sourceLaneY, x2: spineX, y2: targetLaneY },
+      { x1: spineX, y1: targetLaneY, x2: toStubX, y2: targetLaneY },
+    ],
+    end: [
+      { x1: toStubX, y1: targetLaneY, x2: toStubX, y2: toY },
+      { x1: toStubX, y1: toY, x2: toX, y2: toY },
+    ],
+  };
+}
+
+function getDependencyArrowPath(x: number, y: number, edge: LinkEdge) {
+  const direction = edge === "finish" ? 1 : -1;
+  const wingX = x - direction * 7;
+
+  return `M ${wingX} ${y - 4} L ${x} ${y} L ${wingX} ${y + 4}`;
+}
+
+function scoreDependencyRoute(
+  segments: DependencyRouteSegments,
+  obstacles: RouteObstacle[],
+  usedSpines: Array<{ family: DependencyRouteFamily; spineX: number; minRow: number; maxRow: number }>,
+  context: {
+    sourceTaskId: string;
+    targetTaskId: string;
+    minRow: number;
+    maxRow: number;
+    routeFamily: DependencyRouteFamily;
+    spineX: number;
+    preferredSourceLaneY: number;
+    preferredTargetLaneY: number;
+    sourceLaneY: number;
+    targetLaneY: number;
+    preferredDirection: number;
+    previousChannelX?: number;
+    sameRow: boolean;
+  },
+) {
+  const allSegments = [...segments.start, ...segments.middle, ...segments.end];
+  const collisionPenalty = allSegments.reduce((sum, segment) => {
+    return (
+      sum +
+      obstacles.reduce((obstacleSum, obstacle) => {
+        if (
+          obstacle.taskId === context.sourceTaskId &&
+          obstacle.kind === "bar"
+        ) {
+          return obstacleSum;
+        }
+
+        if (
+          obstacle.taskId === context.targetTaskId &&
+          obstacle.kind === "bar"
+        ) {
+          return obstacleSum;
+        }
+
+        return obstacleSum + (segmentIntersectsObstacle(segment, obstacle) ? 1 : 0);
+      }, 0)
+    );
+  }, 0);
+  const spinePenalty = usedSpines.reduce((sum, usedSpine) => {
+    if (usedSpine.family !== context.routeFamily) {
+      return sum;
+    }
+
+    const overlapsRows =
+      !(context.maxRow < usedSpine.minRow || context.minRow > usedSpine.maxRow);
+
+    if (!overlapsRows) {
+      return sum;
+    }
+
+    const delta = Math.abs(context.spineX - usedSpine.spineX);
+    if (context.routeFamily === "local") {
+      return sum + (delta < 6 ? 1 : 0);
+    }
+
+    return sum + (delta < dependencyLaneSpacing ? 6 : 0);
+  }, 0);
+  const travelPenalty = allSegments.reduce(
+    (sum, segment) => sum + Math.abs(segment.x2 - segment.x1) + Math.abs(segment.y2 - segment.y1),
+    0,
+  );
+  const lanePenalty =
+    (Math.abs(context.sourceLaneY - context.preferredSourceLaneY) > 0.1 ? 2 : 0) +
+    (Math.abs(context.targetLaneY - context.preferredTargetLaneY) > 0.1 ? 2 : 0);
+  const firstMiddleSegment = segments.middle[0];
+  const directionPenalty =
+    firstMiddleSegment &&
+    Math.sign(firstMiddleSegment.x2 - firstMiddleSegment.x1 || context.preferredDirection) !==
+      context.preferredDirection
+      ? 6
+      : 0;
+  const memoryPenalty =
+    context.previousChannelX === undefined
+      ? 0
+      : Math.abs(context.spineX - context.previousChannelX) / dependencyLaneSpacing;
+  const sameRowPenalty =
+    context.sameRow && Math.abs(context.sourceLaneY - context.targetLaneY) > 0.1 ? 8 : 0;
+
+  return (
+    collisionPenalty * 1000 +
+    spinePenalty * (context.routeFamily === "local" ? 25 : 150) +
+    lanePenalty * 120 +
+    directionPenalty * 180 +
+    sameRowPenalty * 180 +
+    memoryPenalty * 90 +
+    travelPenalty / 40
+  );
+}
+
+function segmentIntersectsObstacle(segment: OrthogonalSegment, obstacle: RouteObstacle) {
+  const paddedObstacle = {
+    left: obstacle.left - dependencyObstaclePadding,
+    right: obstacle.right + dependencyObstaclePadding,
+    top: obstacle.top - dependencyObstaclePadding,
+    bottom: obstacle.bottom + dependencyObstaclePadding,
+  };
+
+  if (segment.x1 === segment.x2) {
+    const x = segment.x1;
+    const top = Math.min(segment.y1, segment.y2);
+    const bottom = Math.max(segment.y1, segment.y2);
+
+    return (
+      x >= paddedObstacle.left &&
+      x <= paddedObstacle.right &&
+      bottom >= paddedObstacle.top &&
+      top <= paddedObstacle.bottom
+    );
+  }
+
+  const y = segment.y1;
+  const left = Math.min(segment.x1, segment.x2);
+  const right = Math.max(segment.x1, segment.x2);
+
+  return (
+    y >= paddedObstacle.top &&
+    y <= paddedObstacle.bottom &&
+    right >= paddedObstacle.left &&
+    left <= paddedObstacle.right
+  );
+}
+
+function segmentsToPath(segments: OrthogonalSegment[]) {
+  return segments
+    .filter(
+      (segment) =>
+        Math.abs(segment.x2 - segment.x1) > 0.01 || Math.abs(segment.y2 - segment.y1) > 0.01,
+    )
+    .map((segment) => `M ${segment.x1} ${segment.y1} L ${segment.x2} ${segment.y2}`)
+    .join(" ");
+}
+
+function getDependencyRouteClass(
+  isDriving: boolean,
+  isOnSelectedPath: boolean,
+  showCriticalPath: boolean,
+) {
+  if (isOnSelectedPath) {
+    return "stroke-primary";
+  }
+
+  return isDriving && showCriticalPath ? "stroke-rose-400" : "stroke-slate-400";
+}
+
+function getDependencyRouteFillClass(
+  isDriving: boolean,
+  isOnSelectedPath: boolean,
+  showCriticalPath: boolean,
+) {
+  if (isOnSelectedPath) {
+    return "fill-primary";
+  }
+
+  return isDriving && showCriticalPath ? "fill-rose-400" : "fill-slate-400";
 }
 
 function getBarClass(task: GanttTask, showCriticalPath: boolean) {
@@ -2951,6 +4395,10 @@ function clampDateRange(date: string, anchorDate: string, edge: "start" | "finis
   }
 
   return date;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
 }
 
 function getWorkingDaysInclusive(startDate: string, finishDate: string) {
