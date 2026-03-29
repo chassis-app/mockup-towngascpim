@@ -1,0 +1,101 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration" [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration
+              - img [ref=e33]
+      - list [ref=e36]:
+        - listitem [ref=e37]:
+          - button "TG Administration CPIM Navigation" [ref=e38]:
+            - generic [ref=e40]: TG
+            - generic [ref=e41]:
+              - generic [ref=e42]: Administration
+              - generic [ref=e43]: CPIM Navigation
+            - img [ref=e44]
+      - button "Toggle Sidebar" [ref=e46]
+    - main [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - button "Toggle Sidebar" [ref=e50]:
+            - img
+            - generic [ref=e51]: Toggle Sidebar
+          - separator [ref=e52]
+          - navigation "breadcrumb" [ref=e53]:
+            - list [ref=e54]:
+              - listitem [ref=e55]:
+                - link "Administration" [ref=e56] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e57]:
+                - img [ref=e58]
+              - listitem [ref=e60]:
+                - link "Timesheet Settings and Defaults" [disabled] [ref=e61]
+        - generic [ref=e62]:
+          - button "Save" [ref=e63]
+          - button "Cancel" [ref=e64]
+      - main [ref=e65]:
+        - generic [ref=e68]:
+          - generic [ref=e70]: Administration
+          - heading "Timesheet Settings and Defaults" [level=1] [ref=e72]
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: Form Section
+            - generic [ref=e79]: Hourly Reporting Limits
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - generic [ref=e83]: Maximum Hours per Timesheet
+              - textbox [ref=e84]: "60"
+            - generic [ref=e85]:
+              - generic [ref=e86]: Minimum Hours per Timesheet
+              - textbox [ref=e87]: "0"
+            - generic [ref=e88]:
+              - generic [ref=e89]: Maximum Hours per Day
+              - textbox [ref=e90]: "24"
+            - generic [ref=e91]:
+              - generic [ref=e92]: Allow future time reporting
+              - combobox [ref=e93]:
+                - generic [ref=e94]: Enabled
+                - img: ▼
+              - textbox [ref=e95]: Enabled
+            - generic [ref=e96]:
+              - generic [ref=e97]: Allow top-level time reporting
+              - combobox [ref=e98]:
+                - generic [ref=e99]: Enabled
+                - img: ▼
+              - textbox [ref=e100]: Enabled
+            - generic [ref=e101]:
+              - generic [ref=e102]: Manager Approval
+              - combobox [ref=e103]:
+                - generic [ref=e104]: Disabled
+                - img: ▼
+              - textbox [ref=e105]: Disabled
+            - generic [ref=e106]:
+              - generic [ref=e107]: Require line approval before timesheet approval
+              - combobox [ref=e108]:
+                - generic [ref=e109]: Disabled
+                - img: ▼
+              - textbox [ref=e110]: Disabled
+            - generic [ref=e111]:
+              - generic [ref=e112]: Fixed approval routing
+              - combobox [ref=e113]:
+                - generic [ref=e114]: Disabled
+                - img: ▼
+              - textbox [ref=e115]: Disabled
+  - alert [ref=e116]

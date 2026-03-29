@@ -1,0 +1,507 @@
+[ 6648608ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6649611ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6650614ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6651616ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6652621ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6657625ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6662628ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6667647ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6672673ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6677691ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6682744ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 6687825ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=ogXMkTj38ZENXDm9X6pLy' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[ 7566169ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7566277ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7566949ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567029ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567153ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567170ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo?_rsc=1q2am:0
+[ 7567260ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567306ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo?_rsc=1q2am:0
+[ 7567452ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567466ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567573ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567727ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567805ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567906ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567970ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 7567983ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[ 7569049ms] Error: ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file:///home/ubuntu/mockup-towngascpim/web/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1189:59)
+    at DevBundlerService.getCompilationError (file:///home/ubuntu/mockup-towngascpim/web/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///home/ubuntu/mockup-towngascpim/web/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///home/ubuntu/mockup-towngascpim/web/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///home/ubuntu/mockup-towngascpim/web/node_modules/next/dist/server/base-server.js:1745:26)
+[ 7569095ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 7569122ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 7569150ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 7569276ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 7570540ms] [ERROR] ./src/app/projects/rp-20250059/gantt-demo/page.tsx:2:1
+Module not found: Can't resolve '@/components/gantt/project-gantt'
+  1 | import { AppShell } from "@/components/mockup/app-shell";
+> 2 | import { ProjectGantt } from "@/components/gantt/project-gantt";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | import { createDemoProject } from "@/lib/gantt/demo-project";
+  4 |
+  5 | export default function GanttDemoPage() {
+
+Import map: aliased to relative './src/components/gantt/project-gantt' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[ 7788902ms] [ERROR] The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [function() {
+            if ((executionContext & RenderContext) !== NoContext) throw Error("A function wrapped in useEffectEvent can't be called during rendering.");
+            return ref.impl.apply(void 0, arguments);
+        }, function() {
+            if ((executionContext & RenderContext) !== NoContext) throw Error("A function wrapped in useEffectEvent can't be called during rendering.");
+            return ref.impl.apply(void 0, arguments);
+        }] [] @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[38330952ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=fkRCspGX2DE7pxZpSH1bD' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[38331956ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=fkRCspGX2DE7pxZpSH1bD' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[38332957ms] [ERROR] WebSocket connection to 'ws://localhost:3002/_next/webpack-hmr?id=fkRCspGX2DE7pxZpSH1bD' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13299
+[41798631ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:91:220)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[41811435ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[41812106ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:91:220)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[41812138ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[41813473ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:2859:206)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[41819900ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43007425ms] ReferenceError: recalculateAutoSchedule is not defined
+    at prepareTaskCollection (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2455:28)
+    at hydrateProject (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2241:19)
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:80:27)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[43023216ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43023605ms] ReferenceError: recalculateAutoSchedule is not defined
+    at prepareTaskCollection (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2455:28)
+    at hydrateProject (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2241:19)
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:80:27)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[43023611ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43024963ms] ReferenceError: recalculateAutoSchedule is not defined
+    at prepareTaskCollection (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5223:28)
+    at hydrateProject (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5009:19)
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:2848:27)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43039485ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43039810ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43041221ms] ReferenceError: maxIsoDate is not defined
+    at http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5191:25
+    at Array.forEach (<anonymous>)
+    at http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5184:34
+    at Array.forEach (<anonymous>)
+    at recalculateAutoSchedule (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5173:24)
+    at prepareTaskCollection (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5297:28)
+    at hydrateProject (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:5009:19)
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:2848:27)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43139602ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43450879ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:297:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[43455246ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43455755ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:297:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[43456259ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43457274ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43464390ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43464968ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43466159ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43473020ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43473387ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43474659ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43481032ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[43481724ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3002/projects/rp-20250059/gantt-demo:0
+[43482357ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://localhost:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[43489290ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

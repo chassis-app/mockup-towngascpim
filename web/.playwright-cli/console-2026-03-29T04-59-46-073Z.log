@@ -1,0 +1,101 @@
+[  272369ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:297:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[  276765ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  277416ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:297:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[  277705ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://139.99.122.192:3002/projects/rp-20250059/gantt-demo:0
+[  278708ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[  285846ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  286796ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://139.99.122.192:3002/projects/rp-20250059/gantt-demo:0
+[  287558ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[  294487ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  295413ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://139.99.122.192:3002/projects/rp-20250059/gantt-demo:0
+[  296172ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[  302399ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  303148ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://139.99.122.192:3002/projects/rp-20250059/gantt-demo:0
+[  303905ms] ReferenceError: getTaskPath is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js:3065:30)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[  310734ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

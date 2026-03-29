@@ -1,0 +1,126 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e262]
+  - generic [ref=e294]:
+    - generic [ref=e297]:
+      - list [ref=e299]:
+        - listitem [ref=e300]:
+          - link "P PMO CPIMUAT" [ref=e301] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e302]: P
+            - generic [ref=e303]:
+              - generic [ref=e304]: PMO
+              - generic [ref=e305]: CPIMUAT
+      - generic [ref=e306]:
+        - list [ref=e308]:
+          - listitem [ref=e309]:
+            - button "Workspace" [ref=e310]:
+              - img [ref=e311]
+              - generic [ref=e314]: Workspace
+              - img [ref=e315]
+        - list [ref=e318]:
+          - listitem [ref=e319]:
+            - button "Administration Home" [ref=e320]:
+              - img [ref=e321]
+              - generic [ref=e324]: Administration Home
+              - img [ref=e325]
+        - list [ref=e328]:
+          - listitem [ref=e329]:
+            - button "Personal Settings" [expanded] [ref=e330]:
+              - img [ref=e331]
+              - generic [ref=e334]: Personal Settings
+              - img [ref=e335]
+            - list [ref=e338]:
+              - listitem [ref=e339]:
+                - link "My Queued Jobs" [ref=e340] [cursor=pointer]:
+                  - /url: /my-queued-job
+                  - generic [ref=e341]: My Queued Jobs
+              - listitem [ref=e342]:
+                - link "Manage Delegate" [ref=e343] [cursor=pointer]:
+                  - /url: /manage-delegate
+                  - generic [ref=e344]: Manage Delegate
+              - listitem [ref=e345]:
+                - link "Manage Delegates" [ref=e346] [cursor=pointer]:
+                  - /url: /manage-delegates
+                  - generic [ref=e347]: Manage Delegates
+        - list [ref=e349]:
+          - listitem [ref=e350]:
+            - button "Enterprise Data" [ref=e351]:
+              - img [ref=e352]
+              - generic [ref=e355]: Enterprise Data
+              - img [ref=e356]
+        - list [ref=e359]:
+          - listitem [ref=e360]:
+            - button "Queue And Database" [ref=e361]:
+              - img [ref=e362]
+              - generic [ref=e365]: Queue And Database
+              - img [ref=e366]
+        - list [ref=e369]:
+          - listitem [ref=e370]:
+            - button "Look And Feel" [ref=e371]:
+              - img [ref=e372]
+              - generic [ref=e375]: Look And Feel
+              - img [ref=e376]
+        - list [ref=e379]:
+          - listitem [ref=e380]:
+            - button "Time And Task" [ref=e381]:
+              - img [ref=e382]
+              - generic [ref=e385]: Time And Task
+              - img [ref=e386]
+        - list [ref=e389]:
+          - listitem [ref=e390]:
+            - button "Operational Policies" [ref=e391]:
+              - img [ref=e392]
+              - generic [ref=e395]: Operational Policies
+              - img [ref=e396]
+        - list [ref=e399]:
+          - listitem [ref=e400]:
+            - button "Workflow And PDP" [ref=e401]:
+              - img [ref=e402]
+              - generic [ref=e405]: Workflow And PDP
+              - img [ref=e406]
+        - list [ref=e409]:
+          - listitem [ref=e410]:
+            - button "Security" [ref=e411]:
+              - img [ref=e412]
+              - generic [ref=e415]: Security
+              - img [ref=e416]
+      - list [ref=e419]:
+        - listitem [ref=e420]:
+          - button "TG Administration CPIM Navigation" [ref=e421]:
+            - generic [ref=e423]: TG
+            - generic [ref=e424]:
+              - generic [ref=e425]: Administration
+              - generic [ref=e426]: CPIM Navigation
+            - img [ref=e427]
+      - button "Toggle Sidebar" [ref=e429]
+    - main [ref=e430]:
+      - generic [ref=e432]:
+        - button "Toggle Sidebar" [ref=e433]:
+          - img
+          - generic [ref=e434]: Toggle Sidebar
+        - separator [ref=e435]
+        - navigation "breadcrumb" [ref=e436]:
+          - list [ref=e437]:
+            - listitem [ref=e438]:
+              - link "Administration" [ref=e439] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e440]:
+              - img [ref=e441]
+            - listitem [ref=e443]:
+              - link "My Queued Jobs" [disabled] [ref=e444]
+      - main [ref=e445]:
+        - generic [ref=e448]:
+          - generic [ref=e450]: Administration
+          - heading "My Queued Jobs" [level=1] [ref=e452]
+        - table [ref=e458]:
+          - rowgroup [ref=e459]:
+            - row "Entry Time Completed Time Project Name Job Type Job State % Complete Position Error" [ref=e460]:
+              - columnheader "Entry Time" [ref=e461]
+              - columnheader "Completed Time" [ref=e462]
+              - columnheader "Project Name" [ref=e463]
+              - columnheader "Job Type" [ref=e464]
+              - columnheader "Job State" [ref=e465]
+              - columnheader "% Complete" [ref=e466]
+              - columnheader "Position" [ref=e467]
+              - columnheader "Error" [ref=e468]
+          - rowgroup

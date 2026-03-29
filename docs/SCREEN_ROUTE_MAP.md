@@ -90,3 +90,9 @@
 - `/projects/rp-20250059/resources/new-4` -> Project New Resource4
 - `/projects/rp-20250059/resources/new-5` -> Project New Resource5
 - `/project-task-reassign` -> Project Task Reassign
+
+## Role Access Variants
+
+- `/role-access/1` -> Role Access1
+- `/role-access/2` -> Role Access2
+- `/role-access/3` -> Role Access3

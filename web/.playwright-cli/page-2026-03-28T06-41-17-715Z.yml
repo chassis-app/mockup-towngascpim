@@ -1,0 +1,203 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration Home" [expanded] [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration Home
+              - img [ref=e33]
+            - list [ref=e36]:
+              - listitem [ref=e37]:
+                - link "PWA Settings" [ref=e38] [cursor=pointer]:
+                  - /url: /
+                  - generic [ref=e39]: PWA Settings
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - button "Personal Settings" [ref=e43]:
+              - img [ref=e44]
+              - generic [ref=e47]: Personal Settings
+              - img [ref=e48]
+        - list [ref=e51]:
+          - listitem [ref=e52]:
+            - button "Enterprise Data" [ref=e53]:
+              - img [ref=e54]
+              - generic [ref=e57]: Enterprise Data
+              - img [ref=e58]
+        - list [ref=e61]:
+          - listitem [ref=e62]:
+            - button "Queue And Database" [ref=e63]:
+              - img [ref=e64]
+              - generic [ref=e67]: Queue And Database
+              - img [ref=e68]
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "Look And Feel" [ref=e73]:
+              - img [ref=e74]
+              - generic [ref=e77]: Look And Feel
+              - img [ref=e78]
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - button "Time And Task" [ref=e83]:
+              - img [ref=e84]
+              - generic [ref=e87]: Time And Task
+              - img [ref=e88]
+        - list [ref=e91]:
+          - listitem [ref=e92]:
+            - button "Operational Policies" [ref=e93]:
+              - img [ref=e94]
+              - generic [ref=e97]: Operational Policies
+              - img [ref=e98]
+        - list [ref=e101]:
+          - listitem [ref=e102]:
+            - button "Workflow And PDP" [ref=e103]:
+              - img [ref=e104]
+              - generic [ref=e107]: Workflow And PDP
+              - img [ref=e108]
+        - list [ref=e111]:
+          - listitem [ref=e112]:
+            - button "Security" [ref=e113]:
+              - img [ref=e114]
+              - generic [ref=e117]: Security
+              - img [ref=e118]
+      - list [ref=e121]:
+        - listitem [ref=e122]:
+          - button "TG Administration CPIM Navigation" [ref=e123]:
+            - generic [ref=e125]: TG
+            - generic [ref=e126]:
+              - generic [ref=e127]: Administration
+              - generic [ref=e128]: CPIM Navigation
+            - img [ref=e129]
+      - button "Toggle Sidebar" [ref=e131]
+    - main [ref=e132]:
+      - generic [ref=e134]:
+        - button "Toggle Sidebar" [ref=e135]:
+          - img
+          - generic [ref=e136]: Toggle Sidebar
+        - separator [ref=e137]
+        - navigation "breadcrumb" [ref=e138]:
+          - list [ref=e139]:
+            - listitem [ref=e140]:
+              - link "Administration" [ref=e141] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e142]:
+              - img [ref=e143]
+            - listitem [ref=e145]:
+              - link "PWA Settings" [disabled] [ref=e146]
+      - main [ref=e147]:
+        - generic [ref=e150]:
+          - generic [ref=e152]: Administration
+          - heading "PWA Settings" [level=1] [ref=e154]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e160]: Personal Settings
+            - generic [ref=e161]:
+              - link "My Queued Jobs" [ref=e163] [cursor=pointer]:
+                - /url: /my-queued-job
+              - link "Manage Delegates" [ref=e165] [cursor=pointer]:
+                - /url: /manage-delegates
+              - link "Act as a Delegate" [ref=e167] [cursor=pointer]:
+                - /url: /manage-delegate
+          - generic [ref=e168]:
+            - generic [ref=e170]: Enterprise Data
+            - generic [ref=e171]:
+              - link "Enterprise Custom Fields and Lookup Tables" [ref=e173] [cursor=pointer]:
+                - /url: /custom-field
+              - link "Enterprise Calendars" [ref=e175] [cursor=pointer]:
+                - /url: /enterprise-calendar
+              - link "Resource Center" [ref=e177] [cursor=pointer]:
+                - /url: /projects/rp-20250059/resources
+              - link "Reporting" [ref=e179] [cursor=pointer]:
+                - /url: /report
+          - generic [ref=e180]:
+            - generic [ref=e182]: Queue and Database Administration
+            - generic [ref=e183]:
+              - link "Manage Queue Jobs" [ref=e185] [cursor=pointer]:
+                - /url: /manage-queue-jobs
+              - link "Delete Enterprise Objects" [ref=e187] [cursor=pointer]:
+                - /url: /delete-enterprise-object
+              - link "Force Check-in Enterprise Objects" [ref=e189] [cursor=pointer]:
+                - /url: /force-check-in-enterprise-object
+          - generic [ref=e190]:
+            - generic [ref=e192]: Look and Feel
+            - generic [ref=e193]:
+              - link "Manage Views" [ref=e195] [cursor=pointer]:
+                - /url: /manage-view
+              - link "Grouping Formats" [ref=e197] [cursor=pointer]:
+                - /url: /grouping-format
+              - link "Gantt Chart Formats" [ref=e199] [cursor=pointer]:
+                - /url: /gantt-chart-format
+              - link "Quick Launch" [ref=e201] [cursor=pointer]:
+                - /url: /quick-launch
+          - generic [ref=e202]:
+            - generic [ref=e204]: Time and Task Management
+            - generic [ref=e205]:
+              - link "Fiscal Periods" [ref=e207] [cursor=pointer]:
+                - /url: /fiscal-periods
+              - link "Time Reporting Periods" [ref=e209] [cursor=pointer]:
+                - /url: /time-report-period
+              - link "Line Classifications" [ref=e211] [cursor=pointer]:
+                - /url: /line-classifications
+              - link "Timesheet Settings and Defaults" [ref=e213] [cursor=pointer]:
+                - /url: /timesheet-settings-and-defaults-1
+              - link "Administrative Time" [ref=e215] [cursor=pointer]:
+                - /url: /administrative-time
+              - link "Task Settings and Display" [ref=e217] [cursor=pointer]:
+                - /url: /task-setting-and-display
+              - link "Manage Timesheets" [ref=e219] [cursor=pointer]:
+                - /url: /manage-timesheet
+              - link "Timesheet Managers" [ref=e221] [cursor=pointer]:
+                - /url: /timesheet-manager
+          - generic [ref=e222]:
+            - generic [ref=e224]: Operational Policies
+            - generic [ref=e225]:
+              - link "Additional Server Settings" [ref=e227] [cursor=pointer]:
+                - /url: /additional-server-settings
+              - link "Active Directory Resource Pool Synchronization" [ref=e229] [cursor=pointer]:
+                - /url: /user-sync
+              - link "Connected SharePoint Sites" [ref=e231] [cursor=pointer]:
+                - /url: /connect-sharepoint-site
+          - generic [ref=e232]:
+            - generic [ref=e234]: Workflow and Project Detail Pages
+            - generic [ref=e235]:
+              - link "Enterprise Project Types" [ref=e237] [cursor=pointer]:
+                - /url: /enterprise-project-type
+              - link "Workflow Phases" [ref=e239] [cursor=pointer]:
+                - /url: /workflow-phase
+              - link "Workflow Stages" [ref=e241] [cursor=pointer]:
+                - /url: /workflow-stage
+              - link "Change or Restart Workflows" [ref=e243] [cursor=pointer]:
+                - /url: /change-restart-skip-workflow
+              - link "Project Detail Pages" [ref=e245] [cursor=pointer]:
+                - /url: /projects/rp-20250059/information
+          - generic [ref=e246]:
+            - generic [ref=e248]: Security
+            - generic [ref=e249]:
+              - link "Manage Users" [ref=e251] [cursor=pointer]:
+                - /url: /manager-user
+              - link "Manage Groups" [ref=e253] [cursor=pointer]:
+                - /url: /manage-groups
+              - link "Manage Categories" [ref=e255] [cursor=pointer]:
+                - /url: /manage-category
+              - link "Manage Security Templates" [ref=e257] [cursor=pointer]:
+                - /url: /manage-template
+              - link "Manage User Sync Settings" [ref=e259] [cursor=pointer]:
+                - /url: /user-sync
+              - link "Manage Delegates" [ref=e261] [cursor=pointer]:
+                - /url: /manage-delegates
+  - alert [ref=e262]

@@ -1,0 +1,194 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: P
+          - generic [ref=e11]:
+            - generic [ref=e12]: PMO
+            - generic [ref=e13]: CPIMUAT
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Workspace" [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e22]: Workspace
+            - img [ref=e23]
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - button "Administration" [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e32]: Administration
+            - img [ref=e33]
+    - list [ref=e36]:
+      - listitem [ref=e37]:
+        - button "TG Administration CPIM Navigation" [ref=e38]:
+          - generic [ref=e40]: TG
+          - generic [ref=e41]:
+            - generic [ref=e42]: Administration
+            - generic [ref=e43]: CPIM Navigation
+          - img [ref=e44]
+    - button "Toggle Sidebar" [ref=e46]
+  - main [ref=e47]:
+    - generic [ref=e49]:
+      - button "Toggle Sidebar" [ref=e50]:
+        - img
+        - generic [ref=e51]: Toggle Sidebar
+      - separator [ref=e52]
+      - navigation "breadcrumb" [ref=e53]:
+        - list [ref=e54]:
+          - listitem [ref=e55]:
+            - link "Administration" [ref=e56] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e57]:
+            - img [ref=e58]
+          - listitem [ref=e60]:
+            - link "Role Access" [disabled] [ref=e61]
+    - main [ref=e62]:
+      - generic [ref=e65]:
+        - generic [ref=e67]: Administration
+        - heading "Role Access" [level=1] [ref=e69]
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - generic [ref=e74]: Security
+          - heading "Role Access" [level=2] [ref=e75]
+          - generic [ref=e76]:
+            - generic [ref=e77]: Select Role
+            - combobox [ref=e78]:
+              - generic [ref=e79]: Project Information
+              - img: ▼
+            - textbox [ref=e80]: Project Information
+            - button "Save" [ref=e81]
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e85]: Module Name
+            - generic [ref=e86]: Function Name
+            - generic [ref=e87]: Access
+            - generic [ref=e88]: Read Only
+            - generic [ref=e89]: Read Only Levels
+            - generic [ref=e90]: Read Write
+            - generic [ref=e91]: Read Write Levels
+          - generic [ref=e92]:
+            - generic [ref=e93]: Project Information
+            - generic [ref=e94]:
+              - generic [ref=e95]: Project Information
+              - generic [ref=e96]:
+                - switch [checked] [ref=e97]
+                - checkbox [checked] [ref=e98]
+              - generic [ref=e99]:
+                - switch [ref=e100]
+                - checkbox [ref=e101]
+              - generic [ref=e102]:
+                - combobox [ref=e103]:
+                  - img: ▼
+                - textbox [ref=e104]
+              - generic [ref=e105]:
+                - switch [checked] [ref=e106]
+                - checkbox [checked] [ref=e107]
+              - generic [ref=e108]:
+                - combobox [ref=e109]:
+                  - generic [ref=e110]: L4
+                  - img: ▼
+                - textbox [ref=e111]: L4
+            - generic [ref=e112]:
+              - generic [ref=e113]: AG/UGI
+              - generic [ref=e114]:
+                - switch [checked] [ref=e115]
+                - checkbox [checked] [ref=e116]
+              - generic [ref=e117]:
+                - switch [checked] [ref=e118]
+                - checkbox [checked] [ref=e119]
+              - generic [ref=e120]:
+                - combobox [ref=e121]:
+                  - generic [ref=e122]: L2
+                  - img: ▼
+                - textbox [ref=e123]: L2
+              - generic [ref=e124]:
+                - switch [ref=e125]
+                - checkbox [ref=e126]
+              - generic [ref=e127]:
+                - combobox [ref=e128]:
+                  - generic [ref=e129]: L4
+                  - img: ▼
+                - textbox [ref=e130]: L4
+            - generic [ref=e131]:
+              - generic [ref=e132]: Customer Contact
+              - generic [ref=e133]:
+                - switch [checked] [ref=e134]
+                - checkbox [checked] [ref=e135]
+              - generic [ref=e136]:
+                - switch [ref=e137]
+                - checkbox [ref=e138]
+              - generic [ref=e139]:
+                - combobox [ref=e140]:
+                  - img: ▼
+                - textbox [ref=e141]
+              - generic [ref=e142]:
+                - switch [checked] [ref=e143]
+                - checkbox [checked] [ref=e144]
+              - generic [ref=e145]:
+                - combobox [ref=e146]:
+                  - generic [ref=e147]: L3
+                  - img: ▼
+                - textbox [ref=e148]: L3
+            - generic [ref=e149]:
+              - generic [ref=e150]: Contractor Contact
+              - generic [ref=e151]:
+                - switch [checked] [ref=e152]
+                - checkbox [checked] [ref=e153]
+              - generic [ref=e154]:
+                - switch [ref=e155]
+                - checkbox [ref=e156]
+              - generic [ref=e157]:
+                - combobox [ref=e158]:
+                  - img: ▼
+                - textbox [ref=e159]
+              - generic [ref=e160]:
+                - switch [checked] [ref=e161]
+                - checkbox [checked] [ref=e162]
+              - generic [ref=e163]:
+                - combobox [ref=e164]:
+                  - generic [ref=e165]: L3
+                  - img: ▼
+                - textbox [ref=e166]: L3
+            - generic [ref=e167]:
+              - generic [ref=e168]: Flat Schedule
+              - generic [ref=e169]:
+                - switch [checked] [ref=e170]
+                - checkbox [checked] [ref=e171]
+              - generic [ref=e172]:
+                - switch [ref=e173]
+                - checkbox [ref=e174]
+              - generic [ref=e175]:
+                - combobox [ref=e176]:
+                  - img: ▼
+                - textbox [ref=e177]
+              - generic [ref=e178]:
+                - switch [checked] [ref=e179]
+                - checkbox [checked] [ref=e180]
+              - generic [ref=e181]:
+                - combobox [ref=e182]:
+                  - generic [ref=e183]: L4
+                  - img: ▼
+                - textbox [ref=e184]: L4
+            - generic [ref=e185]:
+              - generic [ref=e186]: Labeling
+              - generic [ref=e187]:
+                - switch [checked] [ref=e188]
+                - checkbox [checked] [ref=e189]
+              - generic [ref=e190]:
+                - switch [ref=e191]
+                - checkbox [ref=e192]
+              - generic [ref=e193]:
+                - combobox [ref=e194]:
+                  - img: ▼
+                - textbox [ref=e195]
+              - generic [ref=e196]:
+                - switch [checked] [ref=e197]
+                - checkbox [checked] [ref=e198]
+              - generic [ref=e199]:
+                - combobox [ref=e200]:
+                  - generic [ref=e201]: L4
+                  - img: ▼
+                - textbox [ref=e202]: L4

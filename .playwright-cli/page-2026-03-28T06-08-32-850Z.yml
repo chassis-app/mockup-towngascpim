@@ -1,0 +1,217 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [expanded] [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+            - list [ref=e26]:
+              - listitem [ref=e27]:
+                - link "Project Management" [ref=e28] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/information
+                  - generic [ref=e29]: Project Management
+              - listitem [ref=e30]:
+                - link "Approvals" [ref=e31] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/approvals
+                  - generic [ref=e32]: Approvals
+              - listitem [ref=e33]:
+                - link "Tasks" [ref=e34] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e35]: Tasks
+              - listitem [ref=e36]:
+                - link "Resources" [ref=e37] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources
+                  - generic [ref=e38]: Resources
+              - listitem [ref=e39]:
+                - link "CPIM Template" [ref=e40] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-template
+                  - generic [ref=e41]: CPIM Template
+              - listitem [ref=e42]:
+                - link "CPIM Reports" [ref=e43] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-reports
+                  - generic [ref=e44]: CPIM Reports
+              - listitem [ref=e45]:
+                - link "Role Access" [ref=e46] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e47]: Role Access
+              - listitem [ref=e48]:
+                - link "Contractor Master" [ref=e49] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/contractor-master
+                  - generic [ref=e50]: Contractor Master
+              - listitem [ref=e51]:
+                - link "BOM Maintenance" [ref=e52] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/bom-maintenance
+                  - generic [ref=e53]: BOM Maintenance
+              - listitem [ref=e54]:
+                - link "Tenderer Group" [ref=e55] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tenderer-group
+                  - generic [ref=e56]: Tenderer Group
+              - listitem [ref=e57]:
+                - link "Generic Report" [ref=e58] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/generic-report
+                  - generic [ref=e59]: Generic Report
+              - listitem [ref=e60]:
+                - link "Knowledge Management" [ref=e61] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/knowledge-management
+                  - generic [ref=e62]: Knowledge Management
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - button "Administration" [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e70]: Administration
+              - img [ref=e71]
+      - list [ref=e74]:
+        - listitem [ref=e75]:
+          - button "TG Administration CPIM Navigation" [ref=e76]:
+            - generic [ref=e78]: TG
+            - generic [ref=e79]:
+              - generic [ref=e80]: Administration
+              - generic [ref=e81]: CPIM Navigation
+            - img [ref=e82]
+      - button "Toggle Sidebar" [ref=e84]
+    - main [ref=e85]:
+      - generic [ref=e87]:
+        - button "Toggle Sidebar" [ref=e88]:
+          - img
+          - generic [ref=e89]: Toggle Sidebar
+        - separator [ref=e90]
+        - navigation "breadcrumb" [ref=e91]:
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Administration" [ref=e94] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e95]:
+              - img [ref=e96]
+            - listitem [ref=e98]:
+              - link "Project Center" [disabled] [ref=e99]
+      - main [ref=e100]:
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - generic [ref=e105]: Administration
+            - generic [ref=e106]: Project Management
+          - heading "Project Center" [level=1] [ref=e108]
+        - generic [ref=e112]:
+          - generic [ref=e113]:
+            - generic [ref=e114]: Today
+            - generic [ref=e115]:
+              - generic [ref=e116]: 2 March
+              - generic [ref=e117]: 12 March
+              - generic [ref=e118]: 22 March
+              - generic [ref=e119]: 1 April
+              - generic [ref=e120]: 11 April
+              - generic [ref=e121]: 21 April
+            - generic [ref=e122]: Add tasks with dates to the timeline
+          - table [ref=e125]:
+            - rowgroup [ref=e126]:
+              - row "Project Number Project Name Project Status Primary Contractor INS No. of b No. of flat" [ref=e127]:
+                - columnheader [ref=e128]
+                - columnheader "Project Number" [ref=e129]
+                - columnheader "Project Name" [ref=e130]
+                - columnheader "Project Status" [ref=e131]
+                - columnheader "Primary Contractor" [ref=e132]
+                - columnheader "INS" [ref=e133]
+                - columnheader "No. of b" [ref=e134]
+                - columnheader "No. of flat" [ref=e135]
+            - rowgroup [ref=e136]:
+              - row "+ RP20260004 victor 20260212 001 Planning" [ref=e137]:
+                - cell "+" [ref=e138]
+                - cell "RP20260004" [ref=e139]
+                - cell "victor 20260212 001" [ref=e140]
+                - cell "Planning" [ref=e141]
+                - cell [ref=e142]
+                - cell [ref=e143]
+                - cell [ref=e144]
+                - cell [ref=e145]
+              - row "+ RP20260003 Residential Development at Tung Chung Town Lot no 50(KC)) tes Planning" [ref=e146]:
+                - cell "+" [ref=e147]
+                - cell "RP20260003" [ref=e148]
+                - cell "Residential Development at Tung Chung Town Lot no 50(KC)) tes" [ref=e149]
+                - cell "Planning" [ref=e150]
+                - cell [ref=e151]
+                - cell [ref=e152]
+                - cell [ref=e153]
+                - cell [ref=e154]
+              - row "+ RP20260002 victor 20260109 002 invoice test Planning" [ref=e155]:
+                - cell "+" [ref=e156]
+                - cell "RP20260002" [ref=e157]
+                - cell "victor 20260109 002 invoice test" [ref=e158]
+                - cell "Planning" [ref=e159]
+                - cell [ref=e160]
+                - cell [ref=e161]
+                - cell [ref=e162]
+                - cell [ref=e163]
+              - row "+ RP20260001 victor 20260109 001 invoice test Completed 0" [ref=e164]:
+                - cell "+" [ref=e165]
+                - cell "RP20260001" [ref=e166]
+                - cell "victor 20260109 001 invoice test" [ref=e167]
+                - cell "Completed" [ref=e168]
+                - cell [ref=e169]
+                - cell [ref=e170]
+                - cell "0" [ref=e171]
+                - cell [ref=e172]
+              - row "+ RP20250063 victor 20251229 001 Planning 0" [ref=e173]:
+                - cell "+" [ref=e174]
+                - cell "RP20250063" [ref=e175]
+                - cell "victor 20251229 001" [ref=e176]
+                - cell "Planning" [ref=e177]
+                - cell [ref=e178]
+                - cell [ref=e179]
+                - cell "0" [ref=e180]
+                - cell [ref=e181]
+              - row "+ RP20250062 T_CEA_2025- Residential Sales Planning 0" [ref=e182]:
+                - cell "+" [ref=e183]
+                - cell "RP20250062" [ref=e184]
+                - cell "T_CEA_2025- Residential Sales" [ref=e185]
+                - cell "Planning" [ref=e186]
+                - cell [ref=e187]
+                - cell [ref=e188]
+                - cell "0" [ref=e189]
+                - cell [ref=e190]
+              - row "+ RP20250061 victor test internal generate invoice 003 Planning 0" [ref=e191]:
+                - cell "+" [ref=e192]
+                - cell "RP20250061" [ref=e193]
+                - cell "victor test internal generate invoice 003" [ref=e194]
+                - cell "Planning" [ref=e195]
+                - cell [ref=e196]
+                - cell [ref=e197]
+                - cell "0" [ref=e198]
+                - cell [ref=e199]
+              - row "+ RP20250060 victor test internal generate invoice 004 Planning 0" [ref=e200]:
+                - cell "+" [ref=e201]
+                - cell "RP20250060" [ref=e202]
+                - cell "victor test internal generate invoice 004" [ref=e203]
+                - cell "Planning" [ref=e204]
+                - cell [ref=e205]
+                - cell [ref=e206]
+                - cell "0" [ref=e207]
+                - cell [ref=e208]
+              - row "+ RP20250059 victor test internal generate invoice 002 Planning 0" [ref=e209]:
+                - cell "+" [ref=e210]
+                - cell "RP20250059" [ref=e211]
+                - cell "victor test internal generate invoice 002" [ref=e212]
+                - cell "Planning" [ref=e213]
+                - cell [ref=e214]
+                - cell [ref=e215]
+                - cell "0" [ref=e216]
+                - cell [ref=e217]
+              - row "+ RP20250058 victor test internal generate invoice 001 Planning 0" [ref=e218]:
+                - cell "+" [ref=e219]
+                - cell "RP20250058" [ref=e220]
+                - cell "victor test internal generate invoice 001" [ref=e221]
+                - cell "Planning" [ref=e222]
+                - cell [ref=e223]
+                - cell [ref=e224]
+                - cell "0" [ref=e225]
+                - cell [ref=e226]
+  - alert [ref=e227]

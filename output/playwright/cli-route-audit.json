@@ -1,0 +1,613 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "title": "PWA Settings",
+      "pageUrl": "http://127.0.0.1:3200/",
+      "finalPath": "/",
+      "h1": "PWA Settings",
+      "has404": false
+    },
+    {
+      "path": "/add-edit-template",
+      "title": "Add Edit Template",
+      "pageUrl": "http://127.0.0.1:3200/add-edit-template",
+      "finalPath": "/add-edit-template",
+      "h1": "Add or Edit Template",
+      "has404": false
+    },
+    {
+      "path": "/manage-view",
+      "title": "Manage View",
+      "pageUrl": "http://127.0.0.1:3200/manage-view",
+      "finalPath": "/manage-view",
+      "h1": "Manage Views",
+      "has404": false
+    },
+    {
+      "path": "/grouping-format",
+      "title": "Grouping Format",
+      "pageUrl": "http://127.0.0.1:3200/grouping-format",
+      "finalPath": "/grouping-format",
+      "h1": "Grouping Formats",
+      "has404": false
+    },
+    {
+      "path": "/gantt-chart-format",
+      "title": "Gantt Chart Format",
+      "pageUrl": "http://127.0.0.1:3200/gantt-chart-format",
+      "finalPath": "/gantt-chart-format",
+      "h1": "Gantt Chart Formats",
+      "has404": false
+    },
+    {
+      "path": "/quick-launch",
+      "title": "Quick Launch",
+      "pageUrl": "http://127.0.0.1:3200/quick-launch",
+      "finalPath": "/quick-launch",
+      "h1": "Quick Launch",
+      "has404": false
+    },
+    {
+      "path": "/my-queued-job",
+      "title": "My Queued Job",
+      "pageUrl": "http://127.0.0.1:3200/my-queued-job",
+      "finalPath": "/my-queued-job",
+      "h1": "Manage Timesheets",
+      "has404": false
+    },
+    {
+      "path": "/manage-delegate",
+      "title": "Manage Delegate",
+      "pageUrl": "http://127.0.0.1:3200/manage-delegate",
+      "finalPath": "/manage-delegate",
+      "h1": "Act as a Delegate",
+      "has404": false
+    },
+    {
+      "path": "/manage-delegates",
+      "title": "Manage Delegates",
+      "pageUrl": "http://127.0.0.1:3200/manage-delegates",
+      "finalPath": "/manage-delegates",
+      "h1": "Manage Delegates",
+      "has404": false
+    },
+    {
+      "path": "/manage-groups",
+      "title": "Manage Groups",
+      "pageUrl": "http://127.0.0.1:3200/manage-groups",
+      "finalPath": "/manage-groups",
+      "h1": "Manage Categories",
+      "has404": false
+    },
+    {
+      "path": "/manage-category",
+      "title": "Manage Category",
+      "pageUrl": "http://127.0.0.1:3200/manage-category",
+      "finalPath": "/manage-category",
+      "h1": "Manage Categories",
+      "has404": false
+    },
+    {
+      "path": "/manage-template",
+      "title": "Manage Template",
+      "pageUrl": "http://127.0.0.1:3200/manage-template",
+      "finalPath": "/manage-template",
+      "h1": "Manage Templates",
+      "has404": false
+    },
+    {
+      "path": "/manage-queue-jobs",
+      "title": "Manage Queue Jobs",
+      "pageUrl": "http://127.0.0.1:3200/manage-queue-jobs",
+      "finalPath": "/manage-queue-jobs",
+      "h1": "Manage Queue Jobs",
+      "has404": false
+    },
+    {
+      "path": "/manager-user",
+      "title": "Manager User",
+      "pageUrl": "http://127.0.0.1:3200/manager-user",
+      "finalPath": "/manager-user",
+      "h1": "Manage Templates",
+      "has404": false
+    },
+    {
+      "path": "/user-sync",
+      "title": "User Sync",
+      "pageUrl": "http://127.0.0.1:3200/user-sync",
+      "finalPath": "/user-sync",
+      "h1": "Active Directory Enterprise Resource Pool Synchronization",
+      "has404": false
+    },
+    {
+      "path": "/custom-field",
+      "title": "Custom Field",
+      "pageUrl": "http://127.0.0.1:3200/custom-field",
+      "finalPath": "/custom-field",
+      "h1": "Enterprise Custom Fields and Lookup Tables",
+      "has404": false
+    },
+    {
+      "path": "/custom-master-list",
+      "title": "Custom Master List",
+      "pageUrl": "http://127.0.0.1:3200/custom-master-list",
+      "finalPath": "/custom-master-list",
+      "h1": "Connected SharePoint Sites",
+      "has404": false
+    },
+    {
+      "path": "/contractor-master-list",
+      "title": "Contractor Master List",
+      "pageUrl": "http://127.0.0.1:3200/contractor-master-list",
+      "finalPath": "/contractor-master-list",
+      "h1": "BOM Maintenance",
+      "has404": false
+    },
+    {
+      "path": "/inspector-master-list",
+      "title": "Inspector Master List",
+      "pageUrl": "http://127.0.0.1:3200/inspector-master-list",
+      "finalPath": "/inspector-master-list",
+      "h1": "Inspection Master",
+      "has404": false
+    },
+    {
+      "path": "/enterprise-calendar",
+      "title": "Enterprise Calendar",
+      "pageUrl": "http://127.0.0.1:3200/enterprise-calendar",
+      "finalPath": "/enterprise-calendar",
+      "h1": "Enterprise Calendars",
+      "has404": false
+    },
+    {
+      "path": "/enterprise-project-type",
+      "title": "Enterprise Project Type",
+      "pageUrl": "http://127.0.0.1:3200/enterprise-project-type",
+      "finalPath": "/enterprise-project-type",
+      "h1": "Enterprise Project Types",
+      "has404": false
+    },
+    {
+      "path": "/fiscal-periods",
+      "title": "Fiscal Periods",
+      "pageUrl": "http://127.0.0.1:3200/fiscal-periods",
+      "finalPath": "/fiscal-periods",
+      "h1": "Fiscal Periods",
+      "has404": false
+    },
+    {
+      "path": "/line-classifications",
+      "title": "Line Classifications",
+      "pageUrl": "http://127.0.0.1:3200/line-classifications",
+      "finalPath": "/line-classifications",
+      "h1": "Grouping Formats",
+      "has404": false
+    },
+    {
+      "path": "/time-report-period",
+      "title": "Time Report Period",
+      "pageUrl": "http://127.0.0.1:3200/time-report-period",
+      "finalPath": "/time-report-period",
+      "h1": "Time Reporting Periods",
+      "has404": false
+    },
+    {
+      "path": "/timesheet-settings-and-defaults-1",
+      "title": "Timesheet Settings and Defaults1",
+      "pageUrl": "http://127.0.0.1:3200/timesheet-settings-and-defaults-1",
+      "finalPath": "/timesheet-settings-and-defaults-1",
+      "h1": "Timesheet Settings and Defaults",
+      "has404": false
+    },
+    {
+      "path": "/timesheet-settings-and-defaults-2",
+      "title": "Timesheet Settings and Defaults2",
+      "pageUrl": "http://127.0.0.1:3200/timesheet-settings-and-defaults-2",
+      "finalPath": "/timesheet-settings-and-defaults-2",
+      "h1": "Timesheet Settings and Defaults",
+      "has404": false
+    },
+    {
+      "path": "/manage-timesheet",
+      "title": "Manage Timesheet",
+      "pageUrl": "http://127.0.0.1:3200/manage-timesheet",
+      "finalPath": "/manage-timesheet",
+      "h1": "Manage Timesheets",
+      "has404": false
+    },
+    {
+      "path": "/timesheet-manager",
+      "title": "Timesheet Manager",
+      "pageUrl": "http://127.0.0.1:3200/timesheet-manager",
+      "finalPath": "/timesheet-manager",
+      "h1": "Specify Timesheet Managers",
+      "has404": false
+    },
+    {
+      "path": "/additional-server-settings",
+      "title": "Additional Server Settings",
+      "pageUrl": "http://127.0.0.1:3200/additional-server-settings",
+      "finalPath": "/additional-server-settings",
+      "h1": "Act as a Delegate",
+      "has404": false
+    },
+    {
+      "path": "/connect-sharepoint-site",
+      "title": "Connect SharePoint Site",
+      "pageUrl": "http://127.0.0.1:3200/connect-sharepoint-site",
+      "finalPath": "/connect-sharepoint-site",
+      "h1": "Connected SharePoint Sites",
+      "has404": false
+    },
+    {
+      "path": "/delete-enterprise-object",
+      "title": "Delete Enterprise Object",
+      "pageUrl": "http://127.0.0.1:3200/delete-enterprise-object",
+      "finalPath": "/delete-enterprise-object",
+      "h1": "Delete Enterprise Objects",
+      "has404": false
+    },
+    {
+      "path": "/force-check-in-enterprise-object",
+      "title": "Force Check-in Enterprise Object",
+      "pageUrl": "http://127.0.0.1:3200/force-check-in-enterprise-object",
+      "finalPath": "/force-check-in-enterprise-object",
+      "h1": "Force Check-in Enterprise Objects",
+      "has404": false
+    },
+    {
+      "path": "/report",
+      "title": "Report",
+      "pageUrl": "http://127.0.0.1:3200/report",
+      "finalPath": "/report",
+      "h1": "Reporting",
+      "has404": false
+    },
+    {
+      "path": "/administrative-time",
+      "title": "Administrative Time",
+      "pageUrl": "http://127.0.0.1:3200/administrative-time",
+      "finalPath": "/administrative-time",
+      "h1": "Active Directory Enterprise Resource Pool Synchronization",
+      "has404": false
+    },
+    {
+      "path": "/task-setting-and-display",
+      "title": "Task Setting and Display",
+      "pageUrl": "http://127.0.0.1:3200/task-setting-and-display",
+      "finalPath": "/task-setting-and-display",
+      "h1": "Task Settings and Display",
+      "has404": false
+    },
+    {
+      "path": "/workflow-phase",
+      "title": "Workflow Phase",
+      "pageUrl": "http://127.0.0.1:3200/workflow-phase",
+      "finalPath": "/workflow-phase",
+      "h1": "Workflow Phases",
+      "has404": false
+    },
+    {
+      "path": "/workflow-stage",
+      "title": "Workflow Stage",
+      "pageUrl": "http://127.0.0.1:3200/workflow-stage",
+      "finalPath": "/workflow-stage",
+      "h1": "Workflow Stages",
+      "has404": false
+    },
+    {
+      "path": "/change-restart-skip-workflow",
+      "title": "ChangeRestartSkip Workflow",
+      "pageUrl": "http://127.0.0.1:3200/change-restart-skip-workflow",
+      "finalPath": "/change-restart-skip-workflow",
+      "h1": "Change or Restart Workflows",
+      "has404": false
+    },
+    {
+      "path": "/project-center",
+      "title": "Project Center",
+      "pageUrl": "http://127.0.0.1:3200/project-center",
+      "finalPath": "/project-center",
+      "h1": "Project Center",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/information",
+      "title": "Project Information",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/information",
+      "finalPath": "/projects/rp-20250059/information",
+      "h1": "Project Information (RP)",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/schedule",
+      "title": "Project Schedule",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/schedule",
+      "finalPath": "/projects/rp-20250059/schedule",
+      "h1": "Schedule",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/schedule-1",
+      "title": "Project Schedule1",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/schedule-1",
+      "finalPath": "/projects/rp-20250059/schedule-1",
+      "h1": "Schedule",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-status",
+      "title": "Project Status",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-status",
+      "finalPath": "/projects/rp-20250059/project-status",
+      "h1": "Project Status",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-site",
+      "title": "Project Site",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-site",
+      "finalPath": "/projects/rp-20250059/project-site",
+      "h1": "Project Site",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management",
+      "title": "Project Management",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management",
+      "finalPath": "/projects/rp-20250059/project-management",
+      "h1": "Project Management",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/approvals",
+      "title": "Approvals",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/approvals",
+      "finalPath": "/projects/rp-20250059/approvals",
+      "h1": "Approvals",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/tasks",
+      "title": "Project Task",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/tasks",
+      "finalPath": "/projects/rp-20250059/tasks",
+      "h1": "Project Task",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources",
+      "title": "Project Resource Center",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources",
+      "finalPath": "/projects/rp-20250059/resources",
+      "h1": "Project Resource Center",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/cpim-template",
+      "title": "CPIM Template",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/cpim-template",
+      "finalPath": "/projects/rp-20250059/cpim-template",
+      "h1": "CPIM Template",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/cpim-reports",
+      "title": "CPIM Reports",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/cpim-reports",
+      "finalPath": "/projects/rp-20250059/cpim-reports",
+      "h1": "CPIM Reports",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/role-access",
+      "title": "Role Access",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/role-access",
+      "finalPath": "/projects/rp-20250059/role-access",
+      "h1": "Role Access",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/contractor-master",
+      "title": "Contractor Master",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/contractor-master",
+      "finalPath": "/projects/rp-20250059/contractor-master",
+      "h1": "Contractor Master",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/customer-master",
+      "title": "Customer Master",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/customer-master",
+      "finalPath": "/projects/rp-20250059/customer-master",
+      "h1": "Customer Master",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/inspection-master",
+      "title": "Inspection Master",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/inspection-master",
+      "finalPath": "/projects/rp-20250059/inspection-master",
+      "h1": "Inspection Master",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/alert-dashboard",
+      "title": "Alert Dashboard",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/alert-dashboard",
+      "finalPath": "/projects/rp-20250059/alert-dashboard",
+      "h1": "Alert Dashboard",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/bom-maintenance",
+      "title": "BOM Maintenance",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/bom-maintenance",
+      "finalPath": "/projects/rp-20250059/bom-maintenance",
+      "h1": "BOM Maintenance",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/tenderer-group",
+      "title": "Tenderer Group",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/tenderer-group",
+      "finalPath": "/projects/rp-20250059/tenderer-group",
+      "h1": "Tenderer Group",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/generic-report",
+      "title": "Generic Report",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/generic-report",
+      "finalPath": "/projects/rp-20250059/generic-report",
+      "h1": "Generic Report",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/knowledge-management",
+      "title": "Knowledge Management",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/knowledge-management",
+      "finalPath": "/projects/rp-20250059/knowledge-management",
+      "h1": "Knowledge Management",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/create-project",
+      "title": "Project Management - create project",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/create-project",
+      "finalPath": "/projects/rp-20250059/project-management/create-project",
+      "h1": "Create a new project",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/create-project-template",
+      "title": "Project Management - Create project template page 1",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/create-project-template",
+      "finalPath": "/projects/rp-20250059/project-management/create-project-template",
+      "h1": "Create project template",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/build-team",
+      "title": "Project Management - build team",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/build-team",
+      "finalPath": "/projects/rp-20250059/project-management/build-team",
+      "h1": "Build Team",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/project-permissions",
+      "title": "Project Management - Project Permissions",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/project-permissions",
+      "finalPath": "/projects/rp-20250059/project-management/project-permissions",
+      "h1": "Project Permissions: victor 20260212 001",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/risk",
+      "title": "Project Management - Risk",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/risk",
+      "finalPath": "/projects/rp-20250059/project-management/risk",
+      "h1": "Risks",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/issues",
+      "title": "Project Management - Issue Management",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/issues",
+      "finalPath": "/projects/rp-20250059/project-management/issues",
+      "h1": "Issues Management",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/deliverables",
+      "title": "Project Management - Deliverables",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/deliverables",
+      "finalPath": "/projects/rp-20250059/project-management/deliverables",
+      "h1": "Deliverables",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/project-status",
+      "title": "Project Management - project status",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/project-status",
+      "finalPath": "/projects/rp-20250059/project-management/project-status",
+      "h1": "Project Status",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/project-management/task-bar",
+      "title": "Project Management - TaskBar",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/project-management/task-bar",
+      "finalPath": "/projects/rp-20250059/project-management/task-bar",
+      "h1": "Task Bar",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/task-bar",
+      "title": "Project Management -Task Bar",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/task-bar",
+      "finalPath": "/projects/rp-20250059/task-bar",
+      "h1": "Task Bar",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/tasks/new",
+      "title": "Project New Task",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/tasks/new",
+      "finalPath": "/projects/rp-20250059/tasks/new",
+      "h1": "New Task",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources/new-1",
+      "title": "Project New Resource1",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources/new-1",
+      "finalPath": "/projects/rp-20250059/resources/new-1",
+      "h1": "New Resource",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources/new-2",
+      "title": "Project New Resource2",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources/new-2",
+      "finalPath": "/projects/rp-20250059/resources/new-2",
+      "h1": "New Resource",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources/new-3",
+      "title": "Project New Resource3",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources/new-3",
+      "finalPath": "/projects/rp-20250059/resources/new-3",
+      "h1": "New Resource",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources/new-4",
+      "title": "Project New Resource4",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources/new-4",
+      "finalPath": "/projects/rp-20250059/resources/new-4",
+      "h1": "New Resource",
+      "has404": false
+    },
+    {
+      "path": "/projects/rp-20250059/resources/new-5",
+      "title": "Project New Resource5",
+      "pageUrl": "http://127.0.0.1:3200/projects/rp-20250059/resources/new-5",
+      "finalPath": "/projects/rp-20250059/resources/new-5",
+      "h1": "New Resource",
+      "has404": false
+    },
+    {
+      "path": "/project-task-reassign",
+      "title": "Project Task Reassign",
+      "pageUrl": "http://127.0.0.1:3200/project-task-reassign",
+      "finalPath": "/project-task-reassign",
+      "h1": "Task Reassignment",
+      "has404": false
+    }
+  ],
+  "failures": []
+}

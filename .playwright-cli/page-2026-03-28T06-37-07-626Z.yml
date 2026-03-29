@@ -1,0 +1,238 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Overview" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Overview
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Workspace" [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Workspace
+              - img [ref=e33]
+        - list [ref=e36]:
+          - listitem [ref=e37]:
+            - button "Project Management" [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]: Project Management
+              - img [ref=e43]
+        - list [ref=e46]:
+          - listitem [ref=e47]:
+            - button "Tasks" [ref=e48]:
+              - img [ref=e49]
+              - generic [ref=e52]: Tasks
+              - img [ref=e53]
+        - list [ref=e56]:
+          - listitem [ref=e57]:
+            - button "Resources" [ref=e58]:
+              - img [ref=e59]
+              - generic [ref=e62]: Resources
+              - img [ref=e63]
+        - list [ref=e66]:
+          - listitem [ref=e67]:
+            - button "Role Access" [expanded] [ref=e68]:
+              - img [ref=e69]
+              - generic [ref=e72]: Role Access
+              - img [ref=e73]
+            - list [ref=e76]:
+              - listitem [ref=e77]:
+                - link "Role Access Home" [ref=e78] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e79]: Role Access Home
+              - listitem [ref=e80]:
+                - link "Role Access1" [ref=e81] [cursor=pointer]:
+                  - /url: /role-access/1
+                  - generic [ref=e82]: Role Access1
+              - listitem [ref=e83]:
+                - link "Role Access2" [ref=e84] [cursor=pointer]:
+                  - /url: /role-access/2
+                  - generic [ref=e85]: Role Access2
+              - listitem [ref=e86]:
+                - link "Role Access3" [ref=e87] [cursor=pointer]:
+                  - /url: /role-access/3
+                  - generic [ref=e88]: Role Access3
+        - list [ref=e90]:
+          - listitem [ref=e91]:
+            - button "Utilities" [ref=e92]:
+              - img [ref=e93]
+              - generic [ref=e96]: Utilities
+              - img [ref=e97]
+      - list [ref=e100]:
+        - listitem [ref=e101]:
+          - button "TG Project Workspace victor test internal" [ref=e102]:
+            - generic [ref=e104]: TG
+            - generic [ref=e105]:
+              - generic [ref=e106]: Project Workspace
+              - generic [ref=e107]: victor test internal
+            - img [ref=e108]
+      - button "Toggle Sidebar" [ref=e110]
+    - main [ref=e111]:
+      - generic [ref=e113]:
+        - button "Toggle Sidebar" [ref=e114]:
+          - img
+          - generic [ref=e115]: Toggle Sidebar
+        - separator [ref=e116]
+        - navigation "breadcrumb" [ref=e117]:
+          - list [ref=e118]:
+            - listitem [ref=e119]:
+              - link "Project Workspace" [ref=e120] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e121]:
+              - img [ref=e122]
+            - listitem [ref=e124]:
+              - link "Quick Launch" [disabled] [ref=e125]
+      - main [ref=e126]:
+        - generic [ref=e127]:
+          - generic [ref=e129]:
+            - generic [ref=e131]: Project Workspace
+            - generic [ref=e132]:
+              - heading "Quick Launch" [level=1] [ref=e133]
+              - generic [ref=e134]:
+                - generic [ref=e135]: victor test internal
+                - generic [ref=e136]: generate invoice 002
+          - generic [ref=e138]:
+            - link "Project Information (RP)" [ref=e139] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+            - link "Schedule" [ref=e140] [cursor=pointer]:
+              - /url: /projects/rp-20250059/schedule
+            - link "Project Status" [ref=e141] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-status
+            - link "Project Site" [ref=e142] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-site
+            - link "Project Management" [ref=e143] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-management
+            - link "Approvals" [ref=e144] [cursor=pointer]:
+              - /url: /projects/rp-20250059/approvals
+            - link "Tasks" [ref=e145] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tasks
+            - link "Resources" [ref=e146] [cursor=pointer]:
+              - /url: /projects/rp-20250059/resources
+            - link "CPIM Template" [ref=e147] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-template
+            - link "CPIM Reports" [ref=e148] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-reports
+            - link "Role Access" [ref=e149] [cursor=pointer]:
+              - /url: /projects/rp-20250059/role-access
+            - link "Contractor Master" [ref=e150] [cursor=pointer]:
+              - /url: /projects/rp-20250059/contractor-master
+            - link "Customer Master" [ref=e151] [cursor=pointer]:
+              - /url: /projects/rp-20250059/customer-master
+            - link "Inspection Master" [ref=e152] [cursor=pointer]:
+              - /url: /projects/rp-20250059/inspection-master
+            - link "Alert Dashboard" [ref=e153] [cursor=pointer]:
+              - /url: /projects/rp-20250059/alert-dashboard
+            - link "BOM Maintenance" [ref=e154] [cursor=pointer]:
+              - /url: /projects/rp-20250059/bom-maintenance
+            - link "Tenderer Group" [ref=e155] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tenderer-group
+            - link "Generic Report" [ref=e156] [cursor=pointer]:
+              - /url: /projects/rp-20250059/generic-report
+            - link "Knowledge Management" [ref=e157] [cursor=pointer]:
+              - /url: /projects/rp-20250059/knowledge-management
+            - link "EDIT LINKS" [ref=e158] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - generic [ref=e163]: Navigation
+            - generic [ref=e164]: Modify Quick Launch Items
+          - table [ref=e167]:
+            - rowgroup [ref=e168]:
+              - row "Name Custom Name Custom URL Display in Quick Launch" [ref=e169]:
+                - columnheader "Name" [ref=e170]
+                - columnheader "Custom Name" [ref=e171]
+                - columnheader "Custom URL" [ref=e172]
+                - columnheader "Display in Quick Launch" [ref=e173]
+            - rowgroup [ref=e174]:
+              - row "Projects Project Management" [ref=e175]:
+                - cell "Projects" [ref=e176]
+                - cell "Project Management" [ref=e177]
+                - cell [ref=e178]
+                - cell [ref=e179]:
+                  - checkbox [checked] [ref=e180]:
+                    - img [ref=e182]
+                  - checkbox [checked] [ref=e184]
+              - row "Approvals" [ref=e185]:
+                - cell "Approvals" [ref=e186]
+                - cell [ref=e187]
+                - cell [ref=e188]
+                - cell [ref=e189]:
+                  - checkbox [checked] [ref=e190]:
+                    - img [ref=e192]
+                  - checkbox [checked] [ref=e194]
+              - row "Tasks" [ref=e195]:
+                - cell "Tasks" [ref=e196]
+                - cell [ref=e197]
+                - cell [ref=e198]
+                - cell [ref=e199]:
+                  - checkbox [checked] [ref=e200]:
+                    - img [ref=e202]
+                  - checkbox [checked] [ref=e204]
+              - row "Resources" [ref=e205]:
+                - cell "Resources" [ref=e206]
+                - cell [ref=e207]
+                - cell [ref=e208]
+                - cell [ref=e209]:
+                  - checkbox [checked] [ref=e210]:
+                    - img [ref=e212]
+                  - checkbox [checked] [ref=e214]
+              - row "CPIM Template" [ref=e215]:
+                - cell "CPIM Template" [ref=e216]
+                - cell [ref=e217]
+                - cell [ref=e218]
+                - cell [ref=e219]:
+                  - checkbox [checked] [ref=e220]:
+                    - img [ref=e222]
+                  - checkbox [checked] [ref=e224]
+              - row "CPIM Reports" [ref=e225]:
+                - cell "CPIM Reports" [ref=e226]
+                - cell [ref=e227]
+                - cell [ref=e228]
+                - cell [ref=e229]:
+                  - checkbox [checked] [ref=e230]:
+                    - img [ref=e232]
+                  - checkbox [checked] [ref=e234]
+              - row "Role Access" [ref=e235]:
+                - cell "Role Access" [ref=e236]
+                - cell [ref=e237]
+                - cell [ref=e238]
+                - cell [ref=e239]:
+                  - checkbox [checked] [ref=e240]:
+                    - img [ref=e242]
+                  - checkbox [checked] [ref=e244]
+              - row "Contractor Master" [ref=e245]:
+                - cell "Contractor Master" [ref=e246]
+                - cell [ref=e247]
+                - cell [ref=e248]
+                - cell [ref=e249]:
+                  - checkbox [checked] [ref=e250]:
+                    - img [ref=e252]
+                  - checkbox [checked] [ref=e254]
+              - row "Customer Master" [ref=e255]:
+                - cell "Customer Master" [ref=e256]
+                - cell [ref=e257]
+                - cell [ref=e258]
+                - cell [ref=e259]:
+                  - checkbox [checked] [ref=e260]:
+                    - img [ref=e262]
+                  - checkbox [checked] [ref=e264]
+              - row "Inspection Master" [ref=e265]:
+                - cell "Inspection Master" [ref=e266]
+                - cell [ref=e267]
+                - cell [ref=e268]
+                - cell [ref=e269]:
+                  - checkbox [checked] [ref=e270]:
+                    - img [ref=e272]
+                  - checkbox [checked] [ref=e274]
+  - alert [ref=e275]

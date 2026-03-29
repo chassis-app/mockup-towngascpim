@@ -1,0 +1,92 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: P
+          - generic [ref=e11]:
+            - generic [ref=e12]: PMO
+            - generic [ref=e13]: CPIMUAT
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Workspace" [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e22]: Workspace
+            - img [ref=e23]
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - button "Administration" [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e32]: Administration
+            - img [ref=e33]
+    - list [ref=e36]:
+      - listitem [ref=e37]:
+        - button "TG Administration CPIM Navigation" [ref=e38]:
+          - generic [ref=e40]: TG
+          - generic [ref=e41]:
+            - generic [ref=e42]: Administration
+            - generic [ref=e43]: CPIM Navigation
+          - img [ref=e44]
+    - button "Toggle Sidebar" [ref=e46]
+  - main [ref=e47]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - button "Toggle Sidebar" [ref=e50]:
+          - img
+          - generic [ref=e51]: Toggle Sidebar
+        - separator [ref=e52]
+        - navigation "breadcrumb" [ref=e53]:
+          - list [ref=e54]:
+            - listitem [ref=e55]:
+              - link "Administration" [ref=e56] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e57]:
+              - img [ref=e58]
+            - listitem [ref=e60]:
+              - link "Task Reassignment" [disabled] [ref=e61]
+      - generic [ref=e62]:
+        - button "Submit" [ref=e63]
+        - button "Cancel" [ref=e64]
+    - main [ref=e65]:
+      - generic [ref=e68]:
+        - generic [ref=e70]: Administration
+        - heading "Task Reassignment" [level=1] [ref=e72]
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]: Selection
+            - heading "Select New Resources" [level=2] [ref=e78]
+            - paragraph [ref=e79]: Select a resource for each task on the right. Submit pending changes prior to reassignment. Unsubmitted task changes will be lost when the task is reassigned.
+          - table [ref=e84]:
+            - rowgroup [ref=e85]:
+              - row "Task Name Current Resource Reassign To" [ref=e86]:
+                - columnheader "Task Name" [ref=e87]
+                - columnheader "Current Resource" [ref=e88]
+                - columnheader "Reassign To" [ref=e89]
+            - rowgroup [ref=e90]:
+              - row "victor 20260212 001" [ref=e91]:
+                - cell "victor 20260212 001" [ref=e92]
+                - cell [ref=e93]
+                - cell [ref=e94]
+              - row "TG Work Commencement Li Man Kin Select Resource" [ref=e95]:
+                - cell "TG Work Commencement" [ref=e96]
+                - cell "Li Man Kin" [ref=e97]
+                - cell "Select Resource" [ref=e98]
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]: Setup
+            - heading "Start Date" [level=2] [ref=e102]
+            - paragraph [ref=e103]: Specify the date you would like the new assignment resources to begin working on the task.
+          - generic [ref=e106]:
+            - generic [ref=e107]: Start
+            - textbox [ref=e108]: 10/06/2015
+        - generic [ref=e109]:
+          - generic [ref=e110]:
+            - generic [ref=e111]: Comments
+            - heading "Comments" [level=2] [ref=e112]
+            - paragraph [ref=e113]: Do you have any comments regarding this reassignments?
+          - generic [ref=e115]:
+            - generic [ref=e116]: Comments
+            - textbox [ref=e117]

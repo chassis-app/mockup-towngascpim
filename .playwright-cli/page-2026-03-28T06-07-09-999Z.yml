@@ -1,0 +1,147 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration" [expanded] [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration
+              - img [ref=e33]
+            - list [ref=e36]:
+              - listitem [ref=e37]:
+                - link "PWA Settings" [ref=e38] [cursor=pointer]:
+                  - /url: /
+                  - generic [ref=e39]: PWA Settings
+              - listitem [ref=e40]:
+                - link "Manage Views" [ref=e41] [cursor=pointer]:
+                  - /url: /manage-view
+                  - generic [ref=e42]: Manage Views
+              - listitem [ref=e43]:
+                - link "Quick Launch" [ref=e44] [cursor=pointer]:
+                  - /url: /quick-launch
+                  - generic [ref=e45]: Quick Launch
+              - listitem [ref=e46]:
+                - link "Manage Templates" [ref=e47] [cursor=pointer]:
+                  - /url: /manage-template
+                  - generic [ref=e48]: Manage Templates
+              - listitem [ref=e49]:
+                - link "Manage Delegates" [ref=e50] [cursor=pointer]:
+                  - /url: /manage-delegates
+                  - generic [ref=e51]: Manage Delegates
+              - listitem [ref=e52]:
+                - link "Time Reporting Periods" [ref=e53] [cursor=pointer]:
+                  - /url: /time-report-period
+                  - generic [ref=e54]: Time Reporting Periods
+              - listitem [ref=e55]:
+                - link "Reporting" [ref=e56] [cursor=pointer]:
+                  - /url: /report
+                  - generic [ref=e57]: Reporting
+      - list [ref=e59]:
+        - listitem [ref=e60]:
+          - button "TG Administration CPIM Navigation" [ref=e61]:
+            - generic [ref=e63]: TG
+            - generic [ref=e64]:
+              - generic [ref=e65]: Administration
+              - generic [ref=e66]: CPIM Navigation
+            - img [ref=e67]
+      - button "Toggle Sidebar" [ref=e69]
+    - main [ref=e70]:
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - button "Toggle Sidebar" [ref=e73]:
+            - img
+            - generic [ref=e74]: Toggle Sidebar
+          - separator [ref=e75]
+          - navigation "breadcrumb" [ref=e76]:
+            - list [ref=e77]:
+              - listitem [ref=e78]:
+                - link "Administration" [ref=e79] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e80]:
+                - img [ref=e81]
+              - listitem [ref=e83]:
+                - link "Time Reporting Periods" [disabled] [ref=e84]
+        - button "Create Periods" [ref=e86]
+      - main [ref=e87]:
+        - generic [ref=e90]:
+          - generic [ref=e92]: Administration
+          - heading "Time Reporting Periods" [level=1] [ref=e94]
+        - generic [ref=e96]:
+          - generic [ref=e99]:
+            - heading "Define Bulk Period Parameters" [level=2] [ref=e100]
+            - paragraph [ref=e101]: You can simultaneously create multiple periods by using the bulk period creation option. Before you use the option, specify the parameters in this section and the naming convention in Section 2.
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]: Setup
+              - heading "Bulk Creation" [level=2] [ref=e105]
+              - paragraph [ref=e106]: Set the start date, number of periods, and the standard period length.
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]: Number of periods to be created
+                - textbox [ref=e111]: "12"
+              - generic [ref=e112]:
+                - generic [ref=e113]: Date the first period starts
+                - textbox [ref=e114]: 11/03/2026
+              - generic [ref=e115]:
+                - generic [ref=e116]: Length of the standard period (days)
+                - textbox [ref=e117]: "7"
+          - generic [ref=e120]:
+            - heading "Define Batch Naming Convention" [level=2] [ref=e121]
+            - paragraph [ref=e122]: When you create multiple time reporting periods, it is recommended to use a unique name format composed of prefix, sequence number, and suffix.
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e125]: Setup
+              - heading "Naming Convention" [level=2] [ref=e126]
+              - paragraph [ref=e127]: Configure the period label format before creating the batch.
+            - generic [ref=e129]:
+              - generic [ref=e130]:
+                - generic [ref=e131]: Prefix
+                - textbox [ref=e132]: TP-
+              - generic [ref=e133]:
+                - generic [ref=e134]: Sequence Number
+                - textbox [ref=e135]: "001"
+              - generic [ref=e136]:
+                - generic [ref=e137]: Suffix
+                - textbox [ref=e138]
+              - generic [ref=e139]:
+                - generic [ref=e140]: Sample
+                - textbox [ref=e141]: TP-001
+          - table [ref=e146]:
+            - rowgroup [ref=e147]:
+              - row "Period Label Start Date End Date Status" [ref=e148]:
+                - columnheader "Period Label" [ref=e149]
+                - columnheader "Start Date" [ref=e150]
+                - columnheader "End Date" [ref=e151]
+                - columnheader "Status" [ref=e152]
+            - rowgroup [ref=e153]:
+              - row "TP-001 11/03/2026 17/03/2026 Open" [ref=e154]:
+                - cell "TP-001" [ref=e155]
+                - cell "11/03/2026" [ref=e156]
+                - cell "17/03/2026" [ref=e157]
+                - cell "Open" [ref=e158]
+              - row "TP-002 18/03/2026 24/03/2026 Open" [ref=e159]:
+                - cell "TP-002" [ref=e160]
+                - cell "18/03/2026" [ref=e161]
+                - cell "24/03/2026" [ref=e162]
+                - cell "Open" [ref=e163]
+              - row "TP-003 25/03/2026 31/03/2026 Planned" [ref=e164]:
+                - cell "TP-003" [ref=e165]
+                - cell "25/03/2026" [ref=e166]
+                - cell "31/03/2026" [ref=e167]
+                - cell "Planned" [ref=e168]
+  - alert [ref=e169]

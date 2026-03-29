@@ -1,0 +1,127 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration" [expanded] [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration
+              - img [ref=e33]
+            - list [ref=e36]:
+              - listitem [ref=e37]:
+                - link "PWA Settings" [ref=e38] [cursor=pointer]:
+                  - /url: /
+                  - generic [ref=e39]: PWA Settings
+              - listitem [ref=e40]:
+                - link "Manage Views" [ref=e41] [cursor=pointer]:
+                  - /url: /manage-view
+                  - generic [ref=e42]: Manage Views
+              - listitem [ref=e43]:
+                - link "Quick Launch" [ref=e44] [cursor=pointer]:
+                  - /url: /quick-launch
+                  - generic [ref=e45]: Quick Launch
+              - listitem [ref=e46]:
+                - link "Manage Templates" [ref=e47] [cursor=pointer]:
+                  - /url: /manage-template
+                  - generic [ref=e48]: Manage Templates
+              - listitem [ref=e49]:
+                - link "Manage Delegates" [ref=e50] [cursor=pointer]:
+                  - /url: /manage-delegates
+                  - generic [ref=e51]: Manage Delegates
+              - listitem [ref=e52]:
+                - link "Time Reporting Periods" [ref=e53] [cursor=pointer]:
+                  - /url: /time-report-period
+                  - generic [ref=e54]: Time Reporting Periods
+              - listitem [ref=e55]:
+                - link "Reporting" [ref=e56] [cursor=pointer]:
+                  - /url: /report
+                  - generic [ref=e57]: Reporting
+      - list [ref=e59]:
+        - listitem [ref=e60]:
+          - button "TG Administration CPIM Navigation" [ref=e61]:
+            - generic [ref=e63]: TG
+            - generic [ref=e64]:
+              - generic [ref=e65]: Administration
+              - generic [ref=e66]: CPIM Navigation
+            - img [ref=e67]
+      - button "Toggle Sidebar" [ref=e69]
+    - main [ref=e70]:
+      - generic [ref=e72]:
+        - button "Toggle Sidebar" [ref=e73]:
+          - img
+          - generic [ref=e74]: Toggle Sidebar
+        - separator [ref=e75]
+        - navigation "breadcrumb" [ref=e76]:
+          - list [ref=e77]:
+            - listitem [ref=e78]:
+              - link "Administration" [ref=e79] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e80]:
+              - img [ref=e81]
+            - listitem [ref=e83]:
+              - link "Manage Delegates" [disabled] [ref=e84]
+      - main [ref=e85]:
+        - generic [ref=e88]:
+          - generic [ref=e90]: Administration
+          - heading "Manage Delegates" [level=1] [ref=e92]
+        - generic [ref=e96]:
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - generic [ref=e100]: Acting For
+              - textbox "User name" [ref=e101]
+            - generic [ref=e102]:
+              - generic [ref=e103]: Delegate Name
+              - textbox "Delegate name" [ref=e104]
+            - generic [ref=e105]:
+              - generic [ref=e106]: Status
+              - combobox [ref=e107]:
+                - generic [ref=e108]: Active
+                - img: ▼
+              - textbox [ref=e109]: Active
+          - generic [ref=e110]:
+            - button "New Delegate" [ref=e111]
+            - button "Delete" [ref=e112]
+          - separator [ref=e113]
+          - table [ref=e116]:
+            - rowgroup [ref=e117]:
+              - row "Delegate Name Acting For Start Date Finish Date Status" [ref=e118]:
+                - columnheader "Delegate Name" [ref=e119]
+                - columnheader "Acting For" [ref=e120]
+                - columnheader "Start Date" [ref=e121]
+                - columnheader "Finish Date" [ref=e122]
+                - columnheader "Status" [ref=e123]
+            - rowgroup [ref=e124]:
+              - row "andy.lam@ajpcorp.com victorcheng@ajpcorp.com 24 Mar 2026 31 Mar 2026 Active" [ref=e125]:
+                - cell "andy.lam@ajpcorp.com" [ref=e126]
+                - cell "victorcheng@ajpcorp.com" [ref=e127]
+                - cell "24 Mar 2026" [ref=e128]
+                - cell "31 Mar 2026" [ref=e129]
+                - cell "Active" [ref=e130]
+              - row "project.support@ajpcorp.com susan.chan@ajpcorp.com 18 Mar 2026 28 Mar 2026 Active" [ref=e131]:
+                - cell "project.support@ajpcorp.com" [ref=e132]
+                - cell "susan.chan@ajpcorp.com" [ref=e133]
+                - cell "18 Mar 2026" [ref=e134]
+                - cell "28 Mar 2026" [ref=e135]
+                - cell "Active" [ref=e136]
+              - row "inspection.team@ajpcorp.com kenny.wong@ajpcorp.com 01 Mar 2026 15 Mar 2026 Inactive" [ref=e137]:
+                - cell "inspection.team@ajpcorp.com" [ref=e138]
+                - cell "kenny.wong@ajpcorp.com" [ref=e139]
+                - cell "01 Mar 2026" [ref=e140]
+                - cell "15 Mar 2026" [ref=e141]
+                - cell "Inactive" [ref=e142]
+  - alert [ref=e143]

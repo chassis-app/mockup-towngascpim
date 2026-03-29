@@ -1,0 +1,130 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [expanded] [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+            - list [ref=e26]:
+              - listitem [ref=e27]:
+                - link "Project Management" [ref=e28] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/information
+                  - generic [ref=e29]: Project Management
+              - listitem [ref=e30]:
+                - link "Approvals" [ref=e31] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/approvals
+                  - generic [ref=e32]: Approvals
+              - listitem [ref=e33]:
+                - link "Tasks" [ref=e34] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e35]: Tasks
+              - listitem [ref=e36]:
+                - link "Resources" [ref=e37] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources
+                  - generic [ref=e38]: Resources
+              - listitem [ref=e39]:
+                - link "CPIM Template" [ref=e40] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-template
+                  - generic [ref=e41]: CPIM Template
+              - listitem [ref=e42]:
+                - link "CPIM Reports" [ref=e43] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-reports
+                  - generic [ref=e44]: CPIM Reports
+              - listitem [ref=e45]:
+                - link "Role Access" [ref=e46] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e47]: Role Access
+              - listitem [ref=e48]:
+                - link "Contractor Master" [ref=e49] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/contractor-master
+                  - generic [ref=e50]: Contractor Master
+              - listitem [ref=e51]:
+                - link "BOM Maintenance" [ref=e52] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/bom-maintenance
+                  - generic [ref=e53]: BOM Maintenance
+              - listitem [ref=e54]:
+                - link "Tenderer Group" [ref=e55] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tenderer-group
+                  - generic [ref=e56]: Tenderer Group
+              - listitem [ref=e57]:
+                - link "Generic Report" [ref=e58] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/generic-report
+                  - generic [ref=e59]: Generic Report
+              - listitem [ref=e60]:
+                - link "Knowledge Management" [ref=e61] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/knowledge-management
+                  - generic [ref=e62]: Knowledge Management
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - button "Administration" [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e70]: Administration
+              - img [ref=e71]
+      - list [ref=e74]:
+        - listitem [ref=e75]:
+          - button "TG Administration CPIM Navigation" [ref=e76]:
+            - generic [ref=e78]: TG
+            - generic [ref=e79]:
+              - generic [ref=e80]: Administration
+              - generic [ref=e81]: CPIM Navigation
+            - img [ref=e82]
+      - button "Toggle Sidebar" [ref=e84]
+    - main [ref=e85]:
+      - generic [ref=e87]:
+        - button "Toggle Sidebar" [ref=e88]:
+          - img
+          - generic [ref=e89]: Toggle Sidebar
+        - separator [ref=e90]
+        - navigation "breadcrumb" [ref=e91]:
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Project Workspace" [ref=e94] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e95]:
+              - img [ref=e96]
+            - listitem [ref=e98]:
+              - link "Risks" [disabled] [ref=e99]
+      - main [ref=e100]:
+        - generic [ref=e103]:
+          - generic [ref=e105]: Project Workspace
+          - heading "Risks" [level=1] [ref=e107]
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - button "Add new item" [ref=e114]
+              - button "Edit in grid view" [ref=e115]
+              - button "Undo" [ref=e116]
+              - button "Share" [ref=e117]
+              - button "Copy link" [ref=e118]
+              - button "Export" [ref=e119]
+            - generic [ref=e120]:
+              - heading "Risks" [level=2] [ref=e121]
+              - generic [ref=e122]: All Active Risks
+              - generic [ref=e123]: All Closed Risks
+              - generic [ref=e124]: All Items
+          - table [ref=e126]:
+            - rowgroup [ref=e127]:
+              - row "Attachments ID Title Assigned To Status Probability Impact Due Date" [ref=e128]:
+                - columnheader "Attachments" [ref=e129]
+                - columnheader "ID" [ref=e130]
+                - columnheader "Title" [ref=e131]
+                - columnheader "Assigned To" [ref=e132]
+                - columnheader "Status" [ref=e133]
+                - columnheader "Probability" [ref=e134]
+                - columnheader "Impact" [ref=e135]
+                - columnheader "Due Date" [ref=e136]
+          - generic [ref=e137]:
+            - generic [ref=e139]: Welcome to your new list
+            - generic [ref=e140]: Select the New button to get started.
+  - alert [ref=e141]

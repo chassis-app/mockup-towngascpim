@@ -1,0 +1,27 @@
+[  134911ms] ReferenceError: getNearestWorkingDate is not defined
+    at scheduleTaskToStart (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:3145:27)
+    at eval (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2689:28)
+    at Array.forEach (<anonymous>)
+    at recalculateAutoSchedule (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2657:24)
+    at prepareTaskCollection (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2781:28)
+    at hydrateProject (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:2493:19)
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:80:27)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[  140946ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

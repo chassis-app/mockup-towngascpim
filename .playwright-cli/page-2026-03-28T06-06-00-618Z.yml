@@ -1,0 +1,145 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: P
+          - generic [ref=e11]:
+            - generic [ref=e12]: PMO
+            - generic [ref=e13]: CPIMUAT
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Workspace" [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e22]: Workspace
+            - img [ref=e23]
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - button "Administration" [expanded] [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e32]: Administration
+            - img [ref=e33]
+          - list [ref=e36]:
+            - listitem [ref=e37]:
+              - link "PWA Settings" [ref=e38] [cursor=pointer]:
+                - /url: /
+                - generic [ref=e39]: PWA Settings
+            - listitem [ref=e40]:
+              - link "Manage Views" [ref=e41] [cursor=pointer]:
+                - /url: /manage-view
+                - generic [ref=e42]: Manage Views
+            - listitem [ref=e43]:
+              - link "Quick Launch" [ref=e44] [cursor=pointer]:
+                - /url: /quick-launch
+                - generic [ref=e45]: Quick Launch
+            - listitem [ref=e46]:
+              - link "Manage Templates" [ref=e47] [cursor=pointer]:
+                - /url: /manage-template
+                - generic [ref=e48]: Manage Templates
+            - listitem [ref=e49]:
+              - link "Manage Delegates" [ref=e50] [cursor=pointer]:
+                - /url: /manage-delegates
+                - generic [ref=e51]: Manage Delegates
+            - listitem [ref=e52]:
+              - link "Time Reporting Periods" [ref=e53] [cursor=pointer]:
+                - /url: /time-report-period
+                - generic [ref=e54]: Time Reporting Periods
+            - listitem [ref=e55]:
+              - link "Reporting" [ref=e56] [cursor=pointer]:
+                - /url: /report
+                - generic [ref=e57]: Reporting
+    - list [ref=e59]:
+      - listitem [ref=e60]:
+        - button "TG Administration CPIM Navigation" [ref=e61]:
+          - generic [ref=e63]: TG
+          - generic [ref=e64]:
+            - generic [ref=e65]: Administration
+            - generic [ref=e66]: CPIM Navigation
+          - img [ref=e67]
+    - button "Toggle Sidebar" [ref=e69]
+  - main [ref=e70]:
+    - generic [ref=e72]:
+      - button "Toggle Sidebar" [ref=e73]:
+        - img
+        - generic [ref=e74]: Toggle Sidebar
+      - separator [ref=e75]
+      - navigation "breadcrumb" [ref=e76]:
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - link "Administration" [ref=e79] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e80]:
+            - img [ref=e81]
+          - listitem [ref=e83]:
+            - link "Manage Templates" [disabled] [ref=e84]
+    - main [ref=e85]:
+      - generic [ref=e88]:
+        - generic [ref=e90]: Administration
+        - heading "Manage Templates" [level=1] [ref=e92]
+      - generic [ref=e94]:
+        - tablist [ref=e97]:
+          - tab "All Templates" [selected] [ref=e98]
+          - tab "Project" [ref=e99]
+          - tab "Enterprise" [ref=e100]
+          - tab "Security" [ref=e101]
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - generic [ref=e105]: Data View
+            - generic [ref=e106]: Template Library
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: Template Name
+              - textbox "Template name" [ref=e111]
+            - generic [ref=e112]:
+              - generic [ref=e113]: Status
+              - combobox [ref=e114]:
+                - generic [ref=e115]: Active
+                - img: ▼
+              - textbox [ref=e116]: Active
+            - generic [ref=e117]:
+              - generic [ref=e118]: Scope
+              - combobox [ref=e119]:
+                - generic [ref=e120]: All
+                - img: ▼
+              - textbox [ref=e121]: All
+          - generic [ref=e122]:
+            - button "New Template" [ref=e123]
+            - button "Edit" [ref=e124]
+            - button "Copy" [ref=e125]
+            - button "Delete" [ref=e126]
+          - separator [ref=e127]
+          - table [ref=e130]:
+            - rowgroup [ref=e131]:
+              - row "Template Name Description Owner Modified Status" [ref=e132]:
+                - columnheader "Template Name" [ref=e133]
+                - columnheader "Description" [ref=e134]
+                - columnheader "Owner" [ref=e135]
+                - columnheader "Modified" [ref=e136]
+                - columnheader "Status" [ref=e137]
+            - rowgroup [ref=e138]:
+              - row "CPIM Group template of IT Security Administrator Enterprise security template for CPIM administrators System Administrator 24 Mar 2026 Active" [ref=e139]:
+                - cell "CPIM Group template of IT Security Administrator" [ref=e140]
+                - cell "Enterprise security template for CPIM administrators" [ref=e141]
+                - cell "System Administrator" [ref=e142]
+                - cell "24 Mar 2026" [ref=e143]
+                - cell "Active" [ref=e144]
+              - row "Project Controls Template Default access model for project control roles PMO Team 18 Mar 2026 Active" [ref=e145]:
+                - cell "Project Controls Template" [ref=e146]
+                - cell "Default access model for project control roles" [ref=e147]
+                - cell "PMO Team" [ref=e148]
+                - cell "18 Mar 2026" [ref=e149]
+                - cell "Active" [ref=e150]
+              - row "Inspection Read Only Read-only inspection access for field teams Quality Team 10 Mar 2026 Active" [ref=e151]:
+                - cell "Inspection Read Only" [ref=e152]
+                - cell "Read-only inspection access for field teams" [ref=e153]
+                - cell "Quality Team" [ref=e154]
+                - cell "10 Mar 2026" [ref=e155]
+                - cell "Active" [ref=e156]
+              - row "Contract Administration Security template for contractor coordination Operations Team 02 Mar 2026 Inactive" [ref=e157]:
+                - cell "Contract Administration" [ref=e158]
+                - cell "Security template for contractor coordination" [ref=e159]
+                - cell "Operations Team" [ref=e160]
+                - cell "02 Mar 2026" [ref=e161]
+                - cell "Inactive" [ref=e162]

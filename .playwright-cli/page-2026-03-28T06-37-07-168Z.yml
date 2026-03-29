@@ -1,0 +1,183 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Overview" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Overview
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Workspace" [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Workspace
+              - img [ref=e33]
+        - list [ref=e36]:
+          - listitem [ref=e37]:
+            - button "Project Management" [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]: Project Management
+              - img [ref=e43]
+        - list [ref=e46]:
+          - listitem [ref=e47]:
+            - button "Tasks" [expanded] [ref=e48]:
+              - img [ref=e49]
+              - generic [ref=e52]: Tasks
+              - img [ref=e53]
+            - list [ref=e56]:
+              - listitem [ref=e57]:
+                - link "Project Task" [ref=e58] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e59]: Project Task
+              - listitem [ref=e60]:
+                - link "Project New Task" [ref=e61] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks/new
+                  - generic [ref=e62]: Project New Task
+              - listitem [ref=e63]:
+                - link "Project Task Reassign" [ref=e64] [cursor=pointer]:
+                  - /url: /project-task-reassign
+                  - generic [ref=e65]: Project Task Reassign
+        - list [ref=e67]:
+          - listitem [ref=e68]:
+            - button "Resources" [ref=e69]:
+              - img [ref=e70]
+              - generic [ref=e73]: Resources
+              - img [ref=e74]
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - button "Role Access" [ref=e79]:
+              - img [ref=e80]
+              - generic [ref=e83]: Role Access
+              - img [ref=e84]
+        - list [ref=e87]:
+          - listitem [ref=e88]:
+            - button "Utilities" [ref=e89]:
+              - img [ref=e90]
+              - generic [ref=e93]: Utilities
+              - img [ref=e94]
+      - list [ref=e97]:
+        - listitem [ref=e98]:
+          - button "TG Project Workspace victor test internal" [ref=e99]:
+            - generic [ref=e101]: TG
+            - generic [ref=e102]:
+              - generic [ref=e103]: Project Workspace
+              - generic [ref=e104]: victor test internal
+            - img [ref=e105]
+      - button "Toggle Sidebar" [ref=e107]
+    - main [ref=e108]:
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - button "Toggle Sidebar" [ref=e111]:
+            - img
+            - generic [ref=e112]: Toggle Sidebar
+          - separator [ref=e113]
+          - navigation "breadcrumb" [ref=e114]:
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - link "Project Workspace" [ref=e117] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e118]:
+                - img [ref=e119]
+              - listitem [ref=e121]:
+                - link "Task Reassignment" [disabled] [ref=e122]
+        - generic [ref=e123]:
+          - button "Submit" [ref=e124]
+          - button "Cancel" [ref=e125]
+      - main [ref=e126]:
+        - generic [ref=e127]:
+          - generic [ref=e129]:
+            - generic [ref=e131]: Project Workspace
+            - generic [ref=e132]:
+              - heading "Task Reassignment" [level=1] [ref=e133]
+              - generic [ref=e134]:
+                - generic [ref=e135]: victor test internal
+                - generic [ref=e136]: generate invoice 002
+          - generic [ref=e138]:
+            - link "Project Information (RP)" [ref=e139] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+            - link "Schedule" [ref=e140] [cursor=pointer]:
+              - /url: /projects/rp-20250059/schedule
+            - link "Project Status" [ref=e141] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-status
+            - link "Project Site" [ref=e142] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-site
+            - link "Project Management" [ref=e143] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-management
+            - link "Approvals" [ref=e144] [cursor=pointer]:
+              - /url: /projects/rp-20250059/approvals
+            - link "Tasks" [ref=e145] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tasks
+            - link "Resources" [ref=e146] [cursor=pointer]:
+              - /url: /projects/rp-20250059/resources
+            - link "CPIM Template" [ref=e147] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-template
+            - link "CPIM Reports" [ref=e148] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-reports
+            - link "Role Access" [ref=e149] [cursor=pointer]:
+              - /url: /projects/rp-20250059/role-access
+            - link "Contractor Master" [ref=e150] [cursor=pointer]:
+              - /url: /projects/rp-20250059/contractor-master
+            - link "Customer Master" [ref=e151] [cursor=pointer]:
+              - /url: /projects/rp-20250059/customer-master
+            - link "Inspection Master" [ref=e152] [cursor=pointer]:
+              - /url: /projects/rp-20250059/inspection-master
+            - link "Alert Dashboard" [ref=e153] [cursor=pointer]:
+              - /url: /projects/rp-20250059/alert-dashboard
+            - link "BOM Maintenance" [ref=e154] [cursor=pointer]:
+              - /url: /projects/rp-20250059/bom-maintenance
+            - link "Tenderer Group" [ref=e155] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tenderer-group
+            - link "Generic Report" [ref=e156] [cursor=pointer]:
+              - /url: /projects/rp-20250059/generic-report
+            - link "Knowledge Management" [ref=e157] [cursor=pointer]:
+              - /url: /projects/rp-20250059/knowledge-management
+            - link "EDIT LINKS" [ref=e158] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - generic [ref=e163]: Selection
+              - heading "Select New Resources" [level=2] [ref=e164]
+              - paragraph [ref=e165]: Select a resource for each task on the right. Submit pending changes prior to reassignment. Unsubmitted task changes will be lost when the task is reassigned.
+            - table [ref=e170]:
+              - rowgroup [ref=e171]:
+                - row "Task Name Current Resource Reassign To" [ref=e172]:
+                  - columnheader "Task Name" [ref=e173]
+                  - columnheader "Current Resource" [ref=e174]
+                  - columnheader "Reassign To" [ref=e175]
+              - rowgroup [ref=e176]:
+                - row "victor 20260212 001" [ref=e177]:
+                  - cell "victor 20260212 001" [ref=e178]
+                  - cell [ref=e179]
+                  - cell [ref=e180]
+                - row "TG Work Commencement Li Man Kin Select Resource" [ref=e181]:
+                  - cell "TG Work Commencement" [ref=e182]
+                  - cell "Li Man Kin" [ref=e183]
+                  - cell "Select Resource" [ref=e184]
+          - generic [ref=e185]:
+            - generic [ref=e186]:
+              - generic [ref=e187]: Setup
+              - heading "Start Date" [level=2] [ref=e188]
+              - paragraph [ref=e189]: Specify the date you would like the new assignment resources to begin working on the task.
+            - generic [ref=e192]:
+              - generic [ref=e193]: Start
+              - textbox [ref=e194]: 10/06/2015
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]: Comments
+              - heading "Comments" [level=2] [ref=e198]
+              - paragraph [ref=e199]: Do you have any comments regarding this reassignments?
+            - generic [ref=e201]:
+              - generic [ref=e202]: Comments
+              - textbox [ref=e203]
+  - alert [ref=e204]

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 import { AppShell } from "@/components/mockup/app-shell";
+import { InteractiveScheduleSection } from "@/components/mockup/interactive-schedule-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,7 +44,6 @@ import type {
   PromptTextareaBlock,
   QuickLaunchMatrixBlock,
   RoleAccessMatrixBlock,
-  ScheduleBlock,
   TableBlock,
   TabsBlock,
   WorkflowTransferBlock,
@@ -85,7 +85,7 @@ function renderBlock(block: MockupBlock, index: number) {
     case "tabs":
       return <TabsSection key={index} block={block} />;
     case "schedule":
-      return <ScheduleSection key={index} block={block} />;
+      return <InteractiveScheduleSection key={index} block={block} />;
     case "role-access-matrix":
       return <RoleAccessMatrix key={index} block={block} />;
     case "quick-launch-matrix":
@@ -521,73 +521,6 @@ function TabsSection({ block }: { block: TabsBlock }) {
   );
 }
 
-function ScheduleSection({ block }: { block: ScheduleBlock }) {
-  return (
-    <section className="space-y-4">
-      <div className="mockup-section-shell overflow-hidden">
-        <div className="relative border-b border-border/70 bg-muted/30">
-          <div className="absolute left-[32%] top-[-1px] z-10 rounded-b-xl bg-primary px-3 py-1 text-sm text-primary-foreground shadow-[0_10px_20px_rgba(13,148,136,0.22)]">
-          Today
-          </div>
-          <div className="grid grid-cols-[30%_70%] border-b border-border/70 text-center text-[0.86rem] text-muted-foreground">
-            <div className="border-r border-border/70 py-3">{block.months[0]}</div>
-            <div className="py-3">{block.months.slice(1).join("          ")}</div>
-          </div>
-          <div className="py-2 text-center text-[0.95rem] text-muted-foreground">
-            {block.prompt}
-          </div>
-        </div>
-
-        <div className="grid min-h-[560px] overflow-hidden bg-white xl:grid-cols-[61%_39%]">
-          <div className="border-r border-border/70">
-          <Table className="mockup-table">
-            <TableHeader>
-              <TableRow>
-                {block.columns.map((column) => (
-                  <TableHead key={column}>{column}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {block.rows.map((row) => (
-                <TableRow key={`${row.taskName}-${row.id}`}>
-                  <TableCell className="w-12 text-center">
-                    {row.progress ? (
-                      <span className="inline-block h-5 w-5 rounded-full bg-[#ff7c7c] shadow-inner" />
-                    ) : null}
-                  </TableCell>
-                  <TableCell
-                    className={cn(
-                      "text-[#39444f]",
-                      row.emphasis && "font-semibold",
-                      row.indent === 1 && "pl-5",
-                      row.indent === 2 && "pl-9",
-                      row.indent === 3 && "pl-[3.25rem]",
-                    )}
-                  >
-                    {row.taskName}
-                  </TableCell>
-                  <TableCell>{row.id}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          </div>
-          <div className="relative bg-[linear-gradient(to_right,rgba(226,232,240,0.9)_1px,transparent_1px)] bg-[length:82px_100%]">
-            <div className="grid grid-cols-6 border-b border-border/70 text-center text-[0.82rem] text-muted-foreground">
-              {["T", "W", "T", "F", "S", "S"].map((day, index) => (
-                <div key={`${day}-${index}`} className="border-r border-border/50 py-2 last:border-r-0">
-                  {day}
-                </div>
-              ))}
-            </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(13,148,136,0.08),transparent_32%)]" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function RoleAccessMatrix({ block }: { block: RoleAccessMatrixBlock }) {
   return (

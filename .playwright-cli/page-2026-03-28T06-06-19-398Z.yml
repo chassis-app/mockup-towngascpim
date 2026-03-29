@@ -1,0 +1,74 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration" [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration
+              - img [ref=e33]
+      - list [ref=e36]:
+        - listitem [ref=e37]:
+          - button "TG Administration CPIM Navigation" [ref=e38]:
+            - generic [ref=e40]: TG
+            - generic [ref=e41]:
+              - generic [ref=e42]: Administration
+              - generic [ref=e43]: CPIM Navigation
+            - img [ref=e44]
+      - button "Toggle Sidebar" [ref=e46]
+    - main [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - button "Toggle Sidebar" [ref=e50]:
+            - img
+            - generic [ref=e51]: Toggle Sidebar
+          - separator [ref=e52]
+          - navigation "breadcrumb" [ref=e53]:
+            - list [ref=e54]:
+              - listitem [ref=e55]:
+                - link "Administration" [ref=e56] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e57]:
+                - img [ref=e58]
+              - listitem [ref=e60]:
+                - link "Active Directory Enterprise Resource Pool Synchronization" [disabled] [ref=e61]
+        - generic [ref=e62]:
+          - button "Save" [ref=e63]
+          - button "Synchronize Now" [ref=e64]
+      - main [ref=e65]:
+        - generic [ref=e68]:
+          - generic [ref=e70]: Administration
+          - heading "Active Directory Enterprise Resource Pool Synchronization" [level=1] [ref=e72]
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: Form Section
+            - generic [ref=e79]: Synchronization
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - generic [ref=e83]: Active Directory Group
+              - textbox [ref=e84]
+            - generic [ref=e85]:
+              - generic [ref=e86]: Synchronization Status
+              - generic [ref=e87]: The synchronization failed because the Active Directory group was empty or not found.
+            - generic [ref=e88]:
+              - generic [ref=e89]: Automatically reactivate inactive users found in Active Directory
+              - combobox [ref=e90]:
+                - generic [ref=e91]: Enabled
+                - img: ▼
+              - textbox [ref=e92]: Enabled
+  - alert [ref=e93]

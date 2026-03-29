@@ -1,0 +1,159 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: P
+          - generic [ref=e11]:
+            - generic [ref=e12]: PMO
+            - generic [ref=e13]: CPIMUAT
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Workspace" [expanded] [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e22]: Workspace
+            - img [ref=e23]
+          - list [ref=e26]:
+            - listitem [ref=e27]:
+              - link "Project Management" [ref=e28] [cursor=pointer]:
+                - /url: /projects/rp-20250059/information
+                - generic [ref=e29]: Project Management
+            - listitem [ref=e30]:
+              - link "Approvals" [ref=e31] [cursor=pointer]:
+                - /url: /projects/rp-20250059/approvals
+                - generic [ref=e32]: Approvals
+            - listitem [ref=e33]:
+              - link "Tasks" [ref=e34] [cursor=pointer]:
+                - /url: /projects/rp-20250059/tasks
+                - generic [ref=e35]: Tasks
+            - listitem [ref=e36]:
+              - link "Resources" [ref=e37] [cursor=pointer]:
+                - /url: /projects/rp-20250059/resources
+                - generic [ref=e38]: Resources
+            - listitem [ref=e39]:
+              - link "CPIM Template" [ref=e40] [cursor=pointer]:
+                - /url: /projects/rp-20250059/cpim-template
+                - generic [ref=e41]: CPIM Template
+            - listitem [ref=e42]:
+              - link "CPIM Reports" [ref=e43] [cursor=pointer]:
+                - /url: /projects/rp-20250059/cpim-reports
+                - generic [ref=e44]: CPIM Reports
+            - listitem [ref=e45]:
+              - link "Role Access" [ref=e46] [cursor=pointer]:
+                - /url: /projects/rp-20250059/role-access
+                - generic [ref=e47]: Role Access
+            - listitem [ref=e48]:
+              - link "Contractor Master" [ref=e49] [cursor=pointer]:
+                - /url: /projects/rp-20250059/contractor-master
+                - generic [ref=e50]: Contractor Master
+            - listitem [ref=e51]:
+              - link "BOM Maintenance" [ref=e52] [cursor=pointer]:
+                - /url: /projects/rp-20250059/bom-maintenance
+                - generic [ref=e53]: BOM Maintenance
+            - listitem [ref=e54]:
+              - link "Tenderer Group" [ref=e55] [cursor=pointer]:
+                - /url: /projects/rp-20250059/tenderer-group
+                - generic [ref=e56]: Tenderer Group
+            - listitem [ref=e57]:
+              - link "Generic Report" [ref=e58] [cursor=pointer]:
+                - /url: /projects/rp-20250059/generic-report
+                - generic [ref=e59]: Generic Report
+            - listitem [ref=e60]:
+              - link "Knowledge Management" [ref=e61] [cursor=pointer]:
+                - /url: /projects/rp-20250059/knowledge-management
+                - generic [ref=e62]: Knowledge Management
+      - list [ref=e64]:
+        - listitem [ref=e65]:
+          - button "Administration" [ref=e66]:
+            - img [ref=e67]
+            - generic [ref=e70]: Administration
+            - img [ref=e71]
+    - list [ref=e74]:
+      - listitem [ref=e75]:
+        - button "TG Administration CPIM Navigation" [ref=e76]:
+          - generic [ref=e78]: TG
+          - generic [ref=e79]:
+            - generic [ref=e80]: Administration
+            - generic [ref=e81]: CPIM Navigation
+          - img [ref=e82]
+    - button "Toggle Sidebar" [ref=e84]
+  - main [ref=e85]:
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - button "Toggle Sidebar" [ref=e88]:
+          - img
+          - generic [ref=e89]: Toggle Sidebar
+        - separator [ref=e90]
+        - navigation "breadcrumb" [ref=e91]:
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Project Workspace" [ref=e94] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e95]:
+              - img [ref=e96]
+            - listitem [ref=e98]:
+              - link "Create a new project" [disabled] [ref=e99]
+      - generic [ref=e100]:
+        - button "Save" [ref=e101]
+        - button "Cancel" [ref=e102]
+    - main [ref=e103]:
+      - generic [ref=e106]:
+        - generic [ref=e108]: Project Workspace
+        - heading "Create a new project" [level=1] [ref=e110]
+      - generic [ref=e112]:
+        - tablist [ref=e115]:
+          - tab "Step 1" [selected] [ref=e116]
+          - tab "Step 2" [ref=e117]
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e121]: Form Section
+            - generic [ref=e122]: Project Basics
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]: Name *
+              - textbox [ref=e127]
+            - generic [ref=e128]:
+              - generic [ref=e129]: Company Code *
+              - textbox [ref=e130]
+            - generic [ref=e131]:
+              - generic [ref=e132]: Project Type RSP
+              - textbox [ref=e133]
+            - generic [ref=e134]:
+              - generic [ref=e135]: Project District *
+              - textbox [ref=e136]
+        - generic [ref=e138]:
+          - generic [ref=e139]:
+            - generic [ref=e140]: Form Section
+            - generic [ref=e141]: Project Address
+          - generic [ref=e143]:
+            - generic [ref=e144]:
+              - generic [ref=e145]: Project Address Line1 *
+              - textbox [ref=e146]
+            - generic [ref=e147]:
+              - generic [ref=e148]: Project Address Line2
+              - textbox [ref=e149]
+            - generic [ref=e150]:
+              - generic [ref=e151]: Project Address Line3
+              - textbox [ref=e152]
+            - generic [ref=e153]:
+              - generic [ref=e154]: Project Address Line4
+              - textbox [ref=e155]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: Form Section
+            - generic [ref=e160]: Commercial Setup
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - generic [ref=e164]: Received Date
+              - textbox [ref=e165]: 25/03/2026
+            - generic [ref=e166]:
+              - generic [ref=e167]: Require Billing Job
+              - combobox [ref=e168]:
+                - generic [ref=e169]: "Yes"
+                - img: ▼
+              - textbox [ref=e170]: "Yes"
+            - generic [ref=e171]:
+              - generic [ref=e172]: Project Notes
+              - textbox [ref=e173]

@@ -42,7 +42,7 @@ export function AppShell({
   projectContext,
   children,
 }: AppShellProps) {
-  const isProjectPage = href.startsWith("/projects/");
+  const isProjectPage = Boolean(projectContext) || href.startsWith("/projects/");
 
   return (
     <SidebarProvider defaultOpen className="min-h-svh bg-transparent">

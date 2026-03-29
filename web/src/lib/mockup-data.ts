@@ -127,18 +127,111 @@ export type TabsBlock = {
   }[];
 };
 
+type ScheduleTone = "default" | "accent" | "warn" | "danger" | "success";
+
+type ScheduleBadge = {
+  label: string;
+  tone?: ScheduleTone;
+};
+
+type ScheduleMetric = {
+  label: string;
+  value: string;
+  note?: string;
+  tone?: ScheduleTone;
+};
+
+type ScheduleColumn = {
+  key: string;
+  label: string;
+  width?: string;
+  align?: "left" | "center" | "right";
+};
+
+type ScheduleTimelineSegment = {
+  start: number;
+  length?: number;
+};
+
+type ScheduleDependency = {
+  from: string;
+  to: string;
+  kind: "FS" | "SS" | "FF" | "SF";
+  driving?: boolean;
+};
+
+type ScheduleInspectorSection = {
+  title: string;
+  items: {
+    label: string;
+    value: string;
+    tone?: ScheduleTone;
+  }[];
+};
+
+type ScheduleDetailCard = {
+  title: string;
+  lines: string[];
+  tone?: ScheduleTone;
+};
+
 export type ScheduleBlock = {
   type: "schedule";
-  months: string[];
-  prompt: string;
-  columns: string[];
+  heading: string;
+  description: string;
+  featureBadges: ScheduleBadge[];
+  views: string[];
+  activeView: string;
+  controls: ScheduleBadge[];
+  metrics: ScheduleMetric[];
+  months: {
+    label: string;
+    span: number;
+  }[];
+  units: string[];
+  todayUnit: number;
+  shadedRanges?: {
+    start: number;
+    span: number;
+    label?: string;
+  }[];
+  columns: ScheduleColumn[];
   rows: {
-    progress?: string;
-    taskName: string;
     id: string;
+    wbs: string;
+    taskName: string;
+    taskMode: "auto" | "manual";
+    duration: string;
+    start: string;
+    finish: string;
+    baselineFinish?: string;
+    predecessors?: string;
+    resources?: string;
+    progress: number;
+    critical?: boolean;
+    kind?: "summary" | "task" | "milestone" | "recurring" | "placeholder";
+    status?: ScheduleTone;
+    selected?: boolean;
+    onTimeline?: boolean;
+    note?: string;
     emphasis?: boolean;
     indent?: 0 | 1 | 2 | 3;
+    bar?: {
+      start: number;
+      length?: number;
+      progress?: number;
+      baselineStart?: number;
+      baselineLength?: number;
+      segments?: ScheduleTimelineSegment[];
+      label?: string;
+    };
   }[];
+  dependencies: ScheduleDependency[];
+  inspectorTitle: string;
+  inspectorSections: ScheduleInspectorSection[];
+  detailTabs: string[];
+  activeDetailTab: string;
+  detailCards: ScheduleDetailCard[];
 };
 
 export type RoleAccessMatrixBlock = {
@@ -263,6 +356,7 @@ export const quickLaunchItems: QuickLaunchItem[] = [
 export const projectSidebarItems: ProjectSidebarItem[] = [
   { type: "link", label: "Project Information (RP)", href: "/projects/rp-20250059/information" },
   { type: "link", label: "Schedule", href: "/projects/rp-20250059/schedule" },
+  { type: "link", label: "Gantt Demo", href: "/projects/rp-20250059/gantt-demo" },
   { type: "link", label: "Project Status", href: "/projects/rp-20250059/project-status" },
   { type: "link", label: "Project Site", href: "/projects/rp-20250059/project-site" },
   { type: "divider", label: "main" },
@@ -295,7 +389,7 @@ const settingsHome: MockupScreen = {
         {
           title: "Personal Settings",
           items: [
-            { label: "My Queued Jobs", href: "/my-queued-jobs" },
+            { label: "My Queued Jobs", href: "/my-queued-job" },
             { label: "Manage Delegates", href: "/manage-delegates" },
             { label: "Act as a Delegate", href: "/manage-delegate" },
           ],
@@ -534,6 +628,12 @@ const taskReassignment: MockupScreen = {
   title: "Task Reassignment",
   href: "/project-task-reassign",
   actions: ["Submit", "Cancel"],
+  quickLaunchActive: "Tasks",
+  projectContext: {
+    title: "victor test internal",
+    subtitle: "generate invoice 002",
+    activeItem: "Tasks",
+  },
   blocks: [
     {
       type: "prompt-table",
@@ -585,6 +685,14 @@ const projectCards: DashboardCardsBlock = {
   },
 };
 
+function defaultProjectContext(activeItem: string) {
+  return {
+    title: "victor test internal",
+    subtitle: "generate invoice 002",
+    activeItem,
+  };
+}
+
 function projectScreen(
   href: string,
   title: string,
@@ -598,12 +706,442 @@ function projectScreen(
     href,
     actions,
     quickLaunchActive,
-    projectContext: {
-      title: "victor test internal",
-      subtitle: "generate invoice 002",
-      activeItem,
-    },
+    projectContext: defaultProjectContext(activeItem),
     blocks,
+  };
+}
+
+function buildProjectGanttBlock(options?: {
+  activeView?: string;
+  detailTab?: string;
+  heading?: string;
+  description?: string;
+  selectedTaskId?: string;
+}): ScheduleBlock {
+  const rows: ScheduleBlock["rows"] = [
+    {
+      id: "1",
+      wbs: "1",
+      taskName: "Mobilisation & authorities",
+      taskMode: "auto",
+      duration: "61d",
+      start: "02 Mar 2026",
+      finish: "29 May 2026",
+      baselineFinish: "27 May 2026",
+      predecessors: "",
+      resources: "PMO",
+      progress: 54,
+      emphasis: true,
+      kind: "summary",
+      status: "accent",
+      onTimeline: true,
+      bar: { start: 0, length: 13, baselineStart: 0, baselineLength: 12.6 },
+    },
+    {
+      id: "2",
+      wbs: "1.1",
+      taskName: "Project kickoff",
+      taskMode: "auto",
+      duration: "0d",
+      start: "02 Mar 2026",
+      finish: "02 Mar 2026",
+      baselineFinish: "02 Mar 2026",
+      predecessors: "",
+      resources: "Victor Chan",
+      progress: 100,
+      indent: 1,
+      kind: "milestone",
+      status: "success",
+      onTimeline: true,
+      bar: { start: 0.45, baselineStart: 0.45 },
+    },
+    {
+      id: "3",
+      wbs: "1.2",
+      taskName: "Scaffolding dismantle",
+      taskMode: "auto",
+      duration: "10d",
+      start: "02 Mar 2026",
+      finish: "13 Mar 2026",
+      baselineFinish: "13 Mar 2026",
+      predecessors: "2FS",
+      resources: "Site Team",
+      progress: 100,
+      indent: 1,
+      kind: "task",
+      status: "success",
+      bar: {
+        start: 0.2,
+        length: 1.95,
+        progress: 1.95,
+        baselineStart: 0.15,
+        baselineLength: 2,
+      },
+    },
+    {
+      id: "4",
+      wbs: "1.3",
+      taskName: "Water Work Inspect Application",
+      taskMode: "auto",
+      duration: "8d",
+      start: "16 Mar 2026",
+      finish: "25 Mar 2026",
+      baselineFinish: "23 Mar 2026",
+      predecessors: "3FS",
+      resources: "Engineering",
+      progress: 42,
+      indent: 1,
+      kind: "task",
+      status: "warn",
+      onTimeline: true,
+      note: "Pending regulator comment on inspection slot.",
+      bar: {
+        start: 2.1,
+        length: 1.6,
+        progress: 0.7,
+        baselineStart: 2,
+        baselineLength: 1.4,
+      },
+    },
+    {
+      id: "5",
+      wbs: "1.4",
+      taskName: "Occupation Permit Application",
+      taskMode: "auto",
+      duration: "12d",
+      start: "24 Mar 2026",
+      finish: "13 Apr 2026",
+      baselineFinish: "09 Apr 2026",
+      predecessors: "4FS",
+      resources: "Permitting",
+      progress: 28,
+      indent: 1,
+      critical: true,
+      kind: "task",
+      status: "danger",
+      onTimeline: true,
+      note: "Split task to wait for authority response window.",
+      bar: {
+        start: 3.45,
+        length: 3.3,
+        progress: 0.9,
+        baselineStart: 3.35,
+        baselineLength: 2.85,
+        segments: [
+          { start: 3.45, length: 1.05 },
+          { start: 5.45, length: 1.35 },
+        ],
+        label: "Split task",
+      },
+    },
+    {
+      id: "6",
+      wbs: "1.5",
+      taskName: "Weekly coordination meeting",
+      taskMode: "auto",
+      duration: "1d recurring",
+      start: "06 Mar 2026",
+      finish: "08 May 2026",
+      baselineFinish: "08 May 2026",
+      predecessors: "",
+      resources: "PMO, Contractor",
+      progress: 60,
+      indent: 1,
+      kind: "recurring",
+      status: "accent",
+      bar: {
+        start: 0.85,
+        segments: [
+          { start: 0.85, length: 0.28 },
+          { start: 2.15, length: 0.28 },
+          { start: 3.55, length: 0.28 },
+          { start: 4.9, length: 0.28 },
+          { start: 6.25, length: 0.28 },
+          { start: 7.65, length: 0.28 },
+          { start: 9.05, length: 0.28 },
+        ],
+        label: "Recurring",
+      },
+    },
+    {
+      id: "7",
+      wbs: "1.6",
+      taskName: "UGO commissioning",
+      taskMode: "auto",
+      duration: "0d",
+      start: "24 Apr 2026",
+      finish: "24 Apr 2026",
+      baselineFinish: "22 Apr 2026",
+      predecessors: "5FS",
+      resources: "Operations Team",
+      progress: 0,
+      indent: 1,
+      critical: true,
+      kind: "milestone",
+      status: "danger",
+      onTimeline: true,
+      bar: { start: 7.95, baselineStart: 7.6 },
+    },
+    {
+      id: "8",
+      wbs: "2",
+      taskName: "Commissioning & closeout",
+      taskMode: "auto",
+      duration: "20d",
+      start: "27 Apr 2026",
+      finish: "29 May 2026",
+      baselineFinish: "27 May 2026",
+      predecessors: "7FS",
+      resources: "Operations Team",
+      progress: 12,
+      emphasis: true,
+      kind: "summary",
+      status: "accent",
+      bar: { start: 8.2, length: 4.75, baselineStart: 8, baselineLength: 4.4 },
+    },
+    {
+      id: "9",
+      wbs: "2.1",
+      taskName: "Riser commissioning",
+      taskMode: "auto",
+      duration: "10d",
+      start: "27 Apr 2026",
+      finish: "08 May 2026",
+      baselineFinish: "06 May 2026",
+      predecessors: "7FS",
+      resources: "Operations Team",
+      progress: 18,
+      indent: 1,
+      critical: true,
+      kind: "task",
+      status: "danger",
+      onTimeline: true,
+      note: "Driving milestone path. Float is less than 1d.",
+      bar: {
+        start: 8.25,
+        length: 2.25,
+        progress: 0.45,
+        baselineStart: 8.05,
+        baselineLength: 2,
+      },
+    },
+    {
+      id: "10",
+      wbs: "2.2",
+      taskName: "Testing & as-built pack",
+      taskMode: "auto",
+      duration: "11d",
+      start: "11 May 2026",
+      finish: "25 May 2026",
+      baselineFinish: "22 May 2026",
+      predecessors: "9FS",
+      resources: "QC, Engineering",
+      progress: 5,
+      indent: 1,
+      kind: "task",
+      status: "warn",
+      bar: {
+        start: 10.15,
+        length: 2.15,
+        progress: 0.1,
+        baselineStart: 10,
+        baselineLength: 2,
+      },
+    },
+    {
+      id: "11",
+      wbs: "2.3",
+      taskName: "Project completion",
+      taskMode: "auto",
+      duration: "0d",
+      start: "29 May 2026",
+      finish: "29 May 2026",
+      baselineFinish: "27 May 2026",
+      predecessors: "10FS",
+      resources: "Victor Chan",
+      progress: 0,
+      indent: 1,
+      critical: true,
+      kind: "milestone",
+      status: "danger",
+      onTimeline: true,
+      bar: { start: 12.45, baselineStart: 12.1 },
+    },
+    {
+      id: "12",
+      wbs: "2.4",
+      taskName: "Regulator chamber review",
+      taskMode: "manual",
+      duration: "4d?",
+      start: "18 May 2026",
+      finish: "21 May 2026",
+      baselineFinish: "",
+      predecessors: "9SS",
+      resources: "Authority Team",
+      progress: 0,
+      indent: 1,
+      kind: "placeholder",
+      status: "default",
+      note: "Manual placeholder for tentative external review slot.",
+      bar: {
+        start: 11,
+        length: 1.1,
+        label: "Manual placeholder",
+      },
+    },
+  ];
+
+  const selectedTaskId = options?.selectedTaskId ?? "5";
+  const selectedRow = rows.find((row) => row.id === selectedTaskId) ?? rows[4];
+  const rowsWithSelection = rows.map((row) => ({
+    ...row,
+    selected: row.id === selectedTaskId,
+  }));
+
+  return {
+    type: "schedule",
+    heading: options?.heading ?? "Integrated master schedule",
+    description:
+      options?.description ??
+      "Microsoft Project-style Gantt mockup with task hierarchy, dependencies, baselines, task modes, critical path cues, and an inspector for the selected activity.",
+    featureBadges: [
+      { label: "Outline hierarchy", tone: "accent" },
+      { label: "Dependencies", tone: "accent" },
+      { label: "Milestones", tone: "success" },
+      { label: "Split tasks", tone: "warn" },
+      { label: "Recurring tasks", tone: "accent" },
+      { label: "Critical path", tone: "danger" },
+      { label: "Baselines", tone: "default" },
+      { label: "Manual scheduling", tone: "default" },
+    ],
+    views: ["Gantt Chart", "Tracking Gantt", "Task Usage", "Calendar", "Network Diagram"],
+    activeView: options?.activeView ?? "Tracking Gantt",
+    controls: [
+      { label: "Timescale: Weeks", tone: "accent" },
+      { label: "Timeline: 5 items", tone: "success" },
+      { label: "Task Path: Driving", tone: "warn" },
+      { label: "Critical Path On", tone: "danger" },
+      { label: "Baseline: Saved", tone: "default" },
+      { label: "Nonworking Time", tone: "default" },
+    ],
+    metrics: [
+      { label: "Schedule Health", value: "82%", note: "3 tasks trending late", tone: "warn" },
+      { label: "Critical Tasks", value: "4", note: "Driving to completion", tone: "danger" },
+      { label: "Baseline Variance", value: "+3d", note: "Finish slipped from 27 May", tone: "warn" },
+      { label: "Timeline Milestones", value: "5/6", note: "Shared with project center", tone: "accent" },
+    ],
+    months: [
+      { label: "March 2026", span: 5 },
+      { label: "April 2026", span: 4 },
+      { label: "May 2026", span: 4 },
+    ],
+    units: [
+      "02 Mar",
+      "09 Mar",
+      "16 Mar",
+      "23 Mar",
+      "30 Mar",
+      "06 Apr",
+      "13 Apr",
+      "20 Apr",
+      "27 Apr",
+      "04 May",
+      "11 May",
+      "18 May",
+      "25 May",
+    ],
+    todayUnit: 4.1,
+    shadedRanges: [
+      { start: 4, span: 1, label: "Weekend / nonworking" },
+      { start: 8, span: 1, label: "Public holiday" },
+      { start: 12, span: 1, label: "Weekend / nonworking" },
+    ],
+    columns: [
+      { key: "indicators", label: "", width: "54px", align: "center" },
+      { key: "wbs", label: "WBS", width: "72px" },
+      { key: "mode", label: "Task Mode", width: "98px" },
+      { key: "taskName", label: "Task Name", width: "320px" },
+      { key: "duration", label: "Duration", width: "92px" },
+      { key: "start", label: "Start", width: "116px" },
+      { key: "finish", label: "Finish", width: "116px" },
+      { key: "pred", label: "Pred", width: "80px" },
+      { key: "resources", label: "Resource Names", width: "160px" },
+      { key: "complete", label: "% Complete", width: "92px", align: "right" },
+    ],
+    rows: rowsWithSelection,
+    dependencies: [
+      { from: "2", to: "3", kind: "FS" },
+      { from: "3", to: "4", kind: "FS" },
+      { from: "4", to: "5", kind: "FS", driving: true },
+      { from: "5", to: "7", kind: "FS", driving: true },
+      { from: "7", to: "9", kind: "FS", driving: true },
+      { from: "9", to: "10", kind: "FS" },
+      { from: "10", to: "11", kind: "FS", driving: true },
+    ],
+    inspectorTitle: `Task Inspector: ${selectedRow.taskName}`,
+    inspectorSections: [
+      {
+        title: "Selected Task",
+        items: [
+          { label: "Mode", value: selectedRow.taskMode === "manual" ? "Manual" : "Auto scheduled" },
+          { label: "Duration", value: selectedRow.duration },
+          { label: "Critical", value: selectedRow.critical ? "Yes" : "No", tone: selectedRow.critical ? "danger" : "default" },
+          { label: "Timeline", value: selectedRow.onTimeline ? "Pinned" : "Not pinned", tone: selectedRow.onTimeline ? "accent" : "default" },
+        ],
+      },
+      {
+        title: "Dependency & Path",
+        items: [
+          { label: "Predecessors", value: selectedRow.predecessors || "None" },
+          { label: "Successor", value: selectedRow.id === "11" ? "None" : "Next finish-to-start" },
+          { label: "Task Path", value: selectedRow.critical ? "Driving" : "Available slack", tone: selectedRow.critical ? "danger" : "success" },
+          { label: "Calendar", value: "Standard + Permit review" },
+        ],
+      },
+      {
+        title: "Tracking",
+        items: [
+          { label: "% Complete", value: `${selectedRow.progress}%` },
+          { label: "Baseline Finish", value: selectedRow.baselineFinish || "Not set" },
+          { label: "Variance", value: selectedRow.id === "5" || selectedRow.id === "9" ? "+2d" : "0d", tone: selectedRow.id === "5" || selectedRow.id === "9" ? "warn" : "success" },
+          { label: "Note", value: selectedRow.note || "No exception note" },
+        ],
+      },
+    ],
+    detailTabs: ["Task Form", "Resource Notes", "Bar Styles", "Change Log"],
+    activeDetailTab: options?.detailTab ?? "Task Form",
+    detailCards: [
+      {
+        title: "Task Form",
+        lines: [
+          `Name: ${selectedRow.taskName}`,
+          `Start / Finish: ${selectedRow.start} to ${selectedRow.finish}`,
+          `Resources: ${selectedRow.resources || "Unassigned"}`,
+          `Predecessors: ${selectedRow.predecessors || "None"}`,
+        ],
+        tone: "accent",
+      },
+      {
+        title: "Formatting & Views",
+        lines: [
+          "Summary bars and baseline bars shown together",
+          "Critical tasks highlighted in red across table and timeline",
+          "Task path overlay enabled for driving predecessor chain",
+          "Nonworking time shaded in the timescale",
+        ],
+        tone: "warn",
+      },
+      {
+        title: "Mockup Scope",
+        lines: [
+          "Interactive prototype should support expand/collapse hierarchy",
+          "Bars need drag, resize, dependency linking, and timeline pinning",
+          "Manual and auto scheduling states should be visually distinct",
+          "Inspector and lower detail pane should respond to row selection",
+        ],
+        tone: "default",
+      },
+    ],
   };
 }
 
@@ -705,12 +1243,23 @@ const screenOverrides: Record<string, MockupScreen> = {
     ],
   },
   "/my-queued-job": {
-    title: "Manage Timesheets",
+    title: "My Queued Jobs",
     href: "/my-queued-job",
     blocks: [
       {
-        type: "message",
-        body: "We can't display the selected time period. It might be closed or your administrator hasn't created it yet. Please try a different date.",
+        type: "table",
+        plain: true,
+        columns: [
+          "Entry Time",
+          "Completed Time",
+          "Project Name",
+          "Job Type",
+          "Job State",
+          "% Complete",
+          "Position",
+          "Error",
+        ],
+        rows: [],
       },
     ],
   },
@@ -757,7 +1306,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     ],
   },
   "/manage-groups": {
-    title: "Manage Categories",
+    title: "Manage Groups",
     href: "/manage-groups",
     blocks: [
       {
@@ -1494,6 +2043,8 @@ const screenOverrides: Record<string, MockupScreen> = {
   "/role-access/1": {
     title: "Quick Launch",
     href: "/role-access/1",
+    quickLaunchActive: "Role Access",
+    projectContext: defaultProjectContext("Role Access"),
     blocks: [
       {
         type: "quick-launch-matrix",
@@ -1516,6 +2067,8 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Reporting",
     href: "/role-access/2",
     actions: ["Save", "Cancel"],
+    quickLaunchActive: "Role Access",
+    projectContext: defaultProjectContext("Role Access"),
     blocks: [
       {
         type: "form",
@@ -1543,6 +2096,8 @@ const screenOverrides: Record<string, MockupScreen> = {
   "/role-access/3": {
     title: "Role Access",
     href: "/role-access/3",
+    quickLaunchActive: "Role Access",
+    projectContext: defaultProjectContext("Role Access"),
     blocks: [
       {
         type: "role-access-matrix",
@@ -1904,29 +2459,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     "/projects/rp-20250059/schedule",
     "Schedule",
     "Schedule",
-    [
-      {
-        type: "schedule",
-        months: ["March 2026", "April 2026", "May 2026"],
-        prompt: "Add tasks with dates to the timeline",
-        columns: ["", "Task Name", "ID"],
-        rows: [
-          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
-          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
-          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
-          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
-          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
-          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
-          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
-          { taskName: "UGO Commissioning", id: "8", progress: "red", indent: 3 },
-          { taskName: "Riser Commissioning", id: "9", progress: "red", indent: 3 },
-          { taskName: "Project Completion", id: "10", progress: "red", indent: 3 },
-          { taskName: "Project Inspection", id: "11", emphasis: true, indent: 1 },
-          { taskName: "Project Type", id: "12", emphasis: true, indent: 2 },
-          { taskName: "RGI Inspection (RGI)", id: "13", emphasis: true, indent: 3 },
-        ],
-      },
-    ],
+    [buildProjectGanttBlock()],
     "Project Management",
   ),
   "/projects/rp-20250059/tasks": projectScreen(
@@ -2325,6 +2858,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Create a new project",
     href: "/projects/rp-20250059/project-management/create-project",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     actions: ["Save", "Cancel"],
     blocks: [
       {
@@ -2382,6 +2916,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Create project template",
     href: "/projects/rp-20250059/project-management/create-project-template",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     actions: ["Save", "Cancel"],
     blocks: [
       {
@@ -2412,6 +2947,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Build Team",
     href: "/projects/rp-20250059/project-management/build-team",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "table",
@@ -2430,6 +2966,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Project Permissions: victor 20260212 001",
     href: "/projects/rp-20250059/project-management/project-permissions",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "empty-list",
@@ -2444,6 +2981,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Issues Management",
     href: "/projects/rp-20250059/project-management/issues",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "empty-list",
@@ -2460,6 +2998,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Deliverables",
     href: "/projects/rp-20250059/project-management/deliverables",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "empty-list",
@@ -2476,6 +3015,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Risks",
     href: "/projects/rp-20250059/project-management/risk",
     quickLaunchActive: "Project Management",
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "empty-list",
@@ -2492,11 +3032,7 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Project Status",
     href: "/projects/rp-20250059/project-management/project-status",
     quickLaunchActive: "Project Management",
-    projectContext: {
-      title: "victor 20260212 001",
-      subtitle: "",
-      activeItem: "Project Status",
-    },
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
       {
         type: "form",
@@ -2525,54 +3061,32 @@ const screenOverrides: Record<string, MockupScreen> = {
     title: "Task Bar",
     href: "/projects/rp-20250059/project-management/task-bar",
     quickLaunchActive: "Project Management",
-    projectContext: {
-      title: "victor 20260212 001",
-      subtitle: "",
-      activeItem: "Schedule",
-    },
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
-      {
-        type: "schedule",
-        months: ["March 2026", "April 2026", "May 2026"],
-        prompt: "Add tasks with dates to the timeline",
-        columns: ["", "Task Name", "ID"],
-        rows: [
-          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
-          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
-          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
-          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
-          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
-          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
-          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
-        ],
-      },
+      buildProjectGanttBlock({
+        activeView: "Gantt Chart",
+        detailTab: "Bar Styles",
+        heading: "Task path and bar styling",
+        description:
+          "Bar-format review showing baseline overlays, task-path emphasis, and the styling rules the interactive mockup should preserve.",
+        selectedTaskId: "9",
+      }),
     ],
   },
   "/projects/rp-20250059/task-bar": {
     title: "Task Bar",
     href: "/projects/rp-20250059/task-bar",
     quickLaunchActive: "Project Management",
-    projectContext: {
-      title: "victor 20260212 001",
-      subtitle: "",
-      activeItem: "Schedule",
-    },
+    projectContext: defaultProjectContext("Project Management"),
     blocks: [
-      {
-        type: "schedule",
-        months: ["March 2026", "April 2026", "May 2026"],
-        prompt: "Add tasks with dates to the timeline",
-        columns: ["", "Task Name", "ID"],
-        rows: [
-          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
-          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
-          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
-          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
-          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
-          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
-          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
-        ],
-      },
+      buildProjectGanttBlock({
+        activeView: "Gantt Chart",
+        detailTab: "Bar Styles",
+        heading: "Task path and bar styling",
+        description:
+          "Bar-format review showing baseline overlays, task-path emphasis, and the styling rules the interactive mockup should preserve.",
+        selectedTaskId: "9",
+      }),
     ],
   },
   "/projects/rp-20250059/tasks/new": projectScreen(
@@ -2821,21 +3335,12 @@ const screenOverrides: Record<string, MockupScreen> = {
         body:
           "Session Recovery. We loaded the unsaved changes from your last visit. Continue editing or throw away unsaved changes.",
       },
-      {
-        type: "schedule",
-        months: ["March 2026", "April 2026", "May 2026"],
-        prompt: "Add tasks with dates to the timeline",
-        columns: ["", "Task Name", "ID"],
-        rows: [
-          { taskName: "Events", id: "1", emphasis: true, indent: 1 },
-          { taskName: "Project Event", id: "2", emphasis: true, indent: 2 },
-          { taskName: "SPRJSIE - Project SIE", id: "3", emphasis: true, indent: 3 },
-          { taskName: "TG Work Commencement", id: "4", progress: "red", indent: 3 },
-          { taskName: "Scaffolding Dismantle", id: "5", progress: "red", indent: 3 },
-          { taskName: "Water Work Inspect Application", id: "6", progress: "red", indent: 3 },
-          { taskName: "Occupation Permit Application", id: "7", progress: "red", indent: 3 },
-        ],
-      },
+      buildProjectGanttBlock({
+        heading: "Recovered draft schedule",
+        description:
+          "Recovered draft showing the same Microsoft Project-style Gantt surface, with the permit application row selected so unsaved changes are obvious.",
+        selectedTaskId: "5",
+      }),
     ],
     "Project Management",
   ),

@@ -1,0 +1,742 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Overview" [expanded] [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Overview
+              - img [ref=e23]
+            - list [ref=e26]:
+              - listitem [ref=e27]:
+                - link "Project Information (RP)" [ref=e28] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/information
+                  - generic [ref=e29]: Project Information (RP)
+              - listitem [ref=e30]:
+                - link "Schedule" [ref=e31] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/schedule
+                  - generic [ref=e32]: Schedule
+              - listitem [ref=e33]:
+                - link "Gantt Demo" [ref=e34] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/gantt-demo
+                  - generic [ref=e35]: Gantt Demo
+              - listitem [ref=e36]:
+                - link "Project Schedule1" [ref=e37] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/schedule-1
+                  - generic [ref=e38]: Project Schedule1
+              - listitem [ref=e39]:
+                - link "Project Status" [ref=e40] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-status
+                  - generic [ref=e41]: Project Status
+              - listitem [ref=e42]:
+                - link "Project Site" [ref=e43] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-site
+                  - generic [ref=e44]: Project Site
+        - list [ref=e46]:
+          - listitem [ref=e47]:
+            - button "Workspace" [expanded] [ref=e48]:
+              - img [ref=e49]
+              - generic [ref=e52]: Workspace
+              - img [ref=e53]
+            - list [ref=e56]:
+              - listitem [ref=e57]:
+                - link "Project Management" [ref=e58] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management
+                  - generic [ref=e59]: Project Management
+              - listitem [ref=e60]:
+                - link "Approvals" [ref=e61] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/approvals
+                  - generic [ref=e62]: Approvals
+              - listitem [ref=e63]:
+                - link "Tasks" [ref=e64] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e65]: Tasks
+              - listitem [ref=e66]:
+                - link "Resources" [ref=e67] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources
+                  - generic [ref=e68]: Resources
+              - listitem [ref=e69]:
+                - link "CPIM Template" [ref=e70] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-template
+                  - generic [ref=e71]: CPIM Template
+              - listitem [ref=e72]:
+                - link "CPIM Reports" [ref=e73] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-reports
+                  - generic [ref=e74]: CPIM Reports
+              - listitem [ref=e75]:
+                - link "Role Access" [ref=e76] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e77]: Role Access
+              - listitem [ref=e78]:
+                - link "Contractor Master" [ref=e79] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/contractor-master
+                  - generic [ref=e80]: Contractor Master
+              - listitem [ref=e81]:
+                - link "Customer Master" [ref=e82] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/customer-master
+                  - generic [ref=e83]: Customer Master
+              - listitem [ref=e84]:
+                - link "Inspection Master" [ref=e85] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/inspection-master
+                  - generic [ref=e86]: Inspection Master
+              - listitem [ref=e87]:
+                - link "Alert Dashboard" [ref=e88] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/alert-dashboard
+                  - generic [ref=e89]: Alert Dashboard
+              - listitem [ref=e90]:
+                - link "BOM Maintenance" [ref=e91] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/bom-maintenance
+                  - generic [ref=e92]: BOM Maintenance
+              - listitem [ref=e93]:
+                - link "Tenderer Group" [ref=e94] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tenderer-group
+                  - generic [ref=e95]: Tenderer Group
+              - listitem [ref=e96]:
+                - link "Generic Report" [ref=e97] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/generic-report
+                  - generic [ref=e98]: Generic Report
+              - listitem [ref=e99]:
+                - link "Knowledge Management" [ref=e100] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/knowledge-management
+                  - generic [ref=e101]: Knowledge Management
+        - list [ref=e103]:
+          - listitem [ref=e104]:
+            - button "Project Management" [expanded] [ref=e105]:
+              - img [ref=e106]
+              - generic [ref=e109]: Project Management
+              - img [ref=e110]
+            - list [ref=e113]:
+              - listitem [ref=e114]:
+                - link "Project Management Home" [ref=e115] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management
+                  - generic [ref=e116]: Project Management Home
+              - listitem [ref=e117]:
+                - link "Create Project" [ref=e118] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/create-project
+                  - generic [ref=e119]: Create Project
+              - listitem [ref=e120]:
+                - link "Create Project Template" [ref=e121] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/create-project-template
+                  - generic [ref=e122]: Create Project Template
+              - listitem [ref=e123]:
+                - link "Build Team" [ref=e124] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/build-team
+                  - generic [ref=e125]: Build Team
+              - listitem [ref=e126]:
+                - link "Project Permissions" [ref=e127] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/project-permissions
+                  - generic [ref=e128]: Project Permissions
+              - listitem [ref=e129]:
+                - link "Risk" [ref=e130] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/risk
+                  - generic [ref=e131]: Risk
+              - listitem [ref=e132]:
+                - link "Issue Management" [ref=e133] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/issues
+                  - generic [ref=e134]: Issue Management
+              - listitem [ref=e135]:
+                - link "Deliverables" [ref=e136] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/deliverables
+                  - generic [ref=e137]: Deliverables
+              - listitem [ref=e138]:
+                - link "Project Status Detail" [ref=e139] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/project-status
+                  - generic [ref=e140]: Project Status Detail
+              - listitem [ref=e141]:
+                - link "TaskBar" [ref=e142] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management/task-bar
+                  - generic [ref=e143]: TaskBar
+              - listitem [ref=e144]:
+                - link "Task Bar Legacy" [ref=e145] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/task-bar
+                  - generic [ref=e146]: Task Bar Legacy
+        - list [ref=e148]:
+          - listitem [ref=e149]:
+            - button "Tasks" [expanded] [ref=e150]:
+              - img [ref=e151]
+              - generic [ref=e154]: Tasks
+              - img [ref=e155]
+            - list [ref=e158]:
+              - listitem [ref=e159]:
+                - link "Project Task" [ref=e160] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e161]: Project Task
+              - listitem [ref=e162]:
+                - link "Project New Task" [ref=e163] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks/new
+                  - generic [ref=e164]: Project New Task
+              - listitem [ref=e165]:
+                - link "Project Task Reassign" [ref=e166] [cursor=pointer]:
+                  - /url: /project-task-reassign
+                  - generic [ref=e167]: Project Task Reassign
+        - list [ref=e169]:
+          - listitem [ref=e170]:
+            - button "Resources" [expanded] [ref=e171]:
+              - img [ref=e172]
+              - generic [ref=e175]: Resources
+              - img [ref=e176]
+            - list [ref=e179]:
+              - listitem [ref=e180]:
+                - link "Project Resource Center" [ref=e181] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources
+                  - generic [ref=e182]: Project Resource Center
+              - listitem [ref=e183]:
+                - link "Project New Resource1" [ref=e184] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources/new-1
+                  - generic [ref=e185]: Project New Resource1
+              - listitem [ref=e186]:
+                - link "Project New Resource2" [ref=e187] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources/new-2
+                  - generic [ref=e188]: Project New Resource2
+              - listitem [ref=e189]:
+                - link "Project New Resource3" [ref=e190] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources/new-3
+                  - generic [ref=e191]: Project New Resource3
+              - listitem [ref=e192]:
+                - link "Project New Resource4" [ref=e193] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources/new-4
+                  - generic [ref=e194]: Project New Resource4
+              - listitem [ref=e195]:
+                - link "Project New Resource5" [ref=e196] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources/new-5
+                  - generic [ref=e197]: Project New Resource5
+        - list [ref=e199]:
+          - listitem [ref=e200]:
+            - button "Role Access" [expanded] [ref=e201]:
+              - img [ref=e202]
+              - generic [ref=e205]: Role Access
+              - img [ref=e206]
+            - list [ref=e209]:
+              - listitem [ref=e210]:
+                - link "Role Access Home" [ref=e211] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e212]: Role Access Home
+              - listitem [ref=e213]:
+                - link "Role Access1" [ref=e214] [cursor=pointer]:
+                  - /url: /role-access/1
+                  - generic [ref=e215]: Role Access1
+              - listitem [ref=e216]:
+                - link "Role Access2" [ref=e217] [cursor=pointer]:
+                  - /url: /role-access/2
+                  - generic [ref=e218]: Role Access2
+              - listitem [ref=e219]:
+                - link "Role Access3" [ref=e220] [cursor=pointer]:
+                  - /url: /role-access/3
+                  - generic [ref=e221]: Role Access3
+        - list [ref=e223]:
+          - listitem [ref=e224]:
+            - button "Utilities" [expanded] [ref=e225]:
+              - img [ref=e226]
+              - generic [ref=e229]: Utilities
+              - img [ref=e230]
+            - list [ref=e233]:
+              - listitem [ref=e234]:
+                - link "Project Center" [ref=e235] [cursor=pointer]:
+                  - /url: /project-center
+                  - generic [ref=e236]: Project Center
+              - listitem [ref=e237]:
+                - link "EDIT LINKS" [ref=e238] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/information
+                  - generic [ref=e239]: EDIT LINKS
+      - list [ref=e241]:
+        - listitem [ref=e242]:
+          - button "TG Project Workspace" [ref=e243]:
+            - generic [ref=e245]: TG
+            - generic [ref=e247]: Project Workspace
+            - img [ref=e248]
+      - button "Toggle Sidebar" [ref=e250]
+    - main [ref=e251]:
+      - generic [ref=e253]:
+        - button "Toggle Sidebar" [ref=e254]:
+          - img
+          - generic [ref=e255]: Toggle Sidebar
+        - separator [ref=e256]
+        - navigation "breadcrumb" [ref=e257]:
+          - list [ref=e258]:
+            - listitem [ref=e259]:
+              - link "Project Workspace" [ref=e260] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e261]:
+              - img [ref=e262]
+            - listitem [ref=e264]:
+              - link "Gantt Demo" [disabled] [ref=e265]
+      - main [ref=e266]:
+        - generic [ref=e267]:
+          - generic [ref=e269]:
+            - generic [ref=e271]: Project Workspace
+            - heading "Gantt Demo" [level=1] [ref=e273]
+          - generic [ref=e275]:
+            - link "Project Information (RP)" [ref=e276] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+            - link "Schedule" [ref=e277] [cursor=pointer]:
+              - /url: /projects/rp-20250059/schedule
+            - link "Gantt Demo" [ref=e278] [cursor=pointer]:
+              - /url: /projects/rp-20250059/gantt-demo
+            - link "Project Status" [ref=e279] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-status
+            - link "Project Site" [ref=e280] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-site
+            - link "Project Management" [ref=e281] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-management
+            - link "Approvals" [ref=e282] [cursor=pointer]:
+              - /url: /projects/rp-20250059/approvals
+            - link "Tasks" [ref=e283] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tasks
+            - link "Resources" [ref=e284] [cursor=pointer]:
+              - /url: /projects/rp-20250059/resources
+            - link "CPIM Template" [ref=e285] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-template
+            - link "CPIM Reports" [ref=e286] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-reports
+            - link "Role Access" [ref=e287] [cursor=pointer]:
+              - /url: /projects/rp-20250059/role-access
+            - link "Contractor Master" [ref=e288] [cursor=pointer]:
+              - /url: /projects/rp-20250059/contractor-master
+            - link "Customer Master" [ref=e289] [cursor=pointer]:
+              - /url: /projects/rp-20250059/customer-master
+            - link "Inspection Master" [ref=e290] [cursor=pointer]:
+              - /url: /projects/rp-20250059/inspection-master
+            - link "Alert Dashboard" [ref=e291] [cursor=pointer]:
+              - /url: /projects/rp-20250059/alert-dashboard
+            - link "BOM Maintenance" [ref=e292] [cursor=pointer]:
+              - /url: /projects/rp-20250059/bom-maintenance
+            - link "Tenderer Group" [ref=e293] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tenderer-group
+            - link "Generic Report" [ref=e294] [cursor=pointer]:
+              - /url: /projects/rp-20250059/generic-report
+            - link "Knowledge Management" [ref=e295] [cursor=pointer]:
+              - /url: /projects/rp-20250059/knowledge-management
+            - link "EDIT LINKS" [ref=e296] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+        - generic [ref=e299]:
+          - generic [ref=e300]:
+            - generic [ref=e301]:
+              - heading "Integrated master schedule" [level=2] [ref=e304]
+              - generic [ref=e305]:
+                - generic [ref=e306]:
+                  - generic [ref=e307]: Tasks
+                  - generic [ref=e308]: "12"
+                  - generic [ref=e309]: 3 milestones in demo data
+                - generic [ref=e310]:
+                  - generic [ref=e311]: Critical Tasks
+                  - generic [ref=e312]: "6"
+                  - generic [ref=e313]: Critical highlighting enabled
+                - generic [ref=e314]:
+                  - generic [ref=e315]: Timeline Range
+                  - generic [ref=e316]: 109d
+                  - generic [ref=e317]: 02 Mar 2026 to 18 Jun 2026
+                - generic [ref=e318]:
+                  - generic [ref=e319]: Selected Variance
+                  - generic [ref=e320]: +27d
+                  - generic [ref=e321]: Against baseline finish 06 May 2026
+            - generic [ref=e322]:
+              - button "day View" [ref=e323]
+              - button "week View" [ref=e324]
+              - button "month View" [ref=e325]
+              - button "Baseline On" [ref=e326]
+              - button "Critical Path On" [ref=e327]
+              - button "Non-working On" [ref=e328]
+              - button "Reset Demo" [ref=e329]
+          - generic [ref=e330]:
+            - generic [ref=e334]: Gantt Workbench
+            - generic [ref=e335]:
+              - generic [ref=e336]:
+                - generic [ref=e338]: Task Table
+                - table [ref=e340]:
+                  - rowgroup [ref=e350]:
+                    - row "WBS Resize WBS column Task Name Resize Task Name column Mode Resize Mode column Start Resize Start column Finish Resize Finish column Duration Resize Duration column Pred Resize Pred column % Resize % column" [ref=e351]:
+                      - columnheader "WBS Resize WBS column" [ref=e352]:
+                        - text: WBS
+                        - button "Resize WBS column" [ref=e353]
+                      - columnheader "Task Name Resize Task Name column" [ref=e355]:
+                        - text: Task Name
+                        - button "Resize Task Name column" [ref=e356]
+                      - columnheader "Mode Resize Mode column" [ref=e358]:
+                        - text: Mode
+                        - button "Resize Mode column" [ref=e359]
+                      - columnheader "Start Resize Start column" [ref=e361]:
+                        - text: Start
+                        - button "Resize Start column" [ref=e362]
+                      - columnheader "Finish Resize Finish column" [ref=e364]:
+                        - text: Finish
+                        - button "Resize Finish column" [ref=e365]
+                      - columnheader "Duration Resize Duration column" [ref=e367]:
+                        - text: Duration
+                        - button "Resize Duration column" [ref=e368]
+                      - columnheader "Pred Resize Pred column" [ref=e370]:
+                        - text: Pred
+                        - button "Resize Pred column" [ref=e371]
+                      - columnheader "% Resize % column" [ref=e373]:
+                        - text: "%"
+                        - button "Resize % column" [ref=e374]
+                    - row "Structure Schedule Dependency Tracking" [ref=e376]:
+                      - columnheader "Structure" [ref=e377]
+                      - columnheader "Schedule" [ref=e378]
+                      - columnheader "Dependency" [ref=e379]
+                      - columnheader "Tracking" [ref=e380]
+                  - rowgroup [ref=e381]:
+                    - row "1 v Mobilisation & authorities Auto 02 Mar 2026 08 May 2026 50d - 54%" [ref=e382] [cursor=pointer]:
+                      - cell "1" [ref=e383]
+                      - cell "v Mobilisation & authorities" [ref=e384]:
+                        - generic [ref=e385]:
+                          - button "v" [ref=e386]
+                          - generic [ref=e387]: Mobilisation & authorities
+                      - cell "Auto" [ref=e388]:
+                        - generic [ref=e389]: Auto
+                      - cell "02 Mar 2026" [ref=e390]
+                      - cell "08 May 2026" [ref=e391]
+                      - cell "50d" [ref=e392]
+                      - cell "-" [ref=e393]:
+                        - generic [ref=e394]: "-"
+                      - cell "54%" [ref=e395]
+                    - row "1.1 Project kickoff Auto 02 Mar 2026 02 Mar 2026 0d - 100%" [ref=e396] [cursor=pointer]:
+                      - cell "1.1" [ref=e397]
+                      - cell "Project kickoff" [ref=e398]:
+                        - generic [ref=e400]: Project kickoff
+                      - cell "Auto" [ref=e401]:
+                        - generic [ref=e402]: Auto
+                      - cell "02 Mar 2026" [ref=e403]
+                      - cell "02 Mar 2026" [ref=e404]
+                      - cell "0d" [ref=e405]
+                      - cell "-" [ref=e406]:
+                        - generic [ref=e407]: "-"
+                      - cell "100%" [ref=e408]
+                    - row "1.2 Scaffolding dismantle Auto 03 Mar 2026 14 Mar 2026 9d 1.1 FS 100%" [ref=e409] [cursor=pointer]:
+                      - cell "1.2" [ref=e410]
+                      - cell "Scaffolding dismantle" [ref=e411]:
+                        - generic [ref=e413]: Scaffolding dismantle
+                      - cell "Auto" [ref=e414]:
+                        - generic [ref=e415]: Auto
+                      - cell "03 Mar 2026" [ref=e416]
+                      - cell "14 Mar 2026" [ref=e417]
+                      - cell "9d" [ref=e418]
+                      - cell "1.1 FS" [ref=e419]:
+                        - generic [ref=e420]: 1.1 FS
+                      - cell "100%" [ref=e421]
+                    - row "1.3 Water Work Inspect Application Auto 16 Mar 2026 25 Mar 2026 8d 1.2 FS 42%" [ref=e422] [cursor=pointer]:
+                      - cell "1.3" [ref=e423]
+                      - cell "Water Work Inspect Application" [ref=e424]:
+                        - generic [ref=e426]: Water Work Inspect Application
+                      - cell "Auto" [ref=e427]:
+                        - generic [ref=e428]: Auto
+                      - cell "16 Mar 2026" [ref=e429]
+                      - cell "25 Mar 2026" [ref=e430]
+                      - cell "8d" [ref=e431]
+                      - cell "1.2 FS" [ref=e432]:
+                        - generic [ref=e433]: 1.2 FS
+                      - cell "42%" [ref=e434]
+                    - row "1.4 Occupation Permit Application Auto 26 Mar 2026 12 Apr 2026 12d 1.3 FS 28%" [ref=e435] [cursor=pointer]:
+                      - cell "1.4" [ref=e436]
+                      - cell "Occupation Permit Application" [ref=e437]:
+                        - generic [ref=e439]: Occupation Permit Application
+                      - cell "Auto" [ref=e440]:
+                        - generic [ref=e441]: Auto
+                      - cell "26 Mar 2026" [ref=e442]
+                      - cell "12 Apr 2026" [ref=e443]
+                      - cell "12d" [ref=e444]
+                      - cell "1.3 FS" [ref=e445]:
+                        - generic [ref=e446]: 1.3 FS
+                      - cell "28%" [ref=e447]
+                    - row "1.5 Weekly coordination meeting Auto 06 Mar 2026 08 May 2026 1d recurring - 60%" [ref=e448] [cursor=pointer]:
+                      - cell "1.5" [ref=e449]
+                      - cell "Weekly coordination meeting" [ref=e450]:
+                        - generic [ref=e452]: Weekly coordination meeting
+                      - cell "Auto" [ref=e453]:
+                        - generic [ref=e454]: Auto
+                      - cell "06 Mar 2026" [ref=e455]
+                      - cell "08 May 2026" [ref=e456]
+                      - cell "1d recurring" [ref=e457]
+                      - cell "-" [ref=e458]:
+                        - generic [ref=e459]: "-"
+                      - cell "60%" [ref=e460]
+                    - row "1.6 UGO commissioning Auto 24 Apr 2026 24 Apr 2026 0d 1.4 FS 0%" [ref=e461] [cursor=pointer]:
+                      - cell "1.6" [ref=e462]
+                      - cell "UGO commissioning" [ref=e463]:
+                        - generic [ref=e465]: UGO commissioning
+                      - cell "Auto" [ref=e466]:
+                        - generic [ref=e467]: Auto
+                      - cell "24 Apr 2026" [ref=e468]
+                      - cell "24 Apr 2026" [ref=e469]
+                      - cell "0d" [ref=e470]
+                      - cell "1.4 FS" [ref=e471]:
+                        - generic [ref=e472]: 1.4 FS
+                      - cell "0%" [ref=e473]
+                    - row "2 v Commissioning & closeout Auto 18 May 2026 18 Jun 2026 24d - 8%" [ref=e788] [cursor=pointer]:
+                      - cell "2" [ref=e475]
+                      - cell "v Commissioning & closeout" [ref=e476]:
+                        - generic [ref=e477]:
+                          - button "v" [ref=e478]
+                          - generic [ref=e479]: Commissioning & closeout
+                      - cell "Auto" [ref=e480]:
+                        - generic [ref=e481]: Auto
+                      - cell "18 May 2026" [ref=e789]
+                      - cell "18 Jun 2026" [ref=e790]
+                      - cell "24d" [ref=e791]
+                      - cell "-" [ref=e485]:
+                        - generic [ref=e486]: "-"
+                      - cell "8%" [ref=e792]
+                    - row "2.1 Riser commissioning Auto 22 May 2026 02 Jun 2026 8d 1.6 FS, 2.4 FS 18%" [ref=e793] [cursor=pointer]:
+                      - cell "2.1" [ref=e489]
+                      - cell "Riser commissioning" [ref=e490]:
+                        - generic [ref=e492]: Riser commissioning
+                      - cell "Auto" [ref=e493]:
+                        - generic [ref=e494]: Auto
+                      - cell "22 May 2026" [ref=e794]
+                      - cell "02 Jun 2026" [ref=e795]
+                      - cell "8d" [ref=e796]
+                      - cell "1.6 FS, 2.4 FS" [ref=e797]:
+                        - generic [ref=e499]: 1.6 FS, 2.4 FS
+                      - cell "18%" [ref=e500]
+                    - row "2.2 Testing & as-built pack Auto 03 Jun 2026 17 Jun 2026 11d 2.1 FS 5%" [ref=e798] [cursor=pointer]:
+                      - cell "2.2" [ref=e502]
+                      - cell "Testing & as-built pack" [ref=e503]:
+                        - generic [ref=e505]: Testing & as-built pack
+                      - cell "Auto" [ref=e506]:
+                        - generic [ref=e507]: Auto
+                      - cell "03 Jun 2026" [ref=e799]
+                      - cell "17 Jun 2026" [ref=e800]
+                      - cell "11d" [ref=e510]
+                      - cell "2.1 FS" [ref=e511]:
+                        - generic [ref=e512]: 2.1 FS
+                      - cell "5%" [ref=e513]
+                    - row "2.3 Project completion Auto 18 Jun 2026 18 Jun 2026 0d 2.2 FS 0%" [ref=e801] [cursor=pointer]:
+                      - cell "2.3" [ref=e515]
+                      - cell "Project completion" [ref=e516]:
+                        - generic [ref=e518]: Project completion
+                      - cell "Auto" [ref=e519]:
+                        - generic [ref=e520]: Auto
+                      - cell "18 Jun 2026" [ref=e802]
+                      - cell "18 Jun 2026" [ref=e803]
+                      - cell "0d" [ref=e523]
+                      - cell "2.2 FS" [ref=e524]:
+                        - generic [ref=e525]: 2.2 FS
+                      - cell "0%" [ref=e526]
+                    - row "2.4 Regulator chamber review Manual 18 May 2026 21 May 2026 4d - 0%" [ref=e527] [cursor=pointer]:
+                      - cell "2.4" [ref=e528]
+                      - cell "Regulator chamber review" [ref=e529]:
+                        - generic [ref=e531]: Regulator chamber review
+                      - cell "Manual" [ref=e532]:
+                        - generic [ref=e533]: Manual
+                      - cell "18 May 2026" [ref=e534]
+                      - cell "21 May 2026" [ref=e535]
+                      - cell "4d" [ref=e536]
+                      - cell "-" [ref=e537]:
+                        - generic [ref=e538]: "-"
+                      - cell "0%" [ref=e539]
+              - button "Resize workbench split" [ref=e541]
+              - generic [ref=e543]:
+                - generic [ref=e546]: Timeline Chart
+                - generic [ref=e548]:
+                  - generic [ref=e549]:
+                    - generic [ref=e550]:
+                      - generic [ref=e551]: March 2026
+                      - generic [ref=e552]: April 2026
+                      - generic [ref=e553]: May 2026
+                      - generic [ref=e804]: June 2026
+                    - generic [ref=e554]:
+                      - generic [ref=e555]: 02 Mar
+                      - generic [ref=e556]: 09 Mar
+                      - generic [ref=e557]: 16 Mar
+                      - generic [ref=e558]: 23 Mar
+                      - generic [ref=e559]: 30 Mar
+                      - generic [ref=e560]: 06 Apr
+                      - generic [ref=e561]: 13 Apr
+                      - generic [ref=e562]: 20 Apr
+                      - generic [ref=e563]: 27 Apr
+                      - generic [ref=e564]: 04 May
+                      - generic [ref=e565]: 11 May
+                      - generic [ref=e566]: 18 May
+                      - generic [ref=e567]: 25 May
+                      - generic [ref=e805]: 01 Jun
+                      - generic [ref=e806]: 08 Jun
+                      - generic [ref=e807]: 15 Jun
+                      - generic [ref=e569]: Today
+                  - generic [ref=e570]:
+                    - generic [ref=e584]:
+                      - button "Task Mobilisation & authorities" [ref=e585]
+                      - generic: Mobilisation & authorities
+                    - button "Milestone Project kickoff" [ref=e588]
+                    - generic [ref=e590]:
+                      - button "Task Scaffolding dismantle" [ref=e591]
+                      - button "Resize start Scaffolding dismantle" [ref=e593]
+                      - button "Resize end Scaffolding dismantle" [ref=e594]
+                      - generic: Scaffolding dismantle
+                    - generic [ref=e596]:
+                      - button "Task Water Work Inspect Application" [ref=e597]
+                      - button "Resize start Water Work Inspect Application" [ref=e599]
+                      - button "Resize end Water Work Inspect Application" [ref=e600]
+                      - generic: Water Work Inspect Application
+                    - generic [ref=e603]:
+                      - button "Task Occupation Permit Application" [ref=e604]
+                      - generic: Occupation Permit Application
+                    - button "Task Occupation Permit Application" [ref=e608]
+                    - generic [ref=e612]:
+                      - button "Task Weekly coordination meeting" [ref=e613]
+                      - generic: Weekly coordination meeting
+                    - button "Task Weekly coordination meeting" [ref=e615]
+                    - button "Task Weekly coordination meeting" [ref=e617]
+                    - button "Task Weekly coordination meeting" [ref=e619]
+                    - button "Task Weekly coordination meeting" [ref=e621]
+                    - button "Task Weekly coordination meeting" [ref=e623]
+                    - button "Task Weekly coordination meeting" [ref=e625]
+                    - button "Task Weekly coordination meeting" [ref=e627]
+                    - button "Task Weekly coordination meeting" [ref=e629]
+                    - button "Task Weekly coordination meeting" [ref=e631]
+                    - button "Milestone UGO commissioning" [ref=e634]
+                    - generic [ref=e636]:
+                      - button "Task Commissioning & closeout" [ref=e637]
+                      - generic: Commissioning & closeout
+                    - generic [ref=e639]:
+                      - button "Task Riser commissioning" [ref=e640]
+                      - button "Resize start Riser commissioning" [ref=e642]
+                      - button "Resize end Riser commissioning" [ref=e643]
+                      - button "Start link handle for Riser commissioning" [ref=e812]
+                      - button "Finish link handle for Riser commissioning" [ref=e813]
+                      - generic: Riser commissioning
+                    - generic [ref=e645]:
+                      - button "Task Testing & as-built pack" [ref=e646]
+                      - button "Resize start Testing & as-built pack" [ref=e648]
+                      - button "Resize end Testing & as-built pack" [ref=e649]
+                      - generic: Testing & as-built pack
+                    - button "Milestone Project completion" [ref=e652]
+                    - generic [ref=e653]:
+                      - button "Task Regulator chamber review" [ref=e654]
+                      - button "Resize start Regulator chamber review" [ref=e655]
+                      - button "Resize end Regulator chamber review" [ref=e656]
+                      - generic: Regulator chamber review
+                    - img
+            - generic [ref=e658]:
+              - generic [ref=e659]:
+                - generic [ref=e660]:
+                  - generic [ref=e662]: Task Inspector
+                  - generic [ref=e663]: Editable task
+                - generic [ref=e664]:
+                  - button "New Task" [ref=e665]
+                  - button "New Milestone" [ref=e666]
+                  - button "Delete Task" [ref=e667]
+                - generic [ref=e668]:
+                  - generic [ref=e669]:
+                    - generic [ref=e670]: Task Name
+                    - textbox "Task Name" [ref=e671]: Riser commissioning
+                  - generic [ref=e672]:
+                    - generic [ref=e673]: Mode
+                    - combobox "Mode" [ref=e674]:
+                      - option "Auto scheduled" [selected]
+                      - option "Manual"
+                  - generic [ref=e675]:
+                    - generic [ref=e676]: Start
+                    - textbox "Start" [ref=e677]: 2026-05-22
+                  - generic [ref=e678]:
+                    - generic [ref=e679]: Finish
+                    - textbox "Finish" [ref=e680]: 2026-06-02
+                  - generic [ref=e681]:
+                    - generic [ref=e682]: Progress
+                    - generic [ref=e683]:
+                      - slider "Progress 18%" [ref=e814]: "18"
+                      - generic [ref=e685]: 18%
+                  - generic [ref=e686]:
+                    - generic [ref=e687]: Resources
+                    - textbox "Resources" [ref=e688]: Operations Team
+                - generic [ref=e689]:
+                  - generic [ref=e690]: Note
+                  - textbox "Note" [ref=e691]: Driving milestone path. Float is less than 1d.
+                - generic [ref=e692]:
+                  - generic [ref=e693]:
+                    - checkbox "Critical" [checked] [ref=e694]
+                    - text: Critical
+                  - generic [ref=e695]:
+                    - checkbox "Pinned To Timeline" [checked] [ref=e696]
+                    - text: Pinned To Timeline
+              - generic [ref=e697]:
+                - generic [ref=e698]:
+                  - generic [ref=e699]: Dependency & Tracking
+                  - generic [ref=e700]:
+                    - generic [ref=e701]:
+                      - generic [ref=e702]: WBS
+                      - generic [ref=e703]: "2.1"
+                    - generic [ref=e704]:
+                      - generic [ref=e705]: Kind
+                      - generic [ref=e706]: Task
+                    - generic [ref=e707]:
+                      - generic [ref=e708]: Duration
+                      - generic [ref=e709]: 8d
+                    - generic [ref=e710]:
+                      - generic [ref=e711]: Baseline
+                      - generic [ref=e712]: 06 May 2026
+                    - generic [ref=e713]:
+                      - generic [ref=e714]: Predecessors
+                      - generic [ref=e715]: 1.6 FS, 2.4 FS
+                    - generic [ref=e716]:
+                      - generic [ref=e717]: Successors
+                      - generic [ref=e718]: 2.2 FS
+                    - generic [ref=e719]:
+                      - generic [ref=e720]: Variance
+                      - generic [ref=e721]: +27d
+                    - generic [ref=e722]:
+                      - generic [ref=e723]: Resources
+                      - generic [ref=e724]: Operations Team
+                - generic [ref=e725]:
+                  - generic [ref=e726]:
+                    - generic [ref=e728]: Predecessors
+                    - generic [ref=e729]: 2 linked
+                  - generic [ref=e730]:
+                    - generic [ref=e815]:
+                      - generic [ref=e816]:
+                        - generic [ref=e817]: Predecessor Task
+                        - generic [ref=e818]: 1.6 UGO commissioning
+                      - generic [ref=e819]:
+                        - generic [ref=e820]: Link Type
+                        - combobox "Link Type" [ref=e821]:
+                          - option "Finish to Start" [selected]
+                          - option "Start to Start"
+                          - option "Finish to Finish"
+                          - option "Start to Finish"
+                      - button "Remove" [ref=e822]
+                    - generic [ref=e823]:
+                      - generic [ref=e824]:
+                        - generic [ref=e825]: Predecessor Task
+                        - generic [ref=e826]: 2.4 Regulator chamber review
+                      - generic [ref=e827]:
+                        - generic [ref=e828]: Link Type
+                        - combobox "Link Type" [ref=e829]:
+                          - option "Finish to Start" [selected]
+                          - option "Start to Start"
+                          - option "Finish to Finish"
+                          - option "Start to Finish"
+                      - button "Remove" [ref=e830]
+                  - generic [ref=e739]:
+                    - generic [ref=e740]:
+                      - generic [ref=e741]: Add Predecessor
+                      - combobox "Add Predecessor" [ref=e742]:
+                        - option "1 Mobilisation & authorities" [selected]
+                        - option "1.1 Project kickoff"
+                        - option "1.2 Scaffolding dismantle"
+                        - option "1.3 Water Work Inspect Application"
+                        - option "1.4 Occupation Permit Application"
+                        - option "1.5 Weekly coordination meeting"
+                        - option "2 Commissioning & closeout"
+                        - option "2.2 Testing & as-built pack"
+                        - option "2.3 Project completion"
+                    - generic [ref=e743]:
+                      - generic [ref=e744]: Type
+                      - combobox "Type" [ref=e745]:
+                        - option "FS" [selected]
+                        - option "SS"
+                        - option "FF"
+                        - option "SF"
+                    - button "Add Link" [ref=e747]
+                - generic [ref=e748]:
+                  - generic [ref=e749]: Selected Task JSON
+                  - generic [ref=e751]: "{ \"id\": \"9\", \"parentId\": \"8\", \"order\": 8, \"wbs\": \"2.1\", \"name\": \"Riser commissioning\", \"kind\": \"task\", \"mode\": \"auto\", \"startDate\": \"2026-05-22\", \"finishDate\": \"2026-06-02\", \"durationLabel\": \"8d\", \"durationDays\": 8, \"progress\": 18, \"resourceNames\": \"Operations Team\", \"note\": \"Driving milestone path. Float is less than 1d.\", \"tone\": \"danger\", \"expanded\": true, \"onTimeline\": true, \"isCritical\": true, \"baselineStartDate\": \"2026-04-27\", \"baselineFinishDate\": \"2026-05-06\", \"segments\": [ { \"id\": \"9-segment-1\", \"startDate\": \"2026-05-22\", \"finishDate\": \"2026-06-02\" } ] }"
+  - button "Open Next.js Dev Tools" [ref=e757] [cursor=pointer]:
+    - img [ref=e758]
+  - alert [ref=e766]

@@ -1,0 +1,306 @@
+[
+  {
+    "path": "/",
+    "title": "PWA Settings"
+  },
+  {
+    "path": "/add-edit-template",
+    "title": "Add Edit Template"
+  },
+  {
+    "path": "/manage-view",
+    "title": "Manage View"
+  },
+  {
+    "path": "/grouping-format",
+    "title": "Grouping Format"
+  },
+  {
+    "path": "/gantt-chart-format",
+    "title": "Gantt Chart Format"
+  },
+  {
+    "path": "/quick-launch",
+    "title": "Quick Launch"
+  },
+  {
+    "path": "/my-queued-job",
+    "title": "My Queued Job"
+  },
+  {
+    "path": "/manage-delegate",
+    "title": "Manage Delegate"
+  },
+  {
+    "path": "/manage-delegates",
+    "title": "Manage Delegates"
+  },
+  {
+    "path": "/manage-groups",
+    "title": "Manage Groups"
+  },
+  {
+    "path": "/manage-category",
+    "title": "Manage Category"
+  },
+  {
+    "path": "/manage-template",
+    "title": "Manage Template"
+  },
+  {
+    "path": "/manage-queue-jobs",
+    "title": "Manage Queue Jobs"
+  },
+  {
+    "path": "/manager-user",
+    "title": "Manager User"
+  },
+  {
+    "path": "/user-sync",
+    "title": "User Sync"
+  },
+  {
+    "path": "/custom-field",
+    "title": "Custom Field"
+  },
+  {
+    "path": "/custom-master-list",
+    "title": "Custom Master List"
+  },
+  {
+    "path": "/contractor-master-list",
+    "title": "Contractor Master List"
+  },
+  {
+    "path": "/inspector-master-list",
+    "title": "Inspector Master List"
+  },
+  {
+    "path": "/enterprise-calendar",
+    "title": "Enterprise Calendar"
+  },
+  {
+    "path": "/enterprise-project-type",
+    "title": "Enterprise Project Type"
+  },
+  {
+    "path": "/fiscal-periods",
+    "title": "Fiscal Periods"
+  },
+  {
+    "path": "/line-classifications",
+    "title": "Line Classifications"
+  },
+  {
+    "path": "/time-report-period",
+    "title": "Time Report Period"
+  },
+  {
+    "path": "/timesheet-settings-and-defaults-1",
+    "title": "Timesheet Settings and Defaults1"
+  },
+  {
+    "path": "/timesheet-settings-and-defaults-2",
+    "title": "Timesheet Settings and Defaults2"
+  },
+  {
+    "path": "/manage-timesheet",
+    "title": "Manage Timesheet"
+  },
+  {
+    "path": "/timesheet-manager",
+    "title": "Timesheet Manager"
+  },
+  {
+    "path": "/additional-server-settings",
+    "title": "Additional Server Settings"
+  },
+  {
+    "path": "/connect-sharepoint-site",
+    "title": "Connect SharePoint Site"
+  },
+  {
+    "path": "/delete-enterprise-object",
+    "title": "Delete Enterprise Object"
+  },
+  {
+    "path": "/force-check-in-enterprise-object",
+    "title": "Force Check-in Enterprise Object"
+  },
+  {
+    "path": "/report",
+    "title": "Report"
+  },
+  {
+    "path": "/administrative-time",
+    "title": "Administrative Time"
+  },
+  {
+    "path": "/task-setting-and-display",
+    "title": "Task Setting and Display"
+  },
+  {
+    "path": "/workflow-phase",
+    "title": "Workflow Phase"
+  },
+  {
+    "path": "/workflow-stage",
+    "title": "Workflow Stage"
+  },
+  {
+    "path": "/change-restart-skip-workflow",
+    "title": "ChangeRestartSkip Workflow"
+  },
+  {
+    "path": "/project-center",
+    "title": "Project Center"
+  },
+  {
+    "path": "/projects/rp-20250059/information",
+    "title": "Project Information"
+  },
+  {
+    "path": "/projects/rp-20250059/schedule",
+    "title": "Project Schedule"
+  },
+  {
+    "path": "/projects/rp-20250059/schedule-1",
+    "title": "Project Schedule1"
+  },
+  {
+    "path": "/projects/rp-20250059/project-status",
+    "title": "Project Status"
+  },
+  {
+    "path": "/projects/rp-20250059/project-site",
+    "title": "Project Site"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management",
+    "title": "Project Management"
+  },
+  {
+    "path": "/projects/rp-20250059/approvals",
+    "title": "Approvals"
+  },
+  {
+    "path": "/projects/rp-20250059/tasks",
+    "title": "Project Task"
+  },
+  {
+    "path": "/projects/rp-20250059/resources",
+    "title": "Project Resource Center"
+  },
+  {
+    "path": "/projects/rp-20250059/cpim-template",
+    "title": "CPIM Template"
+  },
+  {
+    "path": "/projects/rp-20250059/cpim-reports",
+    "title": "CPIM Reports"
+  },
+  {
+    "path": "/projects/rp-20250059/role-access",
+    "title": "Role Access"
+  },
+  {
+    "path": "/projects/rp-20250059/contractor-master",
+    "title": "Contractor Master"
+  },
+  {
+    "path": "/projects/rp-20250059/customer-master",
+    "title": "Customer Master"
+  },
+  {
+    "path": "/projects/rp-20250059/inspection-master",
+    "title": "Inspection Master"
+  },
+  {
+    "path": "/projects/rp-20250059/alert-dashboard",
+    "title": "Alert Dashboard"
+  },
+  {
+    "path": "/projects/rp-20250059/bom-maintenance",
+    "title": "BOM Maintenance"
+  },
+  {
+    "path": "/projects/rp-20250059/tenderer-group",
+    "title": "Tenderer Group"
+  },
+  {
+    "path": "/projects/rp-20250059/generic-report",
+    "title": "Generic Report"
+  },
+  {
+    "path": "/projects/rp-20250059/knowledge-management",
+    "title": "Knowledge Management"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/create-project",
+    "title": "Project Management - create project"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/create-project-template",
+    "title": "Project Management - Create project template page 1"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/build-team",
+    "title": "Project Management - build team"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/project-permissions",
+    "title": "Project Management - Project Permissions"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/risk",
+    "title": "Project Management - Risk"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/issues",
+    "title": "Project Management - Issue Management"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/deliverables",
+    "title": "Project Management - Deliverables"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/project-status",
+    "title": "Project Management - project status"
+  },
+  {
+    "path": "/projects/rp-20250059/project-management/task-bar",
+    "title": "Project Management - TaskBar"
+  },
+  {
+    "path": "/projects/rp-20250059/task-bar",
+    "title": "Project Management -Task Bar"
+  },
+  {
+    "path": "/projects/rp-20250059/tasks/new",
+    "title": "Project New Task"
+  },
+  {
+    "path": "/projects/rp-20250059/resources/new-1",
+    "title": "Project New Resource1"
+  },
+  {
+    "path": "/projects/rp-20250059/resources/new-2",
+    "title": "Project New Resource2"
+  },
+  {
+    "path": "/projects/rp-20250059/resources/new-3",
+    "title": "Project New Resource3"
+  },
+  {
+    "path": "/projects/rp-20250059/resources/new-4",
+    "title": "Project New Resource4"
+  },
+  {
+    "path": "/projects/rp-20250059/resources/new-5",
+    "title": "Project New Resource5"
+  },
+  {
+    "path": "/project-task-reassign",
+    "title": "Project Task Reassign"
+  }
+]

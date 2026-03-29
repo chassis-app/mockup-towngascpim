@@ -1,0 +1,169 @@
+[     696ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <GanttDemoPage>
+      <AppShell>
+        <SidebarProvider defaultOpen={true} className="min-h-svh ...">
+          ...
+            <main data-slot="sidebar-inset" className="relative f...">
+              <header>
+              <main className="mx-auto fl...">
+                <section>
+                <div className="min-w-0">
+                  <ProjectGantt initialProject={{id:"rp-202...", ...}}>
+                    <section className="space-y-5">
+                      <div className="mockup-sec...">
+                        <div>
+                        <div className="bg-white">
+                          <div>
+                          <div>
+                          <div className="border-t b...">
+                            <div className="grid gap-4...">
+                              <div className="rounded-[1...">
+                                <div>
+                                <div>
+                                <div className="mt-4 grid ...">
+                                  <label className="space-y-2">
+                                    <div>
+                                    <input
+                                      value="Occupation Permit Application"
+                                      onChange={function onChange}
+                                      className="w-full rounded-xl border border-border bg-white px-3 py-2 text-[0.88r..."
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                  <label>
+                                  <label className="space-y-2">
+                                    <div>
+                                    <input
+                                      type="date"
+                                      value="2026-03-24"
+                                      disabled={false}
+                                      onChange={function onChange}
+                                      className="w-full rounded-xl border border-border bg-white px-3 py-2 text-[0.88r..."
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                  <label className="space-y-2">
+                                    <div>
+                                    <input
+                                      type="date"
+                                      value="2026-04-13"
+                                      disabled={false}
+                                      onChange={function onChange}
+                                      className="w-full rounded-xl border border-border bg-white px-3 py-2 text-[0.88r..."
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                  <label className="space-y-2">
+                                    <div>
+                                    <div className="flex items...">
+                                      <input
+                                        type="range"
+                                        min="0"
+                                        max="100"
+                                        value={28}
+                                        onChange={function onChange}
+                                        className="flex-1"
+-                                       style={{caret-color:"transparent"}}
+                                      >
+                                      ...
+                                  <label className="space-y-2">
+                                    <div>
+                                    <input
+                                      value="Permitting"
+                                      onChange={function onChange}
+                                      className="w-full rounded-xl border border-border bg-white px-3 py-2 text-[0.88r..."
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                <label className="mt-4 block...">
+                                  <div>
+                                  <textarea
+                                    value="Split task to wait for authority response window."
+                                    onChange={function onChange}
+                                    rows={3}
+                                    className="w-full rounded-xl border border-border bg-white px-3 py-2 text-[0.88rem..."
+-                                   style={{caret-color:"transparent"}}
+                                  >
+                                <div className="mt-4 flex ...">
+                                  <label className="inline-fle...">
+                                    <input
+                                      type="checkbox"
+                                      checked={true}
+                                      onChange={function onChange}
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                    ...
+                                  <label className="inline-fle...">
+                                    <input
+                                      type="checkbox"
+                                      checked={true}
+                                      onChange={function onChange}
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                    ...
+                              ...
+ @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[ 2714489ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:91:220)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6691:24)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[ 2727167ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[ 2727773ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252Fgantt%252Fproject-gantt.tsx+%255Bapp-client%255D+%2528ecmascript%2529:91:220)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performSyncWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
+    at flushSyncWork$1 (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9230:86)
+    at Object.scheduleRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:299:13)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:384:38)
+    at applyUpdate (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:878:31)
+    at http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:886:13
+[ 2728229ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://139.99.122.192:3002/projects/rp-20250059/gantt-demo:0
+[ 2729046ms] ReferenceError: getDefaultColumnWidths is not defined
+    at ProjectGantt (http://139.99.122.192:3002/_next/static/chunks/src_09q51.8._.js:2859:206)
+    at Object.react_stack_bottom_frame (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
+    at updateFunctionComponent (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
+    at renderRootSync (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[ 2735567ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://139.99.122.192:3002/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

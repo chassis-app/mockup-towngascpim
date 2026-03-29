@@ -1,0 +1,77 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Workspace" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Workspace
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Administration" [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Administration
+              - img [ref=e33]
+      - list [ref=e36]:
+        - listitem [ref=e37]:
+          - button "TG Administration CPIM Navigation" [ref=e38]:
+            - generic [ref=e40]: TG
+            - generic [ref=e41]:
+              - generic [ref=e42]: Administration
+              - generic [ref=e43]: CPIM Navigation
+            - img [ref=e44]
+      - button "Toggle Sidebar" [ref=e46]
+    - main [ref=e47]:
+      - generic [ref=e49]:
+        - button "Toggle Sidebar" [ref=e50]:
+          - img
+          - generic [ref=e51]: Toggle Sidebar
+        - separator [ref=e52]
+        - navigation "breadcrumb" [ref=e53]:
+          - list [ref=e54]:
+            - listitem [ref=e55]:
+              - link "Administration" [ref=e56] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e57]:
+              - img [ref=e58]
+            - listitem [ref=e60]:
+              - link "Enterprise Calendars" [disabled] [ref=e61]
+      - main [ref=e62]:
+        - generic [ref=e65]:
+          - generic [ref=e67]: Administration
+          - heading "Enterprise Calendars" [level=1] [ref=e69]
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - button "New Calendar" [ref=e75]
+            - button "Edit" [ref=e76]
+            - button "Delete" [ref=e77]
+          - separator [ref=e78]
+          - table [ref=e81]:
+            - rowgroup [ref=e82]:
+              - row "Name Checked Out" [ref=e83]:
+                - columnheader "Name" [ref=e84]
+                - columnheader "Checked Out" [ref=e85]
+            - rowgroup [ref=e86]:
+              - row "Standard" [ref=e87]:
+                - cell "Standard" [ref=e88]
+                - cell [ref=e89]
+              - row "Construction Team Calendar victorcheng" [ref=e90]:
+                - cell "Construction Team Calendar" [ref=e91]
+                - cell "victorcheng" [ref=e92]
+              - row "Inspection Team Calendar" [ref=e93]:
+                - cell "Inspection Team Calendar" [ref=e94]
+                - cell [ref=e95]
+              - row "Night Works Calendar susan.chan" [ref=e96]:
+                - cell "Night Works Calendar" [ref=e97]
+                - cell "susan.chan" [ref=e98]
+  - alert [ref=e99]

@@ -1,0 +1,177 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: P
+          - generic [ref=e11]:
+            - generic [ref=e12]: PMO
+            - generic [ref=e13]: CPIMUAT
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Workspace" [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e22]: Workspace
+            - img [ref=e23]
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - button "Administration" [expanded] [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e32]: Administration
+            - img [ref=e33]
+          - list [ref=e36]:
+            - listitem [ref=e37]:
+              - link "PWA Settings" [ref=e38] [cursor=pointer]:
+                - /url: /
+                - generic [ref=e39]: PWA Settings
+            - listitem [ref=e40]:
+              - link "Manage Views" [ref=e41] [cursor=pointer]:
+                - /url: /manage-view
+                - generic [ref=e42]: Manage Views
+            - listitem [ref=e43]:
+              - link "Quick Launch" [ref=e44] [cursor=pointer]:
+                - /url: /quick-launch
+                - generic [ref=e45]: Quick Launch
+            - listitem [ref=e46]:
+              - link "Manage Templates" [ref=e47] [cursor=pointer]:
+                - /url: /manage-template
+                - generic [ref=e48]: Manage Templates
+            - listitem [ref=e49]:
+              - link "Manage Delegates" [ref=e50] [cursor=pointer]:
+                - /url: /manage-delegates
+                - generic [ref=e51]: Manage Delegates
+            - listitem [ref=e52]:
+              - link "Time Reporting Periods" [ref=e53] [cursor=pointer]:
+                - /url: /time-report-period
+                - generic [ref=e54]: Time Reporting Periods
+            - listitem [ref=e55]:
+              - link "Reporting" [ref=e56] [cursor=pointer]:
+                - /url: /report
+                - generic [ref=e57]: Reporting
+    - list [ref=e59]:
+      - listitem [ref=e60]:
+        - button "TG Administration CPIM Navigation" [ref=e61]:
+          - generic [ref=e63]: TG
+          - generic [ref=e64]:
+            - generic [ref=e65]: Administration
+            - generic [ref=e66]: CPIM Navigation
+          - img [ref=e67]
+    - button "Toggle Sidebar" [ref=e69]
+  - main [ref=e70]:
+    - generic [ref=e72]:
+      - button "Toggle Sidebar" [ref=e73]:
+        - img
+        - generic [ref=e74]: Toggle Sidebar
+      - separator [ref=e75]
+      - navigation "breadcrumb" [ref=e76]:
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - link "Administration" [ref=e79] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e80]:
+            - img [ref=e81]
+          - listitem [ref=e83]:
+            - link "PWA Settings" [disabled] [ref=e84]
+    - main [ref=e85]:
+      - generic [ref=e88]:
+        - generic [ref=e90]: Administration
+        - heading "PWA Settings" [level=1] [ref=e92]
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e98]: Personal Settings
+          - generic [ref=e99]:
+            - link "My Queued Jobs" [ref=e101] [cursor=pointer]:
+              - /url: /my-queued-jobs
+            - link "Manage Delegates" [ref=e103] [cursor=pointer]:
+              - /url: /manage-delegates
+            - link "Act as a Delegate" [ref=e105] [cursor=pointer]:
+              - /url: /manage-delegate
+        - generic [ref=e106]:
+          - generic [ref=e108]: Enterprise Data
+          - generic [ref=e109]:
+            - link "Enterprise Custom Fields and Lookup Tables" [ref=e111] [cursor=pointer]:
+              - /url: /custom-field
+            - link "Enterprise Calendars" [ref=e113] [cursor=pointer]:
+              - /url: /enterprise-calendar
+            - link "Resource Center" [ref=e115] [cursor=pointer]:
+              - /url: /projects/rp-20250059/resources
+            - link "Reporting" [ref=e117] [cursor=pointer]:
+              - /url: /report
+        - generic [ref=e118]:
+          - generic [ref=e120]: Queue and Database Administration
+          - generic [ref=e121]:
+            - link "Manage Queue Jobs" [ref=e123] [cursor=pointer]:
+              - /url: /manage-queue-jobs
+            - link "Delete Enterprise Objects" [ref=e125] [cursor=pointer]:
+              - /url: /delete-enterprise-object
+            - link "Force Check-in Enterprise Objects" [ref=e127] [cursor=pointer]:
+              - /url: /force-check-in-enterprise-object
+        - generic [ref=e128]:
+          - generic [ref=e130]: Look and Feel
+          - generic [ref=e131]:
+            - link "Manage Views" [ref=e133] [cursor=pointer]:
+              - /url: /manage-view
+            - link "Grouping Formats" [ref=e135] [cursor=pointer]:
+              - /url: /grouping-format
+            - link "Gantt Chart Formats" [ref=e137] [cursor=pointer]:
+              - /url: /gantt-chart-format
+            - link "Quick Launch" [ref=e139] [cursor=pointer]:
+              - /url: /quick-launch
+        - generic [ref=e140]:
+          - generic [ref=e142]: Time and Task Management
+          - generic [ref=e143]:
+            - link "Fiscal Periods" [ref=e145] [cursor=pointer]:
+              - /url: /fiscal-periods
+            - link "Time Reporting Periods" [ref=e147] [cursor=pointer]:
+              - /url: /time-report-period
+            - link "Line Classifications" [ref=e149] [cursor=pointer]:
+              - /url: /line-classifications
+            - link "Timesheet Settings and Defaults" [ref=e151] [cursor=pointer]:
+              - /url: /timesheet-settings-and-defaults-1
+            - link "Administrative Time" [ref=e153] [cursor=pointer]:
+              - /url: /administrative-time
+            - link "Task Settings and Display" [ref=e155] [cursor=pointer]:
+              - /url: /task-setting-and-display
+            - link "Manage Timesheets" [ref=e157] [cursor=pointer]:
+              - /url: /manage-timesheet
+            - link "Timesheet Managers" [ref=e159] [cursor=pointer]:
+              - /url: /timesheet-manager
+        - generic [ref=e160]:
+          - generic [ref=e162]: Operational Policies
+          - generic [ref=e163]:
+            - link "Additional Server Settings" [ref=e165] [cursor=pointer]:
+              - /url: /additional-server-settings
+            - link "Active Directory Resource Pool Synchronization" [ref=e167] [cursor=pointer]:
+              - /url: /user-sync
+            - link "Connected SharePoint Sites" [ref=e169] [cursor=pointer]:
+              - /url: /connect-sharepoint-site
+        - generic [ref=e170]:
+          - generic [ref=e172]: Workflow and Project Detail Pages
+          - generic [ref=e173]:
+            - link "Enterprise Project Types" [ref=e175] [cursor=pointer]:
+              - /url: /enterprise-project-type
+            - link "Workflow Phases" [ref=e177] [cursor=pointer]:
+              - /url: /workflow-phase
+            - link "Workflow Stages" [ref=e179] [cursor=pointer]:
+              - /url: /workflow-stage
+            - link "Change or Restart Workflows" [ref=e181] [cursor=pointer]:
+              - /url: /change-restart-skip-workflow
+            - link "Project Detail Pages" [ref=e183] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+        - generic [ref=e184]:
+          - generic [ref=e186]: Security
+          - generic [ref=e187]:
+            - link "Manage Users" [ref=e189] [cursor=pointer]:
+              - /url: /manager-user
+            - link "Manage Groups" [ref=e191] [cursor=pointer]:
+              - /url: /manage-groups
+            - link "Manage Categories" [ref=e193] [cursor=pointer]:
+              - /url: /manage-category
+            - link "Manage Security Templates" [ref=e195] [cursor=pointer]:
+              - /url: /manage-template
+            - link "Manage User Sync Settings" [ref=e197] [cursor=pointer]:
+              - /url: /user-sync
+            - link "Manage Delegates" [ref=e199] [cursor=pointer]:
+              - /url: /manage-delegates

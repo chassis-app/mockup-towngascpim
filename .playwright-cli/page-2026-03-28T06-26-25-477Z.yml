@@ -1,0 +1,216 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e5]:
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "P PMO CPIMUAT" [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]: P
+            - generic [ref=e11]:
+              - generic [ref=e12]: PMO
+              - generic [ref=e13]: CPIMUAT
+      - generic [ref=e14]:
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - button "Overview" [ref=e18]:
+              - img [ref=e19]
+              - generic [ref=e22]: Overview
+              - img [ref=e23]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "Workspace" [expanded] [ref=e28]:
+              - img [ref=e29]
+              - generic [ref=e32]: Workspace
+              - img [ref=e33]
+            - list [ref=e36]:
+              - listitem [ref=e37]:
+                - link "Project Management" [ref=e38] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/project-management
+                  - generic [ref=e39]: Project Management
+              - listitem [ref=e40]:
+                - link "Approvals" [ref=e41] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/approvals
+                  - generic [ref=e42]: Approvals
+              - listitem [ref=e43]:
+                - link "Tasks" [ref=e44] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tasks
+                  - generic [ref=e45]: Tasks
+              - listitem [ref=e46]:
+                - link "Resources" [ref=e47] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/resources
+                  - generic [ref=e48]: Resources
+              - listitem [ref=e49]:
+                - link "CPIM Template" [ref=e50] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-template
+                  - generic [ref=e51]: CPIM Template
+              - listitem [ref=e52]:
+                - link "CPIM Reports" [ref=e53] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/cpim-reports
+                  - generic [ref=e54]: CPIM Reports
+              - listitem [ref=e55]:
+                - link "Role Access" [ref=e56] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/role-access
+                  - generic [ref=e57]: Role Access
+              - listitem [ref=e58]:
+                - link "Contractor Master" [ref=e59] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/contractor-master
+                  - generic [ref=e60]: Contractor Master
+              - listitem [ref=e61]:
+                - link "Customer Master" [ref=e62] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/customer-master
+                  - generic [ref=e63]: Customer Master
+              - listitem [ref=e64]:
+                - link "Inspection Master" [ref=e65] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/inspection-master
+                  - generic [ref=e66]: Inspection Master
+              - listitem [ref=e67]:
+                - link "Alert Dashboard" [ref=e68] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/alert-dashboard
+                  - generic [ref=e69]: Alert Dashboard
+              - listitem [ref=e70]:
+                - link "BOM Maintenance" [ref=e71] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/bom-maintenance
+                  - generic [ref=e72]: BOM Maintenance
+              - listitem [ref=e73]:
+                - link "Tenderer Group" [ref=e74] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/tenderer-group
+                  - generic [ref=e75]: Tenderer Group
+              - listitem [ref=e76]:
+                - link "Generic Report" [ref=e77] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/generic-report
+                  - generic [ref=e78]: Generic Report
+              - listitem [ref=e79]:
+                - link "Knowledge Management" [ref=e80] [cursor=pointer]:
+                  - /url: /projects/rp-20250059/knowledge-management
+                  - generic [ref=e81]: Knowledge Management
+        - list [ref=e83]:
+          - listitem [ref=e84]:
+            - button "Utilities" [ref=e85]:
+              - img [ref=e86]
+              - generic [ref=e89]: Utilities
+              - img [ref=e90]
+      - list [ref=e93]:
+        - listitem [ref=e94]:
+          - button "TG Project Workspace victor test internal" [ref=e95]:
+            - generic [ref=e97]: TG
+            - generic [ref=e98]:
+              - generic [ref=e99]: Project Workspace
+              - generic [ref=e100]: victor test internal
+            - img [ref=e101]
+      - button "Toggle Sidebar" [ref=e103]
+    - main [ref=e104]:
+      - generic [ref=e106]:
+        - button "Toggle Sidebar" [ref=e107]:
+          - img
+          - generic [ref=e108]: Toggle Sidebar
+        - separator [ref=e109]
+        - navigation "breadcrumb" [ref=e110]:
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - link "Project Workspace" [ref=e113] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e114]:
+              - img [ref=e115]
+            - listitem [ref=e117]:
+              - link "Project Management" [disabled] [ref=e118]
+      - main [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e122]:
+            - generic [ref=e124]: Project Workspace
+            - generic [ref=e125]:
+              - heading "Project Management" [level=1] [ref=e126]
+              - generic [ref=e127]:
+                - generic [ref=e128]: victor test internal
+                - generic [ref=e129]: generate invoice 002
+          - generic [ref=e131]:
+            - link "Project Information (RP)" [ref=e132] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+            - link "Schedule" [ref=e133] [cursor=pointer]:
+              - /url: /projects/rp-20250059/schedule
+            - link "Project Status" [ref=e134] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-status
+            - link "Project Site" [ref=e135] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-site
+            - link "Project Management" [ref=e136] [cursor=pointer]:
+              - /url: /projects/rp-20250059/project-management
+            - link "Approvals" [ref=e137] [cursor=pointer]:
+              - /url: /projects/rp-20250059/approvals
+            - link "Tasks" [ref=e138] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tasks
+            - link "Resources" [ref=e139] [cursor=pointer]:
+              - /url: /projects/rp-20250059/resources
+            - link "CPIM Template" [ref=e140] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-template
+            - link "CPIM Reports" [ref=e141] [cursor=pointer]:
+              - /url: /projects/rp-20250059/cpim-reports
+            - link "Role Access" [ref=e142] [cursor=pointer]:
+              - /url: /projects/rp-20250059/role-access
+            - link "Contractor Master" [ref=e143] [cursor=pointer]:
+              - /url: /projects/rp-20250059/contractor-master
+            - link "Customer Master" [ref=e144] [cursor=pointer]:
+              - /url: /projects/rp-20250059/customer-master
+            - link "Inspection Master" [ref=e145] [cursor=pointer]:
+              - /url: /projects/rp-20250059/inspection-master
+            - link "Alert Dashboard" [ref=e146] [cursor=pointer]:
+              - /url: /projects/rp-20250059/alert-dashboard
+            - link "BOM Maintenance" [ref=e147] [cursor=pointer]:
+              - /url: /projects/rp-20250059/bom-maintenance
+            - link "Tenderer Group" [ref=e148] [cursor=pointer]:
+              - /url: /projects/rp-20250059/tenderer-group
+            - link "Generic Report" [ref=e149] [cursor=pointer]:
+              - /url: /projects/rp-20250059/generic-report
+            - link "Knowledge Management" [ref=e150] [cursor=pointer]:
+              - /url: /projects/rp-20250059/knowledge-management
+            - link "EDIT LINKS" [ref=e151] [cursor=pointer]:
+              - /url: /projects/rp-20250059/information
+        - generic [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e157]:
+              - generic [ref=e158]: Open Items
+              - generic [ref=e159]: "14"
+              - generic [ref=e160]: Attention required
+            - generic [ref=e162]:
+              - generic [ref=e163]: Pending Approvals
+              - generic [ref=e164]: "6"
+              - generic [ref=e165]: Awaiting action
+            - generic [ref=e167]:
+              - generic [ref=e168]: Completed Tasks
+              - generic [ref=e169]: "128"
+              - generic [ref=e170]: On track
+            - generic [ref=e172]:
+              - generic [ref=e173]: Overdue Deliverables
+              - generic [ref=e174]: "3"
+              - generic [ref=e175]: Review now
+          - generic [ref=e177]:
+            - generic [ref=e178]:
+              - generic [ref=e179]: Data View
+              - generic [ref=e180]: Recent Activity
+            - table [ref=e183]:
+              - rowgroup [ref=e184]:
+                - row "Item Owner Status Updated" [ref=e185]:
+                  - columnheader "Item" [ref=e186]
+                  - columnheader "Owner" [ref=e187]
+                  - columnheader "Status" [ref=e188]
+                  - columnheader "Updated" [ref=e189]
+              - rowgroup [ref=e190]:
+                - row "Project status report Victor Chan Pending 24 Mar 2026" [ref=e191]:
+                  - cell "Project status report" [ref=e192]
+                  - cell "Victor Chan" [ref=e193]
+                  - cell "Pending" [ref=e194]
+                  - cell "24 Mar 2026" [ref=e195]
+                - row "Material request Operations Team Approved 23 Mar 2026" [ref=e196]:
+                  - cell "Material request" [ref=e197]
+                  - cell "Operations Team" [ref=e198]
+                  - cell "Approved" [ref=e199]
+                  - cell "23 Mar 2026" [ref=e200]
+                - row "Site inspection QC Team Open 22 Mar 2026" [ref=e201]:
+                  - cell "Site inspection" [ref=e202]
+                  - cell "QC Team" [ref=e203]
+                  - cell "Open" [ref=e204]
+                  - cell "22 Mar 2026" [ref=e205]
+                - row "Tender review Procurement In Progress 22 Mar 2026" [ref=e206]:
+                  - cell "Tender review" [ref=e207]
+                  - cell "Procurement" [ref=e208]
+                  - cell "In Progress" [ref=e209]
+                  - cell "22 Mar 2026" [ref=e210]
+  - alert [ref=e211]
