@@ -228,6 +228,7 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
     getDefaultColumnWidths(),
   );
   const [leftPaneWidth, setLeftPaneWidth] = useState(defaultLeftPaneWidth);
+  const [isWorkbenchExpanded, setIsWorkbenchExpanded] = useState(false);
   const [didHydratePersistedState, setDidHydratePersistedState] = useState(false);
   const [pendingPredecessorTaskId, setPendingPredecessorTaskId] = useState("");
   const [pendingPredecessorKind, setPendingPredecessorKind] =
@@ -369,6 +370,28 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [chartLinkDraft]);
+
+  useEffect(() => {
+    if (!isWorkbenchExpanded || typeof document === "undefined") {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsWorkbenchExpanded(false);
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isWorkbenchExpanded]);
 
   const onPointerMove = useEffectEvent((event: PointerEvent) => {
     const paneResizeState = paneResizeRef.current;
@@ -748,8 +771,22 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
   const selectedTaskJson = JSON.stringify(selectedTask, null, 2);
 
   return (
-    <section className="space-y-5">
-      <div className="mockup-section-shell overflow-hidden">
+    <>
+      {isWorkbenchExpanded ? (
+        <div
+          className="fixed inset-0 z-40 bg-slate-950/28 backdrop-blur-[2px]"
+          onClick={() => setIsWorkbenchExpanded(false)}
+        />
+      ) : null}
+
+      <section className="space-y-5">
+        <div
+          className={cn(
+            "mockup-section-shell overflow-hidden",
+            isWorkbenchExpanded &&
+              "fixed inset-3 z-50 max-h-[calc(100vh-1.5rem)] overflow-auto rounded-[2rem] border border-border/80 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.22)] sm:inset-6 sm:max-h-[calc(100vh-3rem)]",
+          )}
+        >
         <div className="border-b border-border/70 bg-[linear-gradient(180deg,rgba(250,253,253,0.96),rgba(240,247,247,0.82))] px-5 py-5">
           <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
             <div className="space-y-3">
@@ -878,6 +915,20 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
             >
               Reset Demo
             </button>
+
+            <button
+              type="button"
+              aria-pressed={isWorkbenchExpanded}
+              onClick={() => setIsWorkbenchExpanded((current) => !current)}
+              className={cn(
+                "rounded-full border px-3 py-1.5 text-[0.78rem] font-medium",
+                isWorkbenchExpanded
+                  ? "border-primary/20 bg-primary/12 text-primary"
+                  : "border-border bg-white/86 text-[#59636d]",
+              )}
+            >
+              {isWorkbenchExpanded ? "Exit Full Screen" : "Full Screen"}
+            </button>
           </div>
         </div>
 
@@ -889,6 +940,12 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
                   Gantt Workbench
                 </div>
               </div>
+
+              {isWorkbenchExpanded ? (
+                <div className="rounded-full border border-primary/15 bg-primary/8 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
+                  Press Esc to close
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -1937,8 +1994,9 @@ export function ProjectGantt({ initialProject }: { initialProject: GanttProject 
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
 

@@ -2,15 +2,33 @@
 
 import { Fragment, useEffect, useEffectEvent, useRef, useState } from "react";
 
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import type { ScheduleBlock } from "@/lib/mockup-data";
 import { cn } from "@/lib/utils";
 
 const unitWidth = 56;
 const rowHeight = 48;
+const splitRatioStorageKey = "mockup-gantt-split-ratio";
 
 type ScheduleRow = ScheduleBlock["rows"][number];
 type ScheduleBar = NonNullable<ScheduleRow["bar"]>;
 type ScheduleSegment = NonNullable<ScheduleBar["segments"]>[number];
+type DetailMode = "inspector" | "dependency" | "tracking";
 
 type DragState =
   | {
@@ -26,6 +44,11 @@ type DragState =
       bar: ScheduleBar;
     };
 
+type SplitterState = {
+  startClientX: number;
+  startRatio: number;
+};
+
 export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) {
   const [selectedTaskId, setSelectedTaskId] = useState(
     block.rows.find((row) => row.selected)?.id ?? block.rows[0]?.id ?? "",
@@ -37,17 +60,48 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
   const [showBaseline, setShowBaseline] = useState(true);
   const [showNonWorking, setShowNonWorking] = useState(true);
   const [barOverrides, setBarOverrides] = useState<Record<string, ScheduleBar>>({});
+  const [splitRatio, setSplitRatio] = useState(0.5);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [detailMode, setDetailMode] = useState<DetailMode>("inspector");
+  const [contextTaskId, setContextTaskId] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState(
-    "Prototype interactions enabled: select rows, collapse summaries, and drag task bars.",
+    "Prototype interactions enabled: drag the splitter, right-click chart tasks, and open task detail sheets.",
   );
 
-  const dragStateRef = useRef<DragState | null>(null);
+  const layoutRef = useRef<HTMLDivElement | null>(null);
+  const taskDragRef = useRef<DragState | null>(null);
+  const splitterDragRef = useRef<SplitterState | null>(null);
+
+  useEffect(() => {
+    const storedRatio = window.localStorage.getItem(splitRatioStorageKey);
+
+    if (!storedRatio) {
+      return;
+    }
+
+    const parsed = Number(storedRatio);
+
+    if (!Number.isNaN(parsed)) {
+      setSplitRatio(clampSplitRatio(parsed));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(splitRatioStorageKey, String(splitRatio));
+  }, [splitRatio]);
+
   const visibleRows = getVisibleRows(block.rows, collapsedIds, selectedTaskId, barOverrides);
   const selectedRow =
     visibleRows.find((row) => row.id === selectedTaskId) ??
     block.rows.find((row) => row.id === selectedTaskId) ??
     block.rows[0];
+  const contextRow =
+    (contextTaskId
+      ? block.rows.find((row) => row.id === contextTaskId) ??
+        visibleRows.find((row) => row.id === contextTaskId)
+      : null) ?? selectedRow;
   const timelineWidth = block.units.length * unitWidth;
+  const splitPercent = Math.round(splitRatio * 100);
   const rowIndexById = new Map(visibleRows.map((row, index) => [row.id, index]));
   const dependencyLines = block.dependencies.flatMap((dependency) => {
     const fromRow = visibleRows.find((row) => row.id === dependency.from);
@@ -89,7 +143,11 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
   });
 
   const onPointerMove = useEffectEvent((event: PointerEvent) => {
-    const dragState = dragStateRef.current;
+    if (updateSplitterRatio(event.clientX)) {
+      return;
+    }
+
+    const dragState = taskDragRef.current;
 
     if (!dragState) {
       return;
@@ -104,13 +162,17 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
   });
 
   const onPointerUp = useEffectEvent(() => {
-    const dragState = dragStateRef.current;
+    if (finishSplitterDrag()) {
+      return;
+    }
+
+    const dragState = taskDragRef.current;
 
     if (!dragState) {
       return;
     }
 
-    dragStateRef.current = null;
+    taskDragRef.current = null;
     setStatusMessage(
       dragState.mode === "move"
         ? "Task bar moved. In a production Gantt this would update dates and dependency recalculation."
@@ -118,13 +180,25 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
     );
   });
 
+  const onMouseMove = useEffectEvent((event: MouseEvent) => {
+    updateSplitterRatio(event.clientX);
+  });
+
+  const onMouseUp = useEffectEvent(() => {
+    finishSplitterDrag();
+  });
+
   useEffect(() => {
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
 
     return () => {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
     };
   }, []);
 
@@ -133,11 +207,16 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
   }
 
   const taskGridTemplate = block.columns.map((column) => column.width ?? "1fr").join(" ");
-  const inspectorSections = getInspectorSections(selectedRow);
-  const detailCards = getDetailCards(selectedRow, activeView, {
+  const panelSections = getPanelSections(block, selectedRow);
+  const sheetSections =
+    detailMode === "inspector"
+      ? panelSections
+      : panelSections.filter((section) => section.mode === detailMode);
+  const detailCards = getDetailCards(selectedRow, activeView, activeDetailTab, {
     showBaseline,
     showCriticalPath,
     showNonWorking,
+    splitPercent,
   });
 
   return (
@@ -249,6 +328,14 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                 </button>
               );
             })}
+
+            <button
+              type="button"
+              onClick={() => openDetailsForTask(selectedRow.id, "inspector")}
+              className="rounded-2xl border border-primary/20 bg-white px-3 py-2 text-[0.8rem] font-medium text-primary"
+            >
+              Task Details Sheet
+            </button>
           </div>
 
           <div className="mt-4 rounded-[1.2rem] border border-primary/12 bg-white/72 px-4 py-3 text-[0.84rem] text-[#4f5c67]">
@@ -256,12 +343,18 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
           </div>
         </div>
 
-        <div className="overflow-auto bg-white">
-          <div className="min-w-[1680px]">
-            <div className="grid xl:grid-cols-[minmax(820px,1.2fr)_minmax(728px,1fr)_308px]">
-              <div className="border-r border-border/70">
+        <div className="bg-white px-4 py-4 xl:px-5 xl:py-5">
+          <div
+            ref={layoutRef}
+            className="grid gap-0 rounded-[1.6rem] border border-border/70 bg-[#fbfdfd] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] xl:h-[min(74vh,860px)]"
+            style={{
+              gridTemplateColumns: `${splitRatio}fr 18px ${1 - splitRatio}fr`,
+            }}
+          >
+            <div className="min-w-0 overflow-auto rounded-l-[1.6rem] bg-white">
+              <div className="min-w-[1200px]">
                 <div
-                  className="grid border-b border-border/70 bg-[#f7fafb] text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[#7d8791]"
+                  className="sticky top-0 z-20 grid border-b border-border/70 bg-[#f7fafb] text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[#7d8791]"
                   style={{ gridTemplateColumns: taskGridTemplate }}
                 >
                   {block.columns.map((column) => (
@@ -285,10 +378,7 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                     return (
                       <div
                         key={`${row.taskName}-${row.id}`}
-                        onClick={() => {
-                          setSelectedTaskId(row.id);
-                          setStatusMessage(`Selected ${row.taskName}.`);
-                        }}
+                        onClick={() => selectTask(row.id, `Selected ${row.taskName}.`)}
                         className={cn(
                           "grid w-full cursor-pointer items-center text-left text-[0.84rem]",
                           row.selected && "bg-primary/10",
@@ -373,9 +463,42 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                   })}
                 </div>
               </div>
+            </div>
 
-              <div className="border-r border-border/70 bg-[#fcfefe]">
-                <div className="relative border-b border-border/70 bg-[#f8fbfc]">
+            <div className="relative border-x border-border/70 bg-[linear-gradient(180deg,rgba(243,248,249,0.92),rgba(234,242,244,0.9))]">
+              <button
+                type="button"
+                aria-label="Resize schedule panes"
+                onPointerDown={(event) => {
+                  if (event.button !== 0) {
+                    return;
+                  }
+
+                  event.preventDefault();
+                  splitterDragRef.current = {
+                    startClientX: event.clientX,
+                    startRatio: splitRatio,
+                  };
+                  setStatusMessage("Resizing workspace split. Either pane can expand up to 75% of the width.");
+                }}
+                className="absolute inset-0 z-10 cursor-col-resize"
+              />
+              <div className="pointer-events-none sticky top-4 z-20 mx-auto mt-4 flex w-[3.9rem] justify-center rounded-full border border-primary/12 bg-white/92 px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#53616d] shadow-[0_8px_18px_rgba(15,23,42,0.08)]">
+                {splitPercent}/{100 - splitPercent}
+              </div>
+              <div className="pointer-events-none absolute inset-y-6 left-1/2 w-px -translate-x-1/2 bg-primary/25" />
+              <div className="pointer-events-none absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary/45" />
+                <span className="h-1.5 w-1.5 rounded-full bg-primary/45" />
+                <span className="h-1.5 w-1.5 rounded-full bg-primary/45" />
+              </div>
+            </div>
+
+            <div className="min-w-0 overflow-auto rounded-r-[1.6rem] bg-[#fcfefe]">
+              <ContextMenu>
+                <ContextMenuTrigger className="block h-full">
+                  <div className="min-w-[728px]">
+                <div className="sticky top-0 z-20 border-b border-border/70 bg-[#f8fbfc]">
                   <div
                     className="grid border-b border-border/60 text-center text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[#7d8791]"
                     style={{ gridTemplateColumns: `repeat(${block.units.length}, minmax(0, 1fr))` }}
@@ -471,29 +594,42 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
 
                         {row.kind === "milestone"
                           ? segments.map((segment, segmentIndex) => (
-                              <button
+                              <div
                                 key={`${row.id}-milestone-${segmentIndex}`}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedTaskId(row.id);
-                                  setStatusMessage(`Selected milestone ${row.taskName}.`);
+                                onContextMenuCapture={() => {
+                                  setContextTaskId(row.id);
+                                  selectTask(row.id, `Opened context menu for ${row.taskName}.`);
                                 }}
-                                className={cn(
-                                  "absolute h-4 w-4 rotate-45 rounded-[2px] border",
-                                  scheduleTimelineBarClass(row.status, row.critical && showCriticalPath, row.kind),
-                                )}
+                                className="absolute"
                                 style={{
-                                  top: `${top + 16}px`,
-                                  left: `${segment.start * unitWidth - 8}px`,
+                                  top: `${top + 14}px`,
+                                  left: `${segment.start * unitWidth - 10}px`,
                                 }}
-                              />
+                              >
+                                <div
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={() => selectTask(row.id, `Selected milestone ${row.taskName}.`)}
+                                  className={cn(
+                                    "h-4 w-4 rotate-45 rounded-[2px] border",
+                                    scheduleTimelineBarClass(
+                                      row.status,
+                                      row.critical && showCriticalPath,
+                                      row.kind,
+                                    ),
+                                  )}
+                                />
+                              </div>
                             ))
                           : null}
 
                         {row.kind !== "milestone"
                           ? segments.map((segment, segmentIndex) => {
                               const left = segment.start * unitWidth;
-                              const width = Math.max((segment.length ?? 0.18) * unitWidth, row.kind === "recurring" ? 12 : 14);
+                              const width = Math.max(
+                                (segment.length ?? 0.18) * unitWidth,
+                                row.kind === "recurring" ? 12 : 14,
+                              );
                               const completedWidth =
                                 row.kind === "summary" || row.kind === "placeholder" || row.progress <= 0
                                   ? 0
@@ -512,106 +648,107 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                               return (
                                 <div
                                   key={`${row.id}-segment-${segmentIndex}`}
+                                  onContextMenuCapture={() => {
+                                    setContextTaskId(row.id);
+                                    selectTask(row.id, `Opened context menu for ${row.taskName}.`);
+                                  }}
                                   className="absolute"
                                   style={{
                                     top: `${top + (row.kind === "recurring" ? 18 : 16)}px`,
                                     left: `${left}px`,
                                   }}
                                 >
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      setSelectedTaskId(row.id);
-                                      setStatusMessage(`Selected ${row.taskName}.`);
-                                    }}
-                                    onPointerDown={(event) => {
-                                      if (!bar) {
-                                        return;
-                                      }
-
-                                      event.preventDefault();
-                                      setSelectedTaskId(row.id);
-                                      dragStateRef.current = {
-                                        rowId: row.id,
-                                        mode: "move",
-                                        startClientX: event.clientX,
-                                        bar,
-                                      };
-                                      setStatusMessage(`Dragging ${row.taskName}.`);
-                                    }}
-                                    className={cn(
-                                      "absolute overflow-hidden border",
-                                      row.kind === "summary"
-                                        ? "h-4 rounded-sm"
-                                        : row.kind === "placeholder"
-                                          ? "h-4 rounded-full border-dashed bg-white"
-                                          : row.kind === "recurring"
-                                            ? "h-3 rounded-full"
-                                            : "h-4 rounded-full",
-                                      scheduleTimelineBarClass(
-                                        row.status,
-                                        row.critical && showCriticalPath,
-                                        row.kind,
-                                      ),
-                                    )}
-                                    style={{
-                                      width: `${width}px`,
-                                    }}
-                                  >
-                                    {completedWidth > 0 ? (
+                                  <div className="relative">
                                       <div
-                                        className="h-full bg-black/18"
-                                        style={{ width: `${completedWidth}px` }}
-                                      />
-                                    ) : null}
-                                  </button>
-
-                                  {supportsResize ? (
-                                    <>
-                                      <button
-                                        type="button"
-                                        aria-label={`Resize start ${row.taskName}`}
+                                        role="button"
+                                        tabIndex={0}
+                                        onClick={() => selectTask(row.id, `Selected ${row.taskName}.`)}
                                         onPointerDown={(event) => {
-                                          if (!bar) {
+                                          if (event.button !== 0 || !bar) {
                                             return;
                                           }
 
                                           event.preventDefault();
-                                          event.stopPropagation();
-                                          setSelectedTaskId(row.id);
-                                          dragStateRef.current = {
+                                          selectTask(row.id, `Dragging ${row.taskName}.`);
+                                          taskDragRef.current = {
                                             rowId: row.id,
-                                            mode: "resize-start",
+                                            mode: "move",
                                             startClientX: event.clientX,
                                             bar,
                                           };
-                                          setStatusMessage(`Adjusting start for ${row.taskName}.`);
                                         }}
-                                        className="absolute top-0 left-0 h-4 w-1.5 rounded-full bg-white/90 shadow"
-                                      />
-                                      <button
-                                        type="button"
-                                        aria-label={`Resize end ${row.taskName}`}
-                                        onPointerDown={(event) => {
-                                          if (!bar) {
-                                            return;
-                                          }
+                                        className={cn(
+                                          "overflow-hidden border",
+                                          row.kind === "summary"
+                                            ? "h-4 rounded-sm"
+                                            : row.kind === "placeholder"
+                                              ? "h-4 rounded-full border-dashed bg-white"
+                                              : row.kind === "recurring"
+                                                ? "h-3 rounded-full"
+                                                : "h-4 rounded-full",
+                                          scheduleTimelineBarClass(
+                                            row.status,
+                                            row.critical && showCriticalPath,
+                                            row.kind,
+                                          ),
+                                        )}
+                                        style={{
+                                          width: `${width}px`,
+                                        }}
+                                      >
+                                        {completedWidth > 0 ? (
+                                          <div
+                                            className="h-full bg-black/18"
+                                            style={{ width: `${completedWidth}px` }}
+                                          />
+                                        ) : null}
+                                      </div>
 
-                                          event.preventDefault();
-                                          event.stopPropagation();
-                                          setSelectedTaskId(row.id);
-                                          dragStateRef.current = {
-                                            rowId: row.id,
-                                            mode: "resize-end",
-                                            startClientX: event.clientX,
-                                            bar,
-                                          };
-                                          setStatusMessage(`Adjusting finish for ${row.taskName}.`);
-                                        }}
-                                        className="absolute top-0 right-0 h-4 w-1.5 rounded-full bg-white/90 shadow"
-                                      />
-                                    </>
-                                  ) : null}
+                                      {supportsResize ? (
+                                        <>
+                                          <button
+                                            type="button"
+                                            aria-label={`Resize start ${row.taskName}`}
+                                            onPointerDown={(event) => {
+                                              if (event.button !== 0 || !bar) {
+                                                return;
+                                              }
+
+                                              event.preventDefault();
+                                              event.stopPropagation();
+                                              selectTask(row.id, `Adjusting start for ${row.taskName}.`);
+                                              taskDragRef.current = {
+                                                rowId: row.id,
+                                                mode: "resize-start",
+                                                startClientX: event.clientX,
+                                                bar,
+                                              };
+                                            }}
+                                            className="absolute top-0 left-0 h-4 w-1.5 rounded-full bg-white/90 shadow"
+                                          />
+                                          <button
+                                            type="button"
+                                            aria-label={`Resize end ${row.taskName}`}
+                                            onPointerDown={(event) => {
+                                              if (event.button !== 0 || !bar) {
+                                                return;
+                                              }
+
+                                              event.preventDefault();
+                                              event.stopPropagation();
+                                              selectTask(row.id, `Adjusting finish for ${row.taskName}.`);
+                                              taskDragRef.current = {
+                                                rowId: row.id,
+                                                mode: "resize-end",
+                                                startClientX: event.clientX,
+                                                bar,
+                                              };
+                                            }}
+                                            className="absolute top-0 right-0 h-4 w-1.5 rounded-full bg-white/90 shadow"
+                                          />
+                                        </>
+                                      ) : null}
+                                  </div>
                                 </div>
                               );
                             })
@@ -622,7 +759,10 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                             className="absolute text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#6c7680]"
                             style={{
                               top: `${top + 2}px`,
-                              left: `${Math.min((segments[0]?.start ?? 0) * unitWidth, Math.max(timelineWidth - 120, 0))}px`,
+                              left: `${Math.min(
+                                (segments[0]?.start ?? 0) * unitWidth,
+                                Math.max(timelineWidth - 120, 0),
+                              )}px`,
                             }}
                           >
                             {bar.label}
@@ -660,76 +800,22 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
                     ))}
                   </svg>
                 </div>
-              </div>
-
-              <aside className="bg-[linear-gradient(180deg,rgba(251,253,253,0.95),rgba(244,248,249,0.92))]">
-                <div className="border-b border-border/70 px-4 py-4">
-                  <div className="mockup-section-kicker">Inspector</div>
-                  <h3 className="mt-2 text-[1rem] font-semibold text-[#2e3a44]">
-                    Task Inspector: {selectedRow.taskName}
-                  </h3>
-                  <p className="mt-2 text-[0.84rem] leading-6 text-[#61707c]">
-                    Selection, row collapse, and bar editing are active in this mockup. The real component would also recalculate dates, float, and downstream path impacts.
-                  </p>
-                </div>
-
-                <div className="space-y-4 px-4 py-4">
-                  {inspectorSections.map((section) => (
-                    <div
-                      key={section.title}
-                      className="rounded-[1.25rem] border border-border/70 bg-white/92 p-3 shadow-[0_10px_24px_rgba(15,23,42,0.04)]"
-                    >
-                      <div className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#7c8791]">
-                        {section.title}
-                      </div>
-                      <div className="mt-3 space-y-2">
-                        {section.items.map((item) => (
-                          <div key={`${section.title}-${item.label}`} className="space-y-1">
-                            <div className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#90a0ae]">
-                              {item.label}
-                            </div>
-                            <div
-                              className={cn(
-                                "text-[0.85rem] leading-5 text-[#33414b]",
-                                item.tone === "danger" && "text-rose-700",
-                                item.tone === "warn" && "text-amber-700",
-                                item.tone === "success" && "text-emerald-700",
-                                item.tone === "accent" && "text-primary",
-                              )}
-                            >
-                              {item.value}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="rounded-[1.25rem] border border-border/70 bg-white/92 p-3">
-                    <div className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#7c8791]">
-                      Legend
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        { label: "Summary", tone: "accent" as const },
-                        { label: "Critical", tone: "danger" as const },
-                        { label: "Milestone", tone: "success" as const },
-                        { label: "Baseline", tone: "default" as const },
-                      ].map((item) => (
-                        <span
-                          key={item.label}
-                          className={cn(
-                            "rounded-full border px-2.5 py-1 text-[0.72rem] font-medium",
-                            scheduleToneBadgeClass(item.tone),
-                          )}
-                        >
-                          {item.label}
-                        </span>
-                      ))}
-                    </div>
                   </div>
-                </div>
-              </aside>
+                </ContextMenuTrigger>
+                <TaskContextMenuContent
+                  row={contextRow}
+                  onSelectTask={() => selectTask(contextRow.id, `Selected ${contextRow.taskName}.`)}
+                  onOpenDetails={(mode) => openDetailsForTask(contextRow.id, mode)}
+                  onHighlightPath={() => {
+                    setShowCriticalPath(true);
+                    selectTask(contextRow.id, `Highlighted path for ${contextRow.taskName}.`);
+                  }}
+                  onShowBaseline={() => {
+                    setShowBaseline(true);
+                    selectTask(contextRow.id, `Showing baseline context for ${contextRow.taskName}.`);
+                  }}
+                />
+              </ContextMenu>
             </div>
           </div>
         </div>
@@ -775,7 +861,194 @@ export function InteractiveScheduleSection({ block }: { block: ScheduleBlock }) 
           </div>
         </div>
       </div>
+
+      <Sheet open={detailsOpen} onOpenChange={setDetailsOpen}>
+        <SheetContent side="right" className="w-[min(640px,100vw)] sm:max-w-[640px]">
+          <SheetHeader className="border-b border-border/70 px-5 py-5">
+            <div className="flex flex-wrap gap-2">
+              {(["inspector", "dependency", "tracking"] as DetailMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setDetailMode(mode)}
+                  className={cn(
+                    "rounded-full border px-3 py-1.5 text-[0.78rem] font-medium capitalize",
+                    mode === detailMode
+                      ? "border-primary/20 bg-primary/12 text-primary"
+                      : "border-border bg-white text-[#5f6973]",
+                  )}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
+            <SheetTitle className="mt-3 text-[1.1rem] font-semibold text-[#2e3a44]">
+              {selectedRow.taskName}
+            </SheetTitle>
+            <SheetDescription className="text-[0.9rem] leading-6 text-[#61707c]">
+              Right-click on a chart task to open task inspector, dependency, or tracking details without sacrificing chart width.
+            </SheetDescription>
+          </SheetHeader>
+
+          <div className="space-y-4 overflow-auto px-5 py-5">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { label: "Task Mode", value: selectedRow.taskMode === "manual" ? "Manual" : "Auto scheduled" },
+                { label: "Schedule Split", value: `${splitPercent}% table / ${100 - splitPercent}% chart` },
+                { label: "Start", value: selectedRow.start },
+                { label: "Finish", value: selectedRow.finish },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-[1.2rem] border border-border/70 bg-white p-4 shadow-[0_8px_20px_rgba(15,23,42,0.04)]"
+                >
+                  <div className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#8a97a3]">
+                    {item.label}
+                  </div>
+                  <div className="mt-2 text-[0.96rem] font-medium text-[#34414b]">{item.value}</div>
+                </div>
+              ))}
+            </div>
+
+            {sheetSections.map((section) => (
+              <div
+                key={section.title}
+                className="rounded-[1.35rem] border border-border/70 bg-white p-4 shadow-[0_10px_24px_rgba(15,23,42,0.04)]"
+              >
+                <div className="text-[0.76rem] font-semibold uppercase tracking-[0.16em] text-[#7c8791]">
+                  {section.title}
+                </div>
+                {section.description ? (
+                  <p className="mt-2 text-[0.88rem] leading-6 text-[#61707c]">{section.description}</p>
+                ) : null}
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {section.items.map((item) => (
+                    <div key={`${section.title}-${item.label}`} className="space-y-1">
+                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#90a0ae]">
+                        {item.label}
+                      </div>
+                      <div
+                        className={cn(
+                          "text-[0.9rem] leading-6 text-[#33414b]",
+                          item.tone === "danger" && "text-rose-700",
+                          item.tone === "warn" && "text-amber-700",
+                          item.tone === "success" && "text-emerald-700",
+                          item.tone === "accent" && "text-primary",
+                        )}
+                      >
+                        {item.value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
     </section>
+  );
+
+  function selectTask(taskId: string, message: string) {
+    setSelectedTaskId(taskId);
+    setStatusMessage(message);
+  }
+
+  function updateSplitterRatio(clientX: number) {
+    const splitterState = splitterDragRef.current;
+
+    if (!splitterState || !layoutRef.current) {
+      return false;
+    }
+
+    const layoutWidth = layoutRef.current.getBoundingClientRect().width;
+
+    if (layoutWidth <= 0) {
+      return true;
+    }
+
+    const nextRatio = clampSplitRatio(
+      splitterState.startRatio + (clientX - splitterState.startClientX) / layoutWidth,
+    );
+    setSplitRatio(nextRatio);
+    return true;
+  }
+
+  function finishSplitterDrag() {
+    const splitterState = splitterDragRef.current;
+
+    if (!splitterState) {
+      return false;
+    }
+
+    splitterDragRef.current = null;
+    setStatusMessage(
+      `Workspace resized to ${Math.round(splitRatio * 100)}% table and ${Math.round(
+        (1 - splitRatio) * 100,
+      )}% chart.`,
+    );
+    return true;
+  }
+
+  function openDetailsForTask(taskId: string, mode: DetailMode) {
+    const detailLabel =
+      mode === "inspector"
+        ? "task inspector"
+        : mode === "dependency"
+          ? "dependency details"
+          : "tracking details";
+    const task = block.rows.find((row) => row.id === taskId);
+
+    setSelectedTaskId(taskId);
+    setDetailMode(mode);
+    setDetailsOpen(true);
+    setStatusMessage(`Opened ${detailLabel} for ${task?.taskName ?? "selected task"}.`);
+  }
+}
+
+function TaskContextMenuContent({
+  row,
+  onSelectTask,
+  onOpenDetails,
+  onHighlightPath,
+  onShowBaseline,
+}: {
+  row: ScheduleRow;
+  onSelectTask: () => void;
+  onOpenDetails: (mode: DetailMode) => void;
+  onHighlightPath: () => void;
+  onShowBaseline: () => void;
+}) {
+  return (
+    <ContextMenuContent className="w-72">
+      <ContextMenuLabel>{row.taskName}</ContextMenuLabel>
+      <ContextMenuItem onClick={onSelectTask}>
+        Select Task
+        <ContextMenuShortcut>{row.id}</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem onClick={() => onOpenDetails("inspector")}>
+        Open Task Inspector
+        <ContextMenuShortcut>Info</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem onClick={() => onOpenDetails("dependency")}>
+        Dependency Details
+        <ContextMenuShortcut>Path</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem onClick={() => onOpenDetails("tracking")}>
+        Tracking Details
+        <ContextMenuShortcut>Track</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem onClick={onHighlightPath}>
+        Highlight Driving Path
+        <ContextMenuShortcut>CP</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem onClick={onShowBaseline}>
+        Show Baseline Context
+        <ContextMenuShortcut>BL</ContextMenuShortcut>
+      </ContextMenuItem>
+    </ContextMenuContent>
   );
 }
 
@@ -791,7 +1064,10 @@ function getVisibleRows(
   for (const row of rows) {
     const indent = row.indent ?? 0;
 
-    while (collapsedState.length > 0 && collapsedState[collapsedState.length - 1]!.indent >= indent) {
+    while (
+      collapsedState.length > 0 &&
+      collapsedState[collapsedState.length - 1]!.indent >= indent
+    ) {
       collapsedState.pop();
     }
 
@@ -861,33 +1137,52 @@ function applyDragDelta(bar: ScheduleBar, mode: DragState["mode"], deltaUnits: n
   };
 }
 
-function getInspectorSections(row: ScheduleRow) {
+function getPanelSections(block: ScheduleBlock, row: ScheduleRow) {
+  const incomingDependencies = block.dependencies
+    .filter((dependency) => dependency.to === row.id)
+    .map((dependency) => `${dependency.from}${dependency.kind}${dependency.driving ? " driving" : ""}`);
+  const outgoingDependencies = block.dependencies
+    .filter((dependency) => dependency.from === row.id)
+    .map((dependency) => `${dependency.to}${dependency.kind}${dependency.driving ? " driving" : ""}`);
+
   return [
     {
+      mode: "inspector" as const,
       title: "Selected Task",
+      description: "Inspector summary for the currently selected or right-clicked task.",
       items: [
         { label: "Mode", value: row.taskMode === "manual" ? "Manual" : "Auto scheduled" },
         { label: "Duration", value: row.duration },
         { label: "Critical", value: row.critical ? "Yes" : "No", tone: row.critical ? "danger" : "default" },
         { label: "Timeline", value: row.onTimeline ? "Pinned" : "Not pinned", tone: row.onTimeline ? "accent" : "default" },
+        { label: "Resources", value: row.resources || "Unassigned" },
+        { label: "Task Type", value: row.kind ? toTitleCase(row.kind) : "Task" },
       ],
     },
     {
+      mode: "dependency" as const,
       title: "Dependency & Path",
+      description: "Predecessor, successor, and driving-path context for the selected task.",
       items: [
         { label: "Predecessors", value: row.predecessors || "None" },
-        { label: "Task Type", value: row.kind ? toTitleCase(row.kind) : "Task" },
+        { label: "Incoming Links", value: incomingDependencies.join(", ") || "None" },
+        { label: "Outgoing Links", value: outgoingDependencies.join(", ") || "None" },
         { label: "Task Path", value: row.critical ? "Driving" : "Available slack", tone: row.critical ? "danger" : "success" },
         { label: "Calendar", value: row.taskMode === "manual" ? "Manual placeholder" : "Standard + Permit review" },
+        { label: "Dependency Note", value: row.note || "No dependency exception note" },
       ],
     },
     {
+      mode: "tracking" as const,
       title: "Tracking",
+      description: "Progress, baseline, and variance context for the selected task.",
       items: [
         { label: "% Complete", value: `${row.progress}%` },
         { label: "Baseline Finish", value: row.baselineFinish || "Not set" },
-        { label: "Resources", value: row.resources || "Unassigned" },
-        { label: "Note", value: row.note || "No exception note" },
+        { label: "Current Finish", value: row.finish },
+        { label: "Variance", value: getVarianceLabel(row), tone: getVarianceTone(row) },
+        { label: "WBS", value: row.wbs },
+        { label: "Note", value: row.note || "No tracking note" },
       ],
     },
   ];
@@ -896,17 +1191,19 @@ function getInspectorSections(row: ScheduleRow) {
 function getDetailCards(
   row: ScheduleRow,
   activeView: string,
+  activeDetailTab: string,
   toggles: {
     showBaseline: boolean;
     showCriticalPath: boolean;
     showNonWorking: boolean;
+    splitPercent: number;
   },
 ) {
   return [
     {
-      title: "Task Form",
+      title: "Task Workspace",
       lines: [
-        `Name: ${row.taskName}`,
+        `Selected task: ${row.taskName}`,
         `Start / Finish: ${row.start} to ${row.finish}`,
         `Resources: ${row.resources || "Unassigned"}`,
         `Predecessors: ${row.predecessors || "None"}`,
@@ -914,22 +1211,22 @@ function getDetailCards(
       tone: "accent" as const,
     },
     {
-      title: "Current View",
+      title: "Viewport Control",
       lines: [
         `View preset: ${activeView}`,
+        `Detail tab: ${activeDetailTab}`,
+        `Split ratio: ${toggles.splitPercent}% table / ${100 - toggles.splitPercent}% chart`,
         `Critical path: ${toggles.showCriticalPath ? "Visible" : "Hidden"}`,
-        `Baseline bars: ${toggles.showBaseline ? "Visible" : "Hidden"}`,
-        `Nonworking time: ${toggles.showNonWorking ? "Shaded" : "Hidden"}`,
       ],
       tone: "warn" as const,
     },
     {
-      title: "Mockup Scope",
+      title: "Context Actions",
       lines: [
-        "Selection updates inspector and detail cards",
-        "Summary rows collapse and expand child tasks",
-        "Bars support drag and simple resize interactions",
-        "Full scheduling logic is still visual-only in this prototype",
+        `Baseline bars: ${toggles.showBaseline ? "Visible" : "Hidden"}`,
+        `Nonworking time: ${toggles.showNonWorking ? "Shaded" : "Hidden"}`,
+        "Right-click chart tasks to open task-specific sheet actions",
+        "Use the center splitter to push either pane out to 75%",
       ],
       tone: "default" as const,
     },
@@ -992,6 +1289,34 @@ function scheduleTimelineBarClass(
   }
 
   return "border-primary/70 bg-primary/72";
+}
+
+function getVarianceLabel(row: ScheduleRow) {
+  if (!row.baselineFinish) {
+    return "Not tracked";
+  }
+
+  if (row.critical || row.note) {
+    return "+2d";
+  }
+
+  return "0d";
+}
+
+function getVarianceTone(row: ScheduleRow) {
+  if (!row.baselineFinish) {
+    return "default" as const;
+  }
+
+  if (row.critical || row.note) {
+    return "warn" as const;
+  }
+
+  return "success" as const;
+}
+
+function clampSplitRatio(value: number) {
+  return Math.max(0.25, Math.min(0.75, value));
 }
 
 function roundToQuarter(value: number) {
